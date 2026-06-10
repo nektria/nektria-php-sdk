@@ -1,0 +1,27 @@
+#!/bin/bash
+trap "exit 1" ERR
+
+PIPELINE=''
+
+print_usage() {
+  printf "Usage: bin/phpstan [-p] \n"
+}
+
+while getopts 'p' flag; do
+  case "$flag" in
+    p) PIPELINE='1';;
+    *) print_usage
+       exit 1 ;;
+  esac
+done
+
+if [ "$PIPELINE" = '1' ]; then
+  bin/console > /dev/null
+  vendor/bin/phpunit --stop-on-failure --stop-on-error --testdox --configuration /workspace/server/pipeline/phpunit.xml.dist
+else
+  docker exec -it yieldmanager bin/console > /dev/null
+  docker exec -it yieldmanager /root/.composer/vendor/bin/phpunit --stop-on-failure --stop-on-error --testdox --configuration /app/server/__PROJECT__-dev/phpunit.xml.dist
+fi
+
+rm -Rf server/pipeline/.phpunit.result.cache
+

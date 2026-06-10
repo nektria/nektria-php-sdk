@@ -1,0 +1,2 @@
+#!/bin/bash
+docker compose -f server/php-sdk-dev/docker-compose.yml stop

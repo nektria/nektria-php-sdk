@@ -1,0 +1,6 @@
+#!/bin/bash
+trap "exit 1" ERR
+
+DOCKER_IMAGE='php-sdk'
+
+docker exec -i "$DOCKER_IMAGE" composer.phar install

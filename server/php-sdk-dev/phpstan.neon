@@ -1,0 +1,60 @@
+includes:
+    - '%currentWorkingDirectory%/vendor/phpstan/phpstan-symfony/extension.neon'
+    - '%currentWorkingDirectory%/vendor/phpstan/phpstan-symfony/rules.neon'
+    - '%currentWorkingDirectory%/vendor/phpstan/phpstan-mockery/extension.neon'
+    - '%currentWorkingDirectory%/vendor/phpstan/phpstan-strict-rules/rules.neon'
+    - '%currentWorkingDirectory%/vendor/phpstan/phpstan-phpunit/extension.neon'
+    - '%currentWorkingDirectory%/vendor/phpstan/phpstan-phpunit/rules.neon'
+    - '%currentWorkingDirectory%/vendor/phpstan/phpstan-doctrine/extension.neon'
+    - '%currentWorkingDirectory%/vendor/phpstan/phpstan-doctrine/rules.neon'
+    - '%currentWorkingDirectory%/vendor/phpstan/phpstan/conf/bleedingEdge.neon'
+    - '%currentWorkingDirectory%/vendor/spaze/phpstan-disallowed-calls/extension.neon'
+    #- '%currentWorkingDirectory%/vendor/ergebnis/phpstan-rules/rules.neon'
+
+parameters:
+    level: 8
+    paths:
+        - ../../src
+        - ../../tests
+
+    excludePaths:
+        - '%currentWorkingDirectory%/vendor'
+
+    symfony:
+        #containerXmlPath: '%currentWorkingDirectory%/var/cache/dev/Nektria_KernelDevDebugContainer.xml'
+
+    disallowedNamespaces:
+        -
+            class: 'DateTime'
+            message: 'Use Clock or LocalClock instead of DateTime'
+            allowIn:
+                - src/Dto/Clock.php
+                - src/Dto/LocalClock.php
+        -
+            class: 'DateTimeImmutable'
+            message: 'Use Clock or LocalClock instead of DateTime'
+            allowIn:
+                - src/Dto/Clock.php
+                - src/Dto/LocalClock.php
+        -
+            class: 'Symfony\Component\Routing\Attribute\Route'
+            message: 'Use Nektria\Util\Controller\Route instead'
+            allowIn:
+                - src/Util/Controller/Route.php
+
+rules:
+    - Nektria\PHPStan\AllowComparingOnlyComparableTypesRule
+
+services:
+    -
+        class: Nektria\PHPStan\ValidateClassFieldReturnsNotNullExtension
+        tags:
+            - phpstan.typeSpecifier.staticMethodTypeSpecifyingExtension
+    -
+        class: Nektria\PHPStan\ValidateClassFieldsReturnsNotNullExtension
+        tags:
+            - phpstan.typeSpecifier.staticMethodTypeSpecifyingExtension
+    -
+        class: Ergebnis\PHPStan\Rules\Files\DeclareStrictTypesRule
+        tags:
+            - phpstan.rules.rule

@@ -1,0 +1,93 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <DBN-PSQL>
+      <case-options enabled="true">
+        <option name="KEYWORD_CASE" value="lower" />
+        <option name="FUNCTION_CASE" value="lower" />
+        <option name="PARAMETER_CASE" value="lower" />
+        <option name="DATATYPE_CASE" value="lower" />
+        <option name="OBJECT_CASE" value="preserve" />
+      </case-options>
+      <formatting-settings enabled="false" />
+    </DBN-PSQL>
+    <DBN-SQL>
+      <case-options enabled="true">
+        <option name="KEYWORD_CASE" value="lower" />
+        <option name="FUNCTION_CASE" value="lower" />
+        <option name="PARAMETER_CASE" value="lower" />
+        <option name="DATATYPE_CASE" value="lower" />
+        <option name="OBJECT_CASE" value="preserve" />
+      </case-options>
+      <formatting-settings enabled="false">
+        <option name="STATEMENT_SPACING" value="one_line" />
+        <option name="CLAUSE_CHOP_DOWN" value="chop_down_if_statement_long" />
+        <option name="ITERATION_ELEMENTS_WRAPPING" value="chop_down_if_not_single" />
+      </formatting-settings>
+    </DBN-SQL>
+    <codeStyleSettings language="PHP">
+      <arrangement>
+        <groups />
+        <rules>
+          <section>
+            <rule>
+              <match>
+                <CONST>true</CONST>
+              </match>
+              <order>BY_NAME</order>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <FIELD>true</FIELD>
+                  <modifiers />
+                </AND>
+              </match>
+              <order>BY_NAME</order>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <CONSTRUCTOR>true</CONSTRUCTOR>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <METHOD>true</METHOD>
+                  <modifiers />
+                </AND>
+              </match>
+              <order>BY_NAME</order>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <TRAIT>true</TRAIT>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <INTERFACE>true</INTERFACE>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <CLASS>true</CLASS>
+              </match>
+            </rule>
+          </section>
+        </rules>
+      </arrangement>
+    </codeStyleSettings>
+  </code_scheme>
+</component>

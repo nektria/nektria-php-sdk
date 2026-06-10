@@ -1,0 +1,14 @@
+services:
+  php-sdk:
+    build:
+      context: ../../.
+      dockerfile: server/php-sdk-dev/Dockerfile
+    container_name: php-sdk
+    restart: 'unless-stopped'
+    volumes:
+      - ../../.:/app
+      - /app/var
+    stdin_open: true
+    tty: true
+    command: bash
+

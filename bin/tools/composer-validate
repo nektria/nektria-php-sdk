@@ -1,0 +1,23 @@
+#!/bin/bash
+trap "exit 1" ERR
+
+PIPELINE=''
+DOCKER_IMAGE='php-sdk'
+
+print_usage() {
+  printf "Usage: bin/composer-validate [-p] \n"
+}
+
+while getopts 'p' flag; do
+  case "$flag" in
+    p) PIPELINE='1';;
+    *) print_usage
+       exit 1 ;;
+  esac
+done
+
+if [ "$PIPELINE" = '1' ]; then
+  composer.phar validate
+else
+  docker exec -i "$DOCKER_IMAGE" composer.phar validate
+fi

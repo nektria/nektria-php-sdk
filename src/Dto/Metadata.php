@@ -1,0 +1,67 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Nektria\Dto;
+
+use Nektria\Document\Document;
+use Nektria\Service\ContextService;
+
+readonly class Metadata extends Document
+{
+    /** @var mixed[] */
+    private array $data;
+
+    /**
+     * @param mixed[] $data
+     */
+    final public function __construct(array $data = [])
+    {
+        parent::__construct();
+        $this->data = $data;
+    }
+
+    public function getField(string $field): mixed
+    {
+        return $this->data[$field] ?? null;
+    }
+
+    public function merge(?self $metadata): static
+    {
+        return $this->mergeData($metadata?->data(null));
+    }
+
+    /**
+     * @param mixed[]|null $data
+     */
+    public function mergeData(?array $data): static
+    {
+        if ($data === null) {
+            return $this;
+        }
+
+        $newMetadata = [...$this->data];
+        foreach ($data as $key => $value) {
+            $newMetadata[$key] = $value;
+        }
+
+        return new static($newMetadata);
+    }
+
+    public function updateField(string $field, mixed $value): static
+    {
+        if ($this->getField($field) === $value) {
+            return $this;
+        }
+
+        $data = [...$this->data];
+        $data[$field] = $value;
+
+        return new static($data);
+    }
+
+    protected function toArray(?ContextService $context): array
+    {
+        return $this->data;
+    }
+}

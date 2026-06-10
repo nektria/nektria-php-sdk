@@ -1,0 +1,24 @@
+#!/bin/bash
+trap "exit 1" ERR
+
+PIPELINE=''
+DOCKER_IMAGE='php-sdk'
+
+print_usage() {
+  printf "Usage: bin/tools/php-cs-fixer [-p] \n"
+}
+
+while getopts 'p' flag; do
+  case "$flag" in
+    p) PIPELINE='1';;
+    *) print_usage
+       exit 1 ;;
+  esac
+done
+
+if [ "$PIPELINE" = '1' ]; then
+  php -d memory_limit=-1 vendor/bin/php-cs-fixer fix src --allow-risky=yes --using-cache=no --dry-run --config=server/php-sdk-dev/php-cs-fixer.dist.php
+else
+  docker exec -i "$DOCKER_IMAGE" php -d memory_limit=-1 vendor/bin/php-cs-fixer fix src --allow-risky=yes --using-cache=no --config=server/php-sdk-dev/php-cs-fixer.dist.php
+fi
+

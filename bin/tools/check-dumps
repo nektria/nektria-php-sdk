@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+check_usages() {
+  ERRORS=$(grep -R "$1" "$2" | wc -l | xargs )
+  if [ "$ERRORS" != 0 ]; then
+     echo "Has been found $ERRORS" uses of "$1" in "$2 ."
+     grep -R "$1" "$2"
+     exit 1
+  fi
+}
+
+check_usages ' printf(' src
+check_usages ' echo' src
+check_usages ' dd' src
+check_usages 'dump(' src
+check_usages 'Watcher::' src
+
+check_usages ' printf(' tests
+check_usages ' echo' tests
+check_usages ' dd' tests
+check_usages 'dump(' tests
+check_usages 'Watcher::' tests
+
+
+#check_usages 'use App\\Admin' src/Common
+#check_usages 'use App\\Admin' src/Web
+#check_usages 'use App\\Admin' src/Api
+#check_usages 'use App\\Admin' src/RouteManager
+
+#check_usages 'use App\\Web' src/Common
+#check_usages 'use App\\Web' src/Admin
+#check_usages 'use App\\Web' src/Api
+#check_usages 'use App\\Web' src/RouteManager
+
+#check_usages 'use App\\Api' src/Common
+#check_usages 'use App\\Api' src/Admin
+#check_usages 'use App\\Api' src/Web
+#check_usages 'use App\\Api' src/RouteManager
+
+#check_usages 'use App\\RouteManager' src/Common
+#check_usages 'use App\\RouteManager' src/Api
+#check_usages 'use App\\RouteManager' src/Admin
+#check_usages 'use App\\RouteManager' src/Web
+
+## Avoid Using WriteModel everywhere
+# grep --exclude-dir={Service,Infrastructure} -R 'WriteModel;' src/Admin
+# grep --exclude-dir={Service,Infrastructure} -R 'WriteModel;' src/Api
+# grep --exclude-dir={Service,Infrastructure} -R 'WriteModel;' src/Common
+# grep --exclude-dir={Service,Infrastructure} -R 'WriteModel;' src/RouteManager
+# grep --exclude-dir={Service,Infrastructure} -R 'WriteModel;' src/Web
+
+## Avoid surpase cache
+# grep --exclude-dir={Infrastructure} -R 'Cache;' src/Admin
+# grep --exclude-dir={Infrastructure} -R 'Cache;' src/Api
+# grep --exclude-dir={Infrastructure} -R 'Cache;' src/Common
+# grep --exclude-dir={Infrastructure} -R 'Cache;' src/RouteManager
+# grep --exclude-dir={Infrastructure} -R 'Cache;' src/Web
+
+exit 0

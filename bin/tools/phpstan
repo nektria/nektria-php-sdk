@@ -1,0 +1,25 @@
+#!/bin/bash
+trap "exit 1" ERR
+
+PIPELINE=''
+DOCKER_IMAGE='php-sdk'
+
+print_usage() {
+  printf "Usage: bin/tools/phpstan [-p] \n"
+}
+
+while getopts 'p' flag; do
+  case "$flag" in
+    p) PIPELINE='1';;
+    *) print_usage
+       exit 1 ;;
+  esac
+done
+
+if [ "$PIPELINE" = '1' ]; then
+  php -d memory_limit=-1 vendor/bin/phpstan analyze -c server/php-sdk-dev/phpstan.neon --no-progress
+else
+  bin/docker/console cache:clear > /dev/null 2>&1
+  docker exec -i "$DOCKER_IMAGE" php -d memory_limit=-1 vendor/bin/phpstan analyze -c server/php-sdk-dev/phpstan.neon -v
+fi
+

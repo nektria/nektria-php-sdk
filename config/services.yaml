@@ -1,0 +1,40 @@
+parameters:
+  none: none
+services:
+  _defaults:
+    public: true
+    autowire: true
+    autoconfigure: true
+    bind:
+      array $googleScopes: ["https://www.googleapis.com/auth/generative-language.retriever"]
+      string $alertsToken: 'none'
+      string $compassHost: 'none'
+      string $env: '%kernel.environment%'
+      string $googleCredentialsFile: '%env(default:none:GOOGLE_CLOUD_CREDENTIALS_PATH)%'
+      string $mercureHost: 'none'
+      string $metricsHost: 'none'
+      string $mercureToken: 'none'
+      string $project: 'sdk'
+      string $redisDsn: 'none'
+      string $redisPrefix: 'phpsdk'
+      string $yieldmanagerHost: 'none'
+      string $routemanagerHost: 'none'
+
+  Nektria\Console\:
+    resource: '../src/Console'
+    tags: [ 'console.command' ]
+    calls:
+      - inject: [ '@service_container' ]
+
+  Nektria\Infrastructure\SecurityServiceInterface: '@Nektria\Service\SecurityService'
+  Nektria\Test\TestRunnerListener: ~
+
+  Nektria\Infrastructure\:
+    resource: '../src/Infrastructure'
+
+  Nektria\Service\:
+    resource: '../src/Service'
+    calls:
+      - setContainer: [ '@service_container' ]
+
+  Symfony\Component\DependencyInjection\ContainerInterface: '@service_container'

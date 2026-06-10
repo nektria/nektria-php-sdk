@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Source Files" pattern="file[php-sdk]:*/&amp;&amp;!file[php-sdk]:vendor//*&amp;&amp;!file:.env.test&amp;&amp;!file:.gitattributes&amp;&amp;!file:.gitignore&amp;&amp;!file:composer.lock&amp;&amp;!file:symfony.lock&amp;&amp;!file[php-sdk]:public/*&amp;&amp;!file[php-sdk]:public//*&amp;&amp;!file[php-sdk]:bin//*&amp;&amp;!file[php-sdk]:server//*&amp;&amp;!file[php-sdk]:assets//*&amp;&amp;!file[php-sdk]:tmp//*" />
+</component>
