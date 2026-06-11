@@ -42,6 +42,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Throwable;
+
 use function in_array;
 
 abstract class MessageListener implements EventSubscriberInterface
