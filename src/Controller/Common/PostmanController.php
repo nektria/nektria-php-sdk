@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Process\Process;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -414,8 +413,8 @@ readonly class PostmanController extends Controller
                     "`api_key` | API key used to authenticate requests |{$extraLine}\n\n> " .
                     '**Note:** Variables prefixed with a hyphen (`-`) ' .
                     "are optional. Remove the hyphen if you want to include the value in the request.\n\n" .
-                    "Download {$fixedProjectName}'s last version collection from [$uri]($uri).\n\n" .
-                    "### `$uri`",
+                    "Download {$fixedProjectName}'s last version collection from `$uri`.\n\n" .
+                    "### [$uri]($uri)",
                 'name' => $fixedProjectName,
                 'schema' => 'https://schema.getpostman.com/json/collection/v2.1.0/collection.json',
             ],
