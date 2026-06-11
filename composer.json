@@ -17,7 +17,6 @@
     ],
     "require": {
         "php": ">=8.4",
-        "ext-amqp": "*",
         "ext-ctype": "*",
         "ext-curl": "*",
         "ext-fileinfo": "*",
