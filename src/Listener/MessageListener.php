@@ -271,9 +271,9 @@ abstract class MessageListener implements EventSubscriberInterface
         }
 
         $exchangeName = '?';
-        $exchangeStamp = $event->getEnvelope()->last(AmqpReceivedStamp::class);
+        $exchangeStamp = $event->getEnvelope()->last(DoctrineReceivedStamp::class);
         if ($exchangeStamp !== null) {
-            $exchangeName = $exchangeStamp->getAmqpEnvelope()->getExchangeName() ?? '?';
+            $exchangeName = $exchangeStamp->getId();
         }
 
         $logLevel = $this->assignLogLevel(
@@ -347,7 +347,7 @@ abstract class MessageListener implements EventSubscriberInterface
         $exchangeName = '?';
         $exchangeStamp = $event->getEnvelope()->last(DoctrineReceivedStamp::class);
         if ($exchangeStamp !== null) {
-            $exchangeName = $exchangeStamp->getId() ?? '?';
+            $exchangeName = $exchangeStamp->getId();
         }
 
         $this->processRegistry->getMetadata()->updateField('context', 'messenger');
