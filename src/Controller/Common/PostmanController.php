@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Process\Process;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -493,6 +492,34 @@ readonly class PostmanController extends Controller
      */
     private function buildPostmanRequest(string $key, string $host, array $data, ContextService $contextService): array
     {
+        $origin = 'External/Postman';
+        if ($this->context->isPlayEnvironment()) {
+            $origin = 'Nektria/Postman';
+        }
+
+        $extraHeader = [
+            [
+                'key' => 'x-nektria-app',
+                'value' => str_contains($contextService->project(), 'proxy')
+                    ? 'nektria-proxy'
+                    : $contextService->project(),
+                'type' => 'text',
+            ],
+            [
+                'key' => 'X-origin',
+                'value' => $origin,
+                'type' => 'text',
+            ]
+        ];
+
+        if ($this->context->isPlayEnvironment()) {
+            $extraHeader[] = [
+                'key' => 'x-trace',
+                'value' => '00000000-0000-4000-8000-000000000000',
+                'type' => 'text',
+            ];
+        }
+
         $public = $contextService->isStaging() || $contextService->isProd();
         $description = $public ? $key : "{$key} ({$data['defaults']['_controller']})";
         $path = $data['path'];
@@ -552,34 +579,6 @@ readonly class PostmanController extends Controller
                 ];
             }
 
-            $origin = 'External/Postman';
-            if ($this->context->isPlayEnvironment()) {
-                $origin = 'Nektria/Postman';
-            }
-
-            $extraHeader = [
-                [
-                    'key' => 'x-nektria-app',
-                    'value' => str_contains($contextService->project(), 'proxy')
-                        ? 'nektria-proxy'
-                        : $contextService->project(),
-                    'type' => 'text',
-                ],
-                [
-                    'key' => 'X-origin',
-                    'value' => $origin,
-                    'type' => 'text',
-                ]
-            ];
-
-            if ($this->context->isPlayEnvironment()) {
-                $extraHeader[] = [
-                    'key' => 'x-trace',
-                    'value' => '00000000-0000-4000-8000-000000000000',
-                    'type' => 'text',
-                ];
-            }
-
             return [
                 'name' => $fixedName,
                 'request' => [
@@ -624,6 +623,7 @@ readonly class PostmanController extends Controller
                     ],
                     'description' => $description,
                     'method' => $method,
+                    'header' => $extraHeader,
                     'url' => [
                         'raw' => $url,
                         'host' => [$host],
@@ -657,6 +657,7 @@ readonly class PostmanController extends Controller
                     ],
                     'description' => $description,
                     'method' => $method,
+                    'header' => $extraHeader,
                     'url' => [
                         'raw' => $url,
                         'host' => [$host],
@@ -680,6 +681,7 @@ readonly class PostmanController extends Controller
             'request' => [
                 'description' => $description,
                 'method' => $method,
+                'header' => $extraHeader,
                 'url' => [
                     'raw' => $url,
                     'host' => [$host],
