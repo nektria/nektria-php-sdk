@@ -29,6 +29,7 @@ use Nektria\Util\MessageStamp\RetryStamp;
 use Nektria\Util\StringUtil;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpReceivedStamp;
+use Symfony\Component\Messenger\Bridge\Doctrine\Transport\DoctrineReceivedStamp;
 use Symfony\Component\Messenger\Event\SendMessageToTransportsEvent;
 use Symfony\Component\Messenger\Event\WorkerMessageFailedEvent;
 use Symfony\Component\Messenger\Event\WorkerMessageHandledEvent;
@@ -42,7 +43,6 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Throwable;
-
 use function in_array;
 
 abstract class MessageListener implements EventSubscriberInterface
@@ -346,9 +346,9 @@ abstract class MessageListener implements EventSubscriberInterface
     {
         $message = $event->getEnvelope()->getMessage();
         $exchangeName = '?';
-        $exchangeStamp = $event->getEnvelope()->last(AmqpReceivedStamp::class);
+        $exchangeStamp = $event->getEnvelope()->last(DoctrineReceivedStamp::class);
         if ($exchangeStamp !== null) {
-            $exchangeName = $exchangeStamp->getAmqpEnvelope()->getExchangeName() ?? '?';
+            $exchangeName = $exchangeStamp->getId() ?? '?';
         }
 
         $this->processRegistry->getMetadata()->updateField('context', 'messenger');
