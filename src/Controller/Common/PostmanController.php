@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Process\Process;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -559,14 +558,14 @@ readonly class PostmanController extends Controller
 
             $extraHeader = [
                 [
-                    'key' => 'X-Nektria-App',
+                    'key' => 'x-nektria-app',
                     'value' => str_contains($contextService->project(), 'proxy')
                         ? 'nektria-proxy'
                         : $contextService->project(),
                     'type' => 'text',
                 ],
                 [
-                    'key' => 'X-Origin',
+                    'key' => 'X-origin',
                     'value' => $origin,
                     'type' => 'text',
                 ]
