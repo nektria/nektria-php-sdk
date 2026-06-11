@@ -28,7 +28,6 @@ use Nektria\Util\MessageStamp\ContextStamp;
 use Nektria\Util\MessageStamp\RetryStamp;
 use Nektria\Util\StringUtil;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpReceivedStamp;
 use Symfony\Component\Messenger\Bridge\Doctrine\Transport\DoctrineReceivedStamp;
 use Symfony\Component\Messenger\Event\SendMessageToTransportsEvent;
 use Symfony\Component\Messenger\Event\WorkerMessageFailedEvent;
@@ -161,9 +160,9 @@ abstract class MessageListener implements EventSubscriberInterface
                 }
 
                 $exchangeName = '?';
-                $exchangeStamp = $event->getEnvelope()->last(AmqpReceivedStamp::class);
+                $exchangeStamp = $event->getEnvelope()->last(DoctrineReceivedStamp::class);
                 if ($exchangeStamp !== null) {
-                    $exchangeName = $exchangeStamp->getAmqpEnvelope()->getExchangeName();
+                    $exchangeName = $exchangeStamp->getId();
                 }
 
                 if (isset($data['user']['email'])) {
