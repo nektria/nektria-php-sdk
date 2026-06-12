@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Process\Process;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -554,6 +553,7 @@ readonly class PostmanController extends Controller
             $fixedName .= $letter;
         }
         $fixedName = ucwords($fixedName);
+        $fixedName = str_replace('Execute ', '', $fixedName);
 
         $file = str_replace('\\', '/', explode('::', $data['defaults']['_controller'])[0]) . '.php';
         $file = str_replace(['App', 'Nektria/'], ['/app/src', '/app/vendor/nektria/php-sdk/src/'], $file);
