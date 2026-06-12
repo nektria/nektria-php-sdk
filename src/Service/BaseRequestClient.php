@@ -41,153 +41,7 @@ readonly class BaseRequestClient extends AbstractService
      * @param array<string, string> $headers
      * @param array<string, string|bool|number> $options
      */
-    public function file(
-        string $url,
-        string $filename,
-        array $data = [],
-        array $headers = [],
-        array $options = [],
-    ): RequestResponse {
-        return $this->fileRequest(
-            $url,
-            $filename,
-            data: $data,
-            headers: $headers,
-            options: $options,
-        );
-    }
-
-    /**
-     * @param mixed[] $data
-     * @param array<string, string> $headers
-     * @param array<string, string> $filenames
-     * @param array<string, string|bool|number> $options
-     */
-    public function files(
-        string $url,
-        array $filenames,
-        array $data = [],
-        array $headers = [],
-        array $options = [],
-    ): RequestResponse {
-
-        return $this->filesRequest(
-            $url,
-            $filenames,
-            data: $data,
-            headers: $headers,
-            options: $options,
-        );
-    }
-
-    /**
-     * @param array<string, string|int|bool|float> $data
-     * @param array<string, string> $headers
-     * @param array<string, string|bool|number> $options
-     */
-    public function get(
-        string $url,
-        array $data = [],
-        array $headers = [],
-        array $options = [],
-        ?bool $enableDebugFallback = null
-    ): RequestResponse {
-        return $this->request(
-            'GET',
-            $url,
-            data: $data,
-            headers: $headers,
-            options: $options,
-            enableDebugFallback: $enableDebugFallback,
-        );
-    }
-
-    /**
-     * @param mixed[] $data
-     * @param array<string, string> $headers
-     * @param array<string, string|bool|number> $options
-     */
-    public function patch(
-        string $url,
-        array $data = [],
-        array $headers = [],
-        array $options = [],
-        bool $sendBodyAsObject = false,
-        ?bool $enableDebugFallback = null
-    ): RequestResponse {
-        return $this->request(
-            'PATCH',
-            $url,
-            data: $data,
-            headers: $headers,
-            options: $options,
-            sendBodyAsObject: $sendBodyAsObject,
-            enableDebugFallback: $enableDebugFallback,
-        );
-    }
-
-    /**
-     * @param mixed[] $data
-     * @param array<string, string> $headers
-     * @param array<string, string|bool|number> $options
-     */
-    public function post(
-        string $url,
-        array $data = [],
-        array $headers = [],
-        array $options = [],
-        bool $sendBodyAsObject = false,
-        ?bool $enableDebugFallback = null
-    ): RequestResponse {
-        return $this->request(
-            'POST',
-            $url,
-            data: $data,
-            headers: $headers,
-            options: $options,
-            sendBodyAsObject: $sendBodyAsObject,
-            enableDebugFallback: $enableDebugFallback,
-        );
-    }
-
-    /**
-     * @param mixed[] $data
-     * @param array<string, string> $headers
-     * @param array<string, string|bool|number> $options
-     */
-    public function put(
-        string $url,
-        array $data = [],
-        array $headers = [],
-        array $options = [],
-        bool $sendBodyAsObject = false,
-        ?bool $enableDebugFallback = null
-    ): RequestResponse {
-        return $this->request(
-            'PUT',
-            $url,
-            data: $data,
-            headers: $headers,
-            options: $options,
-            sendBodyAsObject: $sendBodyAsObject,
-            enableDebugFallback: $enableDebugFallback,
-        );
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    protected function defaultHeaders(): array
-    {
-        return [];
-    }
-
-    /**
-     * @param mixed[] $data
-     * @param array<string, string> $headers
-     * @param array<string, string|bool|number> $options
-     */
-    private function downloadFile(
+    public function downloadFile(
         string $method,
         string $url,
         string $filename,
@@ -330,6 +184,10 @@ readonly class BaseRequestClient extends AbstractService
         if ($status === 200) {
             $fileHandler = fopen($filename, 'wb');
 
+            if ($fileHandler === false) {
+                throw new NektriaException('E_500', "Cannot open file {$filename}.");
+            }
+
             foreach ($client->stream($response) as $chunk) {
                 fwrite($fileHandler, $chunk->getContent());
             }
@@ -338,6 +196,152 @@ readonly class BaseRequestClient extends AbstractService
         }
 
         return $returnResponse;
+    }
+
+    /**
+     * @param mixed[] $data
+     * @param array<string, string> $headers
+     * @param array<string, string|bool|number> $options
+     */
+    public function file(
+        string $url,
+        string $filename,
+        array $data = [],
+        array $headers = [],
+        array $options = [],
+    ): RequestResponse {
+        return $this->fileRequest(
+            $url,
+            $filename,
+            data: $data,
+            headers: $headers,
+            options: $options,
+        );
+    }
+
+    /**
+     * @param mixed[] $data
+     * @param array<string, string> $headers
+     * @param array<string, string> $filenames
+     * @param array<string, string|bool|number> $options
+     */
+    public function files(
+        string $url,
+        array $filenames,
+        array $data = [],
+        array $headers = [],
+        array $options = [],
+    ): RequestResponse {
+
+        return $this->filesRequest(
+            $url,
+            $filenames,
+            data: $data,
+            headers: $headers,
+            options: $options,
+        );
+    }
+
+    /**
+     * @param array<string, string|int|bool|float> $data
+     * @param array<string, string> $headers
+     * @param array<string, string|bool|number> $options
+     */
+    public function get(
+        string $url,
+        array $data = [],
+        array $headers = [],
+        array $options = [],
+        ?bool $enableDebugFallback = null
+    ): RequestResponse {
+        return $this->request(
+            'GET',
+            $url,
+            data: $data,
+            headers: $headers,
+            options: $options,
+            enableDebugFallback: $enableDebugFallback,
+        );
+    }
+
+    /**
+     * @param mixed[] $data
+     * @param array<string, string> $headers
+     * @param array<string, string|bool|number> $options
+     */
+    public function patch(
+        string $url,
+        array $data = [],
+        array $headers = [],
+        array $options = [],
+        bool $sendBodyAsObject = false,
+        ?bool $enableDebugFallback = null
+    ): RequestResponse {
+        return $this->request(
+            'PATCH',
+            $url,
+            data: $data,
+            headers: $headers,
+            options: $options,
+            sendBodyAsObject: $sendBodyAsObject,
+            enableDebugFallback: $enableDebugFallback,
+        );
+    }
+
+    /**
+     * @param mixed[] $data
+     * @param array<string, string> $headers
+     * @param array<string, string|bool|number> $options
+     */
+    public function post(
+        string $url,
+        array $data = [],
+        array $headers = [],
+        array $options = [],
+        bool $sendBodyAsObject = false,
+        ?bool $enableDebugFallback = null
+    ): RequestResponse {
+        return $this->request(
+            'POST',
+            $url,
+            data: $data,
+            headers: $headers,
+            options: $options,
+            sendBodyAsObject: $sendBodyAsObject,
+            enableDebugFallback: $enableDebugFallback,
+        );
+    }
+
+    /**
+     * @param mixed[] $data
+     * @param array<string, string> $headers
+     * @param array<string, string|bool|number> $options
+     */
+    public function put(
+        string $url,
+        array $data = [],
+        array $headers = [],
+        array $options = [],
+        bool $sendBodyAsObject = false,
+        ?bool $enableDebugFallback = null
+    ): RequestResponse {
+        return $this->request(
+            'PUT',
+            $url,
+            data: $data,
+            headers: $headers,
+            options: $options,
+            sendBodyAsObject: $sendBodyAsObject,
+            enableDebugFallback: $enableDebugFallback,
+        );
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    protected function defaultHeaders(): array
+    {
+        return [];
     }
 
     /**
