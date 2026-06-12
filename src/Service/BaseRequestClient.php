@@ -187,6 +187,164 @@ readonly class BaseRequestClient extends AbstractService
      * @param array<string, string> $headers
      * @param array<string, string|bool|number> $options
      */
+    private function downloadFile(
+        string $method,
+        string $url,
+        string $filename,
+        array $data = [],
+        array $headers = [],
+        array $options = [],
+        bool $sendBodyAsObject = false,
+        ?bool $enableDebugFallback = null
+    ): RequestResponse {
+        $body = JsonUtil::encode($data);
+        $headers = array_merge($this->defaultHeaders(), $headers);
+
+        $options['verify_peer'] = false;
+        $options['verify_host'] = false;
+        $options['headers'] = $headers;
+
+        if ($sendBodyAsObject) {
+            $body = $data;
+        }
+
+        try {
+            if ($method === 'GET') {
+                $params = '';
+                foreach ($data as $key => $value) {
+                    if ($value === true) {
+                        $value = 'true';
+                    } elseif ($value === false) {
+                        $value = 'false';
+                    }
+                    if ($params !== '') {
+                        $params .= '&';
+                    }
+                    $params .= "{$key}={$value}";
+                }
+                if ($params !== '') {
+                    $url .= "?{$params}";
+                }
+            } else {
+                $options['body'] = $body;
+            }
+
+            $options['buffer'] = false;
+            $start = microtime(true);
+            $client = HttpClient::create();
+            $response = $client->request(
+                $method,
+                $url,
+                $options,
+            );
+
+            $status = $response->getStatusCode();
+            $respHeaders = $response->getHeaders(false);
+
+            $cookies = [];
+
+            foreach ($response->getInfo()['response_headers'] as $header) {
+                $headerParts = explode(':', $header);
+
+                if ($headerParts[0] === 'Set-Cookie') {
+                    $parts = explode(';', $headerParts[1]);
+                    $cookie = explode('=', $parts[0]);
+                    $cookies[StringUtil::trim($cookie[0])] = StringUtil::trim($cookie[1]);
+                }
+            }
+
+            $returnResponse = new RequestResponse(
+                $method,
+                $url,
+                $status,
+                '',
+                $headers,
+                $respHeaders,
+                $cookies,
+            );
+
+            $end = (microtime(true) - $start) * 1000;
+        } catch (Throwable $e) {
+            throw NektriaException::new($e);
+        }
+
+        if ($enableDebugFallback ?? str_starts_with($url, 'https')) {
+            try {
+                $body = $returnResponse->json();
+            } catch (Throwable) {
+                $body = $returnResponse->body;
+            }
+
+            $this->logService()->debug([
+                'method' => $returnResponse->method,
+                'request' => $data,
+                'requestHeaders' => $headers,
+                'response' => $body,
+                'responseHeaders' => $respHeaders,
+                'status' => $returnResponse->status,
+                'url' => $url,
+                'duration' => $end
+            ], "{$status} {$method} {$url}");
+        }
+
+        if ($status >= 500) {
+            $content = $response->getContent(false);
+            $errorContent = $content;
+
+            try {
+                $errorContent = JsonUtil::decode($content);
+            } catch (Throwable) {
+            }
+
+            $this->logService()->error([
+                'method' => $method,
+                'request' => $data,
+                'response' => $errorContent,
+                'status' => $status,
+                'url' => $url,
+            ], "{$method} {$url} failed with status {$status}");
+
+            throw new RequestException($returnResponse);
+        }
+
+        if ($status >= 400) {
+            $content = $response->getContent(false);
+            $errorContent = $content;
+
+            try {
+                $errorContent = JsonUtil::decode($content);
+            } catch (Throwable) {
+            }
+
+            $this->logService()->warning([
+                'method' => $method,
+                'request' => $data,
+                'response' => $errorContent,
+                'status' => $status,
+                'url' => $url,
+            ], "{$method} {$url} failed with status {$status}");
+
+            throw new RequestException($returnResponse);
+        }
+
+        if ($status === 200) {
+            $fileHandler = fopen($filename, 'wb');
+
+            foreach ($client->stream($response) as $chunk) {
+                fwrite($fileHandler, $chunk->getContent());
+            }
+
+            fclose($fileHandler);
+        }
+
+        return $returnResponse;
+    }
+
+    /**
+     * @param mixed[] $data
+     * @param array<string, string> $headers
+     * @param array<string, string|bool|number> $options
+     */
     private function fileRequest(
         string $url,
         string $filename,
