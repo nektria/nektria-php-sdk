@@ -36,7 +36,7 @@ readonly class NewSocketService extends AbstractService
             ));
         } catch (Throwable $e) {
             $this->alertService->sendThrowable(
-                tenantName: $this->securityService()->retrieveCurrentTenant()->name ?? 'none',
+                tenantName: $this->securityService()->retrieveCurrentTenant()->name,
                 method: 'SOCKET',
                 path: "{$this->project}_{$topic}",
                 input: ['message' => $message],
