@@ -12,4 +12,3 @@ Php tools used for Nektria PHP software.
   * `bin/console debug:random:uuid`
 
 rm -Rf /tmp/phpstan/
-
