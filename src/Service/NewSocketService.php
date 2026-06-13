@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Nektria\Service;
 
 use Nektria\Document\Document;
-use Nektria\Exception\NektriaException;
+use Nektria\Document\ThrowableDocument;
 use Nektria\Util\JsonUtil;
 use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
@@ -15,6 +15,7 @@ readonly class NewSocketService extends AbstractService
 {
     public function __construct(
         private HubInterface $hub,
+        private AlertService $alertService,
         private ?string $mercureHost,
         private ?string $mercureToken,
         private ?string $project,
@@ -34,7 +35,13 @@ readonly class NewSocketService extends AbstractService
                 $message
             ));
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            $this->alertService->sendThrowable(
+                tenantName: $this->securityService()->retrieveCurrentTenant()->name ?? 'none',
+                method: 'SOCKET',
+                path: "{$this->project}_{$topic}",
+                input: ['message' => $message],
+                document: new ThrowableDocument($e),
+            );
         }
     }
 
