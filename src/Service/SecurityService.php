@@ -13,6 +13,9 @@ use Nektria\Exception\InvalidAuthorizationException;
 use Nektria\Infrastructure\SecurityServiceInterface;
 use Nektria\Infrastructure\SharedUserV2Cache;
 
+use function count;
+use function in_array;
+
 readonly class SecurityService extends AbstractService implements SecurityServiceInterface
 {
     protected UserContainer $userContainer;

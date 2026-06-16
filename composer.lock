@@ -6862,12 +6862,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "cfc6aa066338038854c0dfac380a351d1349b193"
+                "reference": "4bc1ed22ef2ff2445e3648c03afea15ba91f56a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/cfc6aa066338038854c0dfac380a351d1349b193",
-                "reference": "cfc6aa066338038854c0dfac380a351d1349b193",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/4bc1ed22ef2ff2445e3648c03afea15ba91f56a5",
+                "reference": "4bc1ed22ef2ff2445e3648c03afea15ba91f56a5",
                 "shasum": ""
             },
             "require": {
@@ -6960,7 +6960,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-13T07:51:21+00:00"
+            "time": "2026-06-16T09:53:06+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -7497,16 +7497,16 @@
         },
         {
             "name": "phpstan/phpstan-symfony",
-            "version": "2.0.19",
+            "version": "2.0.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-symfony.git",
-                "reference": "546071ed7f80a89ec30909346eb7cc741800740a"
+                "reference": "53f1a6462dbe71fad36ce054caf5e1b725b740fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/546071ed7f80a89ec30909346eb7cc741800740a",
-                "reference": "546071ed7f80a89ec30909346eb7cc741800740a",
+                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/53f1a6462dbe71fad36ce054caf5e1b725b740fd",
+                "reference": "53f1a6462dbe71fad36ce054caf5e1b725b740fd",
                 "shasum": ""
             },
             "require": {
@@ -7565,9 +7565,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-symfony/issues",
-                "source": "https://github.com/phpstan/phpstan-symfony/tree/2.0.19"
+                "source": "https://github.com/phpstan/phpstan-symfony/tree/2.0.20"
             },
-            "time": "2026-05-29T12:52:44+00:00"
+            "time": "2026-06-16T09:17:35+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
