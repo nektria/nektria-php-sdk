@@ -15,11 +15,17 @@ interface SecurityServiceInterface
 
     public function authenticateUser(string $apiKey): void;
 
+    public function checkAccessToTenant(string $tenantId): void;
+
+    public function checkAccessToWarehouse(string $warehouseId): void;
+
     public function clearAuthentication(): void;
 
     public function currentTenant(): ?Tenant;
 
     public function currentUser(): ?User;
+
+    public function hasAccessToWarehouse(string $warehouseId): bool;
 
     public function retrieveCurrentTenant(): Tenant;
 
