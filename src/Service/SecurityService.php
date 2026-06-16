@@ -12,6 +12,7 @@ use Nektria\Exception\InsufficientCredentialsException;
 use Nektria\Exception\InvalidAuthorizationException;
 use Nektria\Infrastructure\SecurityServiceInterface;
 use Nektria\Infrastructure\SharedUserV2Cache;
+
 use function count;
 use function in_array;
 
