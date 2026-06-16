@@ -8,6 +8,7 @@ use Nektria\Document\Tenant;
 use Nektria\Document\User;
 use Nektria\Dto\LocalClock;
 use Nektria\Dto\UserContainer;
+use Nektria\Exception\InsufficientCredentialsException;
 use Nektria\Exception\InvalidAuthorizationException;
 use Nektria\Infrastructure\SecurityServiceInterface;
 use Nektria\Infrastructure\SharedUserV2Cache;
@@ -150,5 +151,42 @@ readonly class SecurityService extends AbstractService implements SecurityServic
         } else {
             $this->roleManager()->checkAtLeast($this->currentUser()->role, $roles);
         }
+    }
+
+    protected function checkAccessToTenant(string $tenantId): void
+    {
+        if ($tenantId !== $this->retrieveCurrentTenant()->id) {
+            throw new InsufficientCredentialsException();
+        }
+    }
+
+    protected function checkAccessToWarehouse(string $warehouseId): void
+    {
+        if (!$this->hasAccessToWarehouse($warehouseId)) {
+            throw new InsufficientCredentialsException();
+        }
+    }
+
+    protected function hasAccessToWarehouse(string $warehouseId): bool
+    {
+        $user = $this->securityService()->retrieveCurrentUser();
+
+        if ($user->role === RoleManager::ROLE_DRIVER && count($user->warehouses) === 0) {
+            return false;
+        }
+
+        if (count($user->warehouses) === 0) {
+            return true;
+        }
+
+        if ($this->roleManager()->canAtLeast($user->role, [RoleManager::ROLE_ADMIN])) {
+            return true;
+        }
+
+        if (!in_array($warehouseId, $user->warehouses, true)) {
+            return false;
+        }
+
+        return true;
     }
 }
