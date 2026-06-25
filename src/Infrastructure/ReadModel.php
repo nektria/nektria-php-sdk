@@ -12,7 +12,6 @@ use Nektria\Document\PaginatedDocumentCollection;
 use Nektria\Exception\NektriaException;
 use Nektria\Util\StringUtil;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -88,6 +87,10 @@ abstract class ReadModel
         $sql = StringUtil::trim($sql);
         $source = $this->source();
 
+        $sqls = explode('ORDER BY', $sql);
+        $sql = $sqls[0];
+        $orderBy = ' ORDER BY' . ($sqls[1] ?? '');
+
         if (!str_starts_with($sql, 'SELECT')) {
             if (str_contains($source, '$$QUERY$$')) {
                 $sql = str_replace('$$QUERY$$', $sql, $source);
@@ -95,6 +98,7 @@ abstract class ReadModel
                 $sql = "{$source} {$sql}";
             }
         }
+        $sql .= $orderBy;
 
         $sqls = explode('FROM', $sql);
         $sql = "{$sqls[0]}, COUNT(*) OVER() AS __total__ FROM {$sqls[1]} LIMIT :__limit__ OFFSET :__offset__";
@@ -138,10 +142,19 @@ abstract class ReadModel
      */
     protected function getRawResults(string $sql, array $params = [], array $groupBy = []): array
     {
-        $sql = StringUtil::trim($sql);
+        $source = $this->source();
+        $sqls = explode('ORDER BY', $sql);
+        $sql = $sqls[0];
+        $orderBy = ' ORDER BY' . ($sqls[1] ?? '');
+
         if (!str_starts_with($sql, 'SELECT')) {
-            $sql = "{$this->source()} {$sql}";
+            if (str_contains($source, '$$QUERY$$')) {
+                $sql = str_replace('$$QUERY$$', $sql, $source);
+            } else {
+                $sql = "{$source} {$sql}";
+            }
         }
+        $sql .= $orderBy;
 
         $newParams = [];
         foreach ($params as $key => $value) {
