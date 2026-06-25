@@ -12,7 +12,6 @@ use Nektria\Document\PaginatedDocumentCollection;
 use Nektria\Exception\NektriaException;
 use Nektria\Util\StringUtil;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -86,8 +85,14 @@ abstract class ReadModel
         $offset = ($page - 1) * $limit;
 
         $sql = StringUtil::trim($sql);
+        $source = $this->source();
+
         if (!str_starts_with($sql, 'SELECT')) {
-            $sql = "{$this->source()} {$sql}";
+            if (str_contains($sql, '$$QUERY$$')) {
+                $sql = str_replace('$$QUERY$$', $source, $sql);
+            } else {
+                $sql = "{$this->source()} {$sql}";
+            }
         }
 
         $sqls = explode('FROM', $sql);
@@ -206,5 +211,7 @@ abstract class ReadModel
         return new DocumentCollection($parsed);
     }
 
-    abstract protected function source(): string;
+    protected function source(): string {
+        return '';
+    }
 }
