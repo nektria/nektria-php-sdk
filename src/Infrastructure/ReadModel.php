@@ -100,7 +100,6 @@ abstract class ReadModel
         }
         $sql .= $orderBy;
 
-
         $sqls = explode('FROM', $sql);
         $sql = "{$sqls[0]}, COUNT(*) OVER() AS __total__ FROM {$sqls[1]} LIMIT :__limit__ OFFSET :__offset__";
 
@@ -151,7 +150,7 @@ abstract class ReadModel
         $oc = $sqls[1] ?? '';
         $orderBy = '';
         if ($oc !== '') {
-            $orderBy = ' ORDER BY' . ($sqls[1] ?? '');
+            $orderBy = " ORDER BY {$sqls[1]}";
         }
 
         if (!str_starts_with($sql, 'SELECT')) {
