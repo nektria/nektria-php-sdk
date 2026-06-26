@@ -12,7 +12,6 @@ use Nektria\Document\PaginatedDocumentCollection;
 use Nektria\Exception\NektriaException;
 use Nektria\Util\StringUtil;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -150,10 +149,10 @@ abstract class ReadModel
             }
         }
 
-        if (!str_contains($sql, 'LIMIT')) {
+        /*if (!str_contains($sql, 'LIMIT')) {
             $sql .= ' LIMIT :__limit__';
             $newParams['__limit__'] = self::$defaultPageSize;
-        }
+        }*/
 
         try {
             $query = $this->manager->getConnection()->prepare($sql);
