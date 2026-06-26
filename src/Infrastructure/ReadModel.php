@@ -12,7 +12,6 @@ use Nektria\Document\PaginatedDocumentCollection;
 use Nektria\Exception\NektriaException;
 use Nektria\Util\StringUtil;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -210,8 +209,8 @@ abstract class ReadModel
             $ob = rtrim($ob, ', ');
         }
 
-        if (str_contains($source, '$$QUERY$$')) {
-            $source = str_replace('$$QUERY$$', $where, $source);
+        if (str_contains($source, '::QUERY::')) {
+            $source = str_replace('::QUERY::', $where, $source);
         } else {
             $source = "{$source} {$where}";
         }
