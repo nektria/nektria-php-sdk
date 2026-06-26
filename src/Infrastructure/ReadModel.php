@@ -12,6 +12,7 @@ use Nektria\Document\PaginatedDocumentCollection;
 use Nektria\Exception\NektriaException;
 use Nektria\Util\StringUtil;
 use Throwable;
+
 use function count;
 use function is_array;
 
