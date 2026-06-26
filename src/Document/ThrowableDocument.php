@@ -147,8 +147,8 @@ readonly class ThrowableDocument extends Document
 
         $message = 'Internal Server Error';
         if (
-            $context === null || $context->isPlayEnvironment() ||
-            $context->traceId() === '00000000-0000-4000-8000-000000000000'
+            $context === null || $context->isPlayEnvironment()
+            || $context->traceId() === '00000000-0000-4000-8000-000000000000'
         ) {
             $message = $exception->getMessage();
         }
