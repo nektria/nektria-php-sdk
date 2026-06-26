@@ -86,11 +86,13 @@ class ArrayDocumentReadModel extends ReadModel
      */
     public function readMigrations(): DocumentCollection
     {
-        return $this->build($this->getRawResults('
-            SELECT *
-            FROM doctrine_migration_versions
-            ORDER BY version
-        '));
+        return $this->build($this->getRawResults(
+            '
+                SELECT *
+                FROM doctrine_migration_versions
+                ORDER BY version
+            '
+        ));
     }
 
     /**
