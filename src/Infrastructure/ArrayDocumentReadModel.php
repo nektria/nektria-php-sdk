@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Nektria\Infrastructure;
 
 use Nektria\Document\ArrayDocument;
-use Nektria\Document\Document;
 use Nektria\Document\DocumentCollection;
 
 /**
@@ -39,7 +38,7 @@ class ArrayDocumentReadModel extends ReadModel
      */
     public function readAllQueuesMessages(): DocumentCollection
     {
-        return $this->getResults(
+        return $this->build($this->getRawResults(
             <<<'SQL'
                 SELECT 
                     replace((regexp_match(body, 'O:\d+:\\"(App\\\\Message\\\\[A-Za-z0-9\\\\]+)\\"'))[1],'\\', '\') 
@@ -52,7 +51,7 @@ class ArrayDocumentReadModel extends ReadModel
                 GROUP BY class_name, queue_name
                 ORDER BY class_name ASC;
             SQL
-        );
+        ));
     }
 
     /**
@@ -70,7 +69,7 @@ class ArrayDocumentReadModel extends ReadModel
             $query .= " AND {$filter}=:{$filter}";
         }
 
-        return $this->getResults("
+        return $this->build($this->getRawResults("
             SELECT *
             FROM {$table}
             WHERE true {$query}
@@ -79,7 +78,7 @@ class ArrayDocumentReadModel extends ReadModel
         ", [...$filters, ...[
             'offset' => ($page - 1) * $limit,
             'limit' => $limit,
-        ]]);
+        ]]));
     }
 
     /**
@@ -87,11 +86,11 @@ class ArrayDocumentReadModel extends ReadModel
      */
     public function readMigrations(): DocumentCollection
     {
-        return $this->getResults('
+        return $this->build($this->getRawResults('
             SELECT *
             FROM doctrine_migration_versions
             ORDER BY version
-        ');
+        '));
     }
 
     /**
@@ -99,7 +98,7 @@ class ArrayDocumentReadModel extends ReadModel
      */
     public function readValuesFromQueueMessages(string $queue, string $field): DocumentCollection
     {
-        return $this->getResults(
+        return $this->build($this->getRawResults(
             <<<'SQL'
                 SELECT
                     id,
@@ -118,16 +117,20 @@ class ArrayDocumentReadModel extends ReadModel
                 'queue' => $queue,
                 'field' => $field,
             ]
-        );
+        ));
     }
 
-    protected function buildDocument(array $params): Document
+    /**
+     * @param mixed[] $data
+     * @return DocumentCollection<ArrayDocument>
+     */
+    private function build(array $data): DocumentCollection
     {
-        return new ArrayDocument($params);
-    }
+        $result = [];
+        foreach ($data as $rawResult) {
+            $result[] = new ArrayDocument($rawResult);
+        }
 
-    protected function source(): string
-    {
-        return '';
+        return new DocumentCollection($result);
     }
 }

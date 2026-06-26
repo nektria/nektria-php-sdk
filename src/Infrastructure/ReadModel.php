@@ -35,14 +35,6 @@ abstract class ReadModel
         self::$defaultPageSize = $pageSize;
     }
 
-    /**
-     * @return string[]
-     */
-    public function groupResults(): array
-    {
-        return [];
-    }
-
     public function manager(): EntityManagerInterface
     {
         return $this->manager;
@@ -52,15 +44,42 @@ abstract class ReadModel
      * @param mixed[] $params
      * @return T
      */
-    abstract protected function buildDocument(array $params): Document;
+    protected function buildDocument(array $params): Document
+    {
+        throw new NektriaException(
+            'E_500',
+            'source() should be implemented in the child class when using getResult(), ' .
+            'getResults() or getPaginatedResult().'
+        );
+    }
 
     /**
      * @param array<string, string|int|float|bool|string[]|null> $params
+     * @param array<string, 'ASC'|'DESC'> $orderBy
+     * @return DocumentCollection<T>
+     */
+    protected function getLegacyResults(string $sql, array $params = [], array $orderBy = []): DocumentCollection
+    {
+        $sql = $this->buildSQL($sql, $params, $orderBy, null, null);
+        $results = $this->getRawResults($sql, $params);
+        $parsed = [];
+
+        foreach ($results as $item) {
+            $parsed[] = $this->buildDocument($item);
+        }
+
+        return new DocumentCollection($parsed);
+    }
+
+    /**
+     * @param array<string, string|int|float|bool|string[]|null> $params
+     * @param array<string, 'ASC'|'DESC'> $orderBy
      * @return NewDocumentCollection<T>
      */
-    protected function getNewResults(string $sql, array $params = []): NewDocumentCollection
+    protected function getNewResults(string $sql, array $params = [], array $orderBy = []): NewDocumentCollection
     {
-        $results = $this->getRawResults($sql, $params, $this->groupResults());
+        $sql = $this->buildSQL($sql, $params, $orderBy, null, null);
+        $results = $this->getRawResults($sql, $params);
         $parsed = [];
 
         foreach ($results as $item) {
@@ -72,41 +91,20 @@ abstract class ReadModel
 
     /**
      * @param array<string, string|int|float|bool|string[]|null> $params
+     * @param array<string, 'ASC'|'DESC'> $orderBy
      * @return PaginatedDocumentCollection<T>
      */
-    protected function getPaginatedResult(
+    protected function getPaginatedResults(
         string $sql,
+        array $orderBy,
         ?int $page = null,
         ?int $limit = null,
-        array $params = []
+        array $params = [],
     ): PaginatedDocumentCollection {
         $page ??= 1;
         $limit ??= self::$defaultPageSize;
-        $limit = min($limit, 999);
-        $offset = ($page - 1) * $limit;
-
-        $sql = StringUtil::trim($sql);
-        $source = $this->source();
-
-        $sqls = explode('ORDER BY', $sql);
-        $sql = $sqls[0];
-        $orderBy = ' ORDER BY' . ($sqls[1] ?? '');
-
-        if (!str_starts_with($sql, 'SELECT')) {
-            if (str_contains($source, '$$QUERY$$')) {
-                $sql = str_replace('$$QUERY$$', $sql, $source);
-            } else {
-                $sql = "{$source} {$sql}";
-            }
-        }
-        $sql .= $orderBy;
-
-        $sqls = explode('FROM', $sql);
-        $sql = "{$sqls[0]}, COUNT(*) OVER() AS __total__ FROM {$sqls[1]} LIMIT :__limit__ OFFSET :__offset__";
-
-        $params['__limit__'] = $limit;
-        $params['__offset__'] = $offset;
-        $results = $this->getRawResults($sql, $params, $this->groupResults());
+        $sql = $this->buildSQL($sql, $params, $orderBy, $page, $limit);
+        $results = $this->getRawResults($sql, $params);
         $parsed = [];
 
         foreach ($results as $item) {
@@ -122,14 +120,13 @@ abstract class ReadModel
     }
 
     /**
-     * @param array<string, string|int|float|bool|null> $params
-     * @param string[] $groupBy
+     * @param array<string, string|int|float|bool|string[]|null> $params
      * @return mixed[]|null
      */
-    protected function getRawResult(string $sql, array $params = [], array $groupBy = []): ?array
+    protected function getRawResult(string $sql, array $params = []): ?array
     {
         try {
-            $results = $this->getRawResults($sql, $params, $groupBy);
+            $results = $this->getRawResults($sql, $params);
 
             return $results[array_key_first($results) ?? ''] ?? null;
         } catch (Throwable $e) {
@@ -139,31 +136,10 @@ abstract class ReadModel
 
     /**
      * @param array<string, string|int|float|bool|string[]|null> $params
-     * @param string[] $groupBy
      * @return mixed[]
      */
-    protected function getRawResults(string $sql, array $params = [], array $groupBy = []): array
+    protected function getRawResults(string $sql, array $params = []): array
     {
-        $sql = StringUtil::trim($sql);
-        $source = $this->source();
-        $sqls = explode('ORDER BY', $sql);
-        $sql = $sqls[0];
-        $oc = $sqls[1] ?? '';
-        $orderBy = '';
-        if ($oc !== '') {
-            $orderBy = " ORDER BY {$sqls[1]}";
-        }
-
-        if (!str_starts_with($sql, 'SELECT')) {
-            if (str_contains($source, '$$QUERY$$')) {
-                $sql = str_replace('$$QUERY$$', $sql, $source);
-            } else {
-                $sql = "{$source} {$sql}";
-            }
-        }
-
-        $sql .= $orderBy;
-
         $newParams = [];
         foreach ($params as $key => $value) {
             if (is_array($value)) {
@@ -179,36 +155,22 @@ abstract class ReadModel
             foreach ($newParams as $key => $value) {
                 $query->bindValue($key, $value);
             }
-            $results = $query->executeQuery()->fetchAllAssociative();
 
-            if (count($groupBy) > 0) {
-                $newResults = [];
-                foreach ($results as $item) {
-                    $key = '';
-                    foreach ($groupBy as $group) {
-                        $key .= $item[$group];
-                    }
-
-                    $newResults[$key] ??= [];
-                    $newResults[$key][] = $item;
-                }
-
-                $results = $newResults;
-            }
-
-            return $results;
+            return $query->executeQuery()->fetchAllAssociative();
         } catch (Throwable $e) {
             throw NektriaException::new($e);
         }
     }
 
     /**
-     * @param array<string, string|int|float|bool|null> $params
+     * @param array<string, string|int|float|bool|string[]|null> $params
+     * @param array<string, 'ASC'|'DESC'> $orderBy
      * @return T|null
      */
-    protected function getResult(string $sql, array $params = []): ?Document
+    protected function getResult(string $sql, array $params = [], array $orderBy = []): ?Document
     {
-        $result = $this->getRawResult($sql, $params, $this->groupResults());
+        $sql = $this->buildSQL($sql, $params, $orderBy, null, null);
+        $result = $this->getRawResult($sql, $params);
 
         if ($result === null) {
             return null;
@@ -217,24 +179,58 @@ abstract class ReadModel
         return $this->buildDocument($result);
     }
 
-    /**
-     * @param array<string, string|int|float|bool|string[]|null> $params
-     * @return DocumentCollection<T>
-     */
-    protected function getResults(string $sql, array $params = []): DocumentCollection
-    {
-        $results = $this->getRawResults($sql, $params, $this->groupResults());
-        $parsed = [];
-
-        foreach ($results as $item) {
-            $parsed[] = $this->buildDocument($item);
-        }
-
-        return new DocumentCollection($parsed);
-    }
-
     protected function source(): string
     {
-        return '';
+        throw new NektriaException(
+            'E_500',
+            'source() should be implemented in the child class when using getResult(), ' .
+            'getResults() or getPaginatedResult().'
+        );
+    }
+
+    /**
+     * @param array<string, string|int|float|bool|string[]|null> $params
+     * @param array<string, 'ASC'|'DESC'> $orderBy
+     */
+    private function buildSQL(
+        string $where,
+        array &$params,
+        array $orderBy,
+        ?int $limit,
+        ?int $page,
+    ): string {
+        $source = $this->source();
+
+        $ob = '';
+        if (count($orderBy) > 0) {
+            $ob = 'ORDER BY ';
+            foreach ($orderBy as $key => $value) {
+                $ob .= "{$key} {$value}, ";
+            }
+            $ob = rtrim($ob, ', ');
+        }
+
+        if (str_contains($source, '$$QUERY$$')) {
+            $source = str_replace('$$QUERY$$', $where, $source);
+        } else {
+            $source = "{$source} {$where}";
+        }
+
+        $l = '';
+        $o = '';
+        if ($limit !== null) {
+            $l = 'LIMIT :__limit__';
+            $params['__limit__'] = max(1, min(999, $limit));
+            $sources = explode('FROM', $source);
+            $source = "{$sources[0]}, COUNT(*) OVER() AS __total__ FROM {$sources[1]}";
+
+            if ($page !== null) {
+                $offset = max(0, ($page - 1) * $limit);
+                $o = 'OFFSET :__offset__';
+                $params['__offset__'] = $offset;
+            }
+        }
+
+        return StringUtil::trim("{$source} {$ob} {$l} {$o}");
     }
 }
