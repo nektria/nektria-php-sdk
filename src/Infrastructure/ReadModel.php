@@ -12,7 +12,6 @@ use Nektria\Document\PaginatedDocumentCollection;
 use Nektria\Exception\NektriaException;
 use Nektria\Util\StringUtil;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -234,6 +233,9 @@ abstract class ReadModel
                 $o = 'OFFSET :__offset__';
                 $params['__offset__'] = $offset;
             }
+        } elseif (!str_contains($source, 'LIMIT')) {
+            $l = 'LIMIT :__limit__';
+            $params['__limit__'] = max(1, min(999, $limit));
         }
 
         return StringUtil::trim("{$source} {$ob} {$l} {$o}");
