@@ -58,9 +58,13 @@ abstract class ReadModel
      * @param array<string, 'ASC'|'DESC'> $orderBy
      * @return DocumentCollection<T>
      */
-    protected function getLegacyResults(string $sql, array $params = [], array $orderBy = []): DocumentCollection
-    {
-        $sql = $this->buildSQL($sql, $params, $orderBy, null, null);
+    protected function getLegacyResults(
+        string $sql,
+        array $params = [],
+        array $orderBy = [],
+        ?int $limit = null,
+    ): DocumentCollection {
+        $sql = $this->buildSQL($sql, $params, $orderBy, $limit, null, false);
         $results = $this->getRawResults($sql, $params);
         $parsed = [];
 
@@ -76,9 +80,13 @@ abstract class ReadModel
      * @param array<string, 'ASC'|'DESC'> $orderBy
      * @return NewDocumentCollection<T>
      */
-    protected function getNewResults(string $sql, array $params = [], array $orderBy = []): NewDocumentCollection
-    {
-        $sql = $this->buildSQL($sql, $params, $orderBy, null, null);
+    protected function getNewResults(
+        string $sql,
+        array $params = [],
+        array $orderBy = [],
+        ?int $limit = null,
+    ): NewDocumentCollection {
+        $sql = $this->buildSQL($sql, $params, $orderBy, $limit, null, false);
         $results = $this->getRawResults($sql, $params);
         $parsed = [];
 
@@ -103,7 +111,7 @@ abstract class ReadModel
     ): PaginatedDocumentCollection {
         $page ??= 1;
         $limit ??= self::$defaultPageSize;
-        $sql = $this->buildSQL($sql, $params, $orderBy, $page, $limit);
+        $sql = $this->buildSQL($sql, $params, $orderBy, $page, $limit, true);
         $results = $this->getRawResults($sql, $params);
         $parsed = [];
 
@@ -174,7 +182,7 @@ abstract class ReadModel
      */
     protected function getResult(string $sql, array $params = [], array $orderBy = []): ?Document
     {
-        $sql = $this->buildSQL($sql, $params, $orderBy, null, null);
+        $sql = $this->buildSQL($sql, $params, $orderBy, 1, null, false);
         $result = $this->getRawResult($sql, $params);
 
         if ($result === null) {
@@ -203,6 +211,7 @@ abstract class ReadModel
         array $orderBy,
         ?int $limit,
         ?int $page,
+        bool $pagination,
     ): string {
         $source = $this->source();
 
@@ -226,8 +235,10 @@ abstract class ReadModel
         if ($limit !== null) {
             $l = 'LIMIT :__limit__';
             $params['__limit__'] = max(1, min(999, $limit));
-            $sources = explode('FROM', $source);
-            $source = "{$sources[0]}, COUNT(*) OVER() AS __total__ FROM {$sources[1]}";
+            if ($pagination) {
+                $sources = explode('FROM', $source);
+                $source = "{$sources[0]}, COUNT(*) OVER() AS __total__ FROM {$sources[1]}";
+            }
 
             if ($page !== null) {
                 $offset = max(0, ($page - 1) * $limit);
