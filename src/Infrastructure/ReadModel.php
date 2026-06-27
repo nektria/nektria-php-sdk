@@ -12,7 +12,6 @@ use Nektria\Document\PaginatedDocumentCollection;
 use Nektria\Exception\NektriaException;
 use Nektria\Util\StringUtil;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -66,7 +65,7 @@ abstract class ReadModel
         array $orderBy = [],
         ?int $limit = null,
     ): DocumentCollection {
-        $sql = $this->buildSQL($sql, $params, $orderBy, $limit, null, false);
+        $sql = $this->buildSQL($sql, $params, $orderBy, null, $limit, false);
         $results = $this->getRawResults($sql, $params);
         $parsed = [];
 
@@ -88,7 +87,7 @@ abstract class ReadModel
         array $orderBy = [],
         ?int $limit = null,
     ): NewDocumentCollection {
-        $sql = $this->buildSQL($sql, $params, $orderBy, $limit, null, false);
+        $sql = $this->buildSQL($sql, $params, $orderBy, null, $limit, false);
         $results = $this->getRawResults($sql, $params);
         $parsed = [];
 
@@ -184,7 +183,7 @@ abstract class ReadModel
      */
     protected function getResult(string $sql, array $params = [], array $orderBy = []): ?Document
     {
-        $sql = $this->buildSQL($sql, $params, $orderBy, 1, null, false);
+        $sql = $this->buildSQL($sql, $params, $orderBy, null, 1, false);
         $result = $this->getRawResult($sql, $params);
 
         if ($result === null) {
@@ -211,8 +210,8 @@ abstract class ReadModel
         string $where,
         array &$params,
         array $orderBy,
-        ?int $limit,
         ?int $page,
+        ?int $limit,
         bool $pagination,
     ): string {
         $source = $this->source();
