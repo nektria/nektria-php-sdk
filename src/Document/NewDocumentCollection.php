@@ -11,7 +11,6 @@ use Nektria\Exception\NektriaException;
 use Nektria\Service\ContextService;
 use Nektria\Util\ArrayUtil;
 use Traversable;
-
 use function array_slice;
 use function count;
 
@@ -220,7 +219,7 @@ readonly class NewDocumentCollection extends Document implements IteratorAggrega
         }
 
         return [
-            'items' => $list,
+            'list' => $list,
         ];
     }
 }
