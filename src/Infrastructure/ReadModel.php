@@ -12,7 +12,6 @@ use Nektria\Document\PaginatedDocumentCollection;
 use Nektria\Exception\NektriaException;
 use Nektria\Util\StringUtil;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -66,7 +65,7 @@ abstract class ReadModel
         array $orderBy = [],
         ?int $limit = null,
     ): DocumentCollection {
-        $sql = $this->buildSQL($sql, $params, $orderBy, null, $limit ?? 9999, false);
+        $sql = $this->buildSQL($sql, $params, $orderBy, null, $limit, false);
         $results = $this->getRawResults($sql, $params);
         $parsed = [];
 
