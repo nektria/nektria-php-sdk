@@ -12,7 +12,6 @@ use Nektria\Document\PaginatedDocumentCollection;
 use Nektria\Exception\NektriaException;
 use Nektria\Util\StringUtil;
 use Throwable;
-
 use function count;
 use function is_array;
 
@@ -236,7 +235,7 @@ abstract class ReadModel
         $o = '';
         if ($limit !== null) {
             $l = 'LIMIT :__limit__';
-            $params['__limit__'] = max(1, min(self::MAX_RESULTS, $limit));
+            $params['__limit__'] = $limit === 9999 ? 9999 : max(1, min(self::MAX_RESULTS, $limit));
             if ($pagination) {
                 $sources = explode('FROM', $source);
                 $source = "{$sources[0]}, COUNT(*) OVER() AS __total__ FROM {$sources[1]}";
