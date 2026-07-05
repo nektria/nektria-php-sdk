@@ -113,13 +113,21 @@ readonly class ThrowableDocument extends Document
      *     line: int
      * }[]
      */
-    public function trace(): array
+    public function trace(?ContextService $context): array
     {
         $trace = $this->throwable->getTrace();
         $finalTrace = [];
         foreach ($trace as $item) {
             $file = $item['file'] ?? '';
             $line = $item['line'] ?? 0;
+
+            if ($context?->isTest()) {
+                $finalTrace[] = [
+                    'file' => str_replace('/app/', '', $file),
+                    'line' => $line,
+                ];
+                continue;
+            }
             if (str_starts_with($file, '/app/src')) {
                 $finalTrace[] = [
                     'file' => str_replace('/app/', '', $file),
@@ -172,7 +180,7 @@ readonly class ThrowableDocument extends Document
         ) {
             $data['file'] = str_replace('/app/', '', $exception->getFile());
             $data['line'] = $exception->getLine();
-            $data['trace'] = $this->trace();
+            $data['trace'] = $this->trace($context);
         }
 
         return $data;
