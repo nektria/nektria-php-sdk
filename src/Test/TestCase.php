@@ -8,6 +8,7 @@ use Nektria\Exception\NektriaException;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
 use function gettype;
 use function in_array;
 use function is_array;
