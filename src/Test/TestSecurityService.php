@@ -36,6 +36,7 @@ readonly class TestSecurityService extends SecurityService
             alias: 'test',
             countryCode: 'ES'
         );
+        $tenant1 = $this->tenant1;
 
         $this->tenant2 = new Tenant(
             id: '1aef7923-4b88-4d1f-b7b5-c409d962c60c',
@@ -46,6 +47,7 @@ readonly class TestSecurityService extends SecurityService
             alias: 'test2',
             countryCode: 'ES'
         );
+        $tenant2 = $this->tenant2;
 
         $this->users = [
             'ak1000' => new User(
