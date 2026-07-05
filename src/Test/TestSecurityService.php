@@ -24,7 +24,7 @@ readonly class TestSecurityService extends SecurityService
         parent::__construct($sharedUserCache);
 
         $tenant1 = new Tenant(
-            id: '74a0c280-a76f-4231-aa85-97a20da592ab',
+            id: TestCase::TENANT_ID,
             name: 'Test',
             metadata: new TenantMetadata([]),
             aiAssistantId: null,
