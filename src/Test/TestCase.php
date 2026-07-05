@@ -8,7 +8,6 @@ use Nektria\Exception\NektriaException;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
 use function gettype;
 use function in_array;
 use function is_array;
@@ -25,7 +24,7 @@ class TestCase extends WebTestCase
 
     public const string ROLE_USER = '1001';
 
-    public const string TENANT_ID = 'de244f6f-2ce5-456e-a68b-2ea99cab873e';
+    public const string TENANT_ID = '00000000-2ce5-456e-a68b-2ea99cab873e';
 
     public const string WAREHOUSE_ID = 'be878e2b-88fa-449d-875d-7a9567fa671a';
 
