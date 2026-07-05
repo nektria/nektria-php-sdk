@@ -15,8 +15,12 @@ use Nektria\Service\SecurityService;
 
 readonly class TestSecurityService extends SecurityService
 {
+    protected Tenant $tenant1;
+
+    protected Tenant $tenant2;
+
     /** @var array<string, User> */
-    private array $users;
+    protected array $users;
 
     public function __construct(
         SharedUserV2Cache $sharedUserCache,
