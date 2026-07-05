@@ -10,9 +10,7 @@ use Nektria\Util\JsonUtil;
 use Symfony\Component\Messenger\Exception\RecoverableMessageHandlingException;
 use Symfony\Component\Messenger\Exception\RejectRedeliveredMessageException;
 use Throwable;
-
 use function in_array;
-
 use const PHP_EOL;
 
 readonly class LogService extends AbstractService
@@ -116,7 +114,7 @@ readonly class LogService extends AbstractService
         }
 
         $tmp = new ThrowableDocument($exception);
-        $clearTrace = $tmp->trace();
+        $clearTrace = $tmp->trace($this->contextService);
         $user = $this->securityService()->currentUser();
 
         try {

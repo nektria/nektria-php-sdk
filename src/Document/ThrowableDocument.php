@@ -103,7 +103,7 @@ readonly class ThrowableDocument extends Document
             'type' => $exception::class,
             'file' => str_replace('/app/', '', $exception->getFile()),
             'line' => $exception->getLine(),
-            'trace' => $this->trace(),
+            'trace' => $this->trace(null),
         ];
     }
 
@@ -121,11 +121,12 @@ readonly class ThrowableDocument extends Document
             $file = $item['file'] ?? '';
             $line = $item['line'] ?? 0;
 
-            if ($context?->isTest()) {
+            if ($context === null || $context?->isTest()) {
                 $finalTrace[] = [
                     'file' => str_replace('/app/', '', $file),
                     'line' => $line,
                 ];
+
                 continue;
             }
             if (str_starts_with($file, '/app/src')) {
