@@ -27,7 +27,7 @@ readonly class TestSecurityService extends SecurityService
     ) {
         parent::__construct($sharedUserCache);
 
-        $tenant1 = new Tenant(
+        $this->tenant1 = new Tenant(
             id: TestCase::TENANT_ID,
             name: 'Test',
             metadata: new TenantMetadata([]),
@@ -37,7 +37,7 @@ readonly class TestSecurityService extends SecurityService
             countryCode: 'ES'
         );
 
-        $tenant2 = new Tenant(
+        $this->tenant2 = new Tenant(
             id: '1aef7923-4b88-4d1f-b7b5-c409d962c60c',
             name: 'Test2',
             metadata: new TenantMetadata([]),
