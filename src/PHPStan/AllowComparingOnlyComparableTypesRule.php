@@ -155,17 +155,18 @@ class AllowComparingOnlyComparableTypesRule implements Rule
         $stringType = new StringType();
         $dateTimeType = new ObjectType(DateTimeInterface::class);
 
-        return ($this->containsOnlyTypes($leftType, [$intType, $floatType]) && $this->containsOnlyTypes(
-            $rightType,
-            [$intType, $floatType],
-        ))
-            || ($this->containsOnlyTypes($leftType, [$stringType]) && $this->containsOnlyTypes(
+        return (
+            $this->containsOnlyTypes($leftType, [$intType, $floatType]) && $this->containsOnlyTypes(
+                $rightType,
+                [$intType, $floatType],
+            )) || ($this->containsOnlyTypes($leftType, [$stringType]) && $this->containsOnlyTypes(
                 $rightType,
                 [$stringType],
-            ))
-            || ($this->containsOnlyTypes($leftType, [$dateTimeType]) && $this->containsOnlyTypes(
-                $rightType,
-                [$dateTimeType],
-            ));
+            )) || (
+                $this->containsOnlyTypes($leftType, [$dateTimeType]) && $this->containsOnlyTypes(
+                    $rightType,
+                    [$dateTimeType],
+                )
+            );
     }
 }
