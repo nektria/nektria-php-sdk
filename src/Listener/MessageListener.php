@@ -200,7 +200,7 @@ abstract class MessageListener implements EventSubscriberInterface
                             'status' => 500,
                             'latency' => max(0.001, round(microtime(true) - $this->executionTime, 3)) . 's',
                         ],
-                    ]
+                    ],
                 );
 
                 $tenantName = $this->securityService->currentUser()?->tenant->name ?? 'none';
@@ -226,7 +226,7 @@ abstract class MessageListener implements EventSubscriberInterface
                         if ($sendAlert && !$silent) {
                             $this->alertService->sendThrowable(
                                 $this->securityService->currentUser()?->tenant->name ?? 'none',
-                                'RABBIT ' . $originalException::class . ' ' . $exception::class,
+                                'QUEUE ' . $originalException::class . ' ' . $exception::class,
                                 "/{$messageClass}/{$message->ref()}",
                                 $data,
                                 $exception,
@@ -279,7 +279,7 @@ abstract class MessageListener implements EventSubscriberInterface
 
         $logLevel = $this->assignLogLevel(
             $this->normalizeClass($message::class),
-            $this->securityService->currentUser()?->tenant
+            $this->securityService->currentUser()?->tenant,
         );
 
         if ($logLevel === null) {
@@ -381,7 +381,7 @@ abstract class MessageListener implements EventSubscriberInterface
         } catch (Throwable $e) {
             $this->alertService->sendThrowable(
                 $this->securityService->currentUser()?->tenant->name ?? 'none',
-                'RABBIT',
+                'QUEUE',
                 '',
                 [],
                 new ThrowableDocument($e),

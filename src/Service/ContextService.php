@@ -106,7 +106,7 @@ class ContextService
         foreach ($projects as $project) {
             $data[$project] = $this->debugMode(
                 project: $project,
-                ignoreLocalEnvironment: true
+                ignoreLocalEnvironment: true,
             );
         }
 

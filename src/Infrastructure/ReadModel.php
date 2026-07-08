@@ -51,7 +51,7 @@ abstract class ReadModel
         throw new NektriaException(
             'E_500',
             'source() should be implemented in the child class when using getResult(), ' .
-            'getResults() or getPaginatedResult().'
+            'getResults() or getPaginatedResult().',
         );
     }
 
@@ -199,7 +199,7 @@ abstract class ReadModel
         throw new NektriaException(
             'E_500',
             'source() should be implemented in the child class when using getResult(), ' .
-            'getResults() or getPaginatedResult().'
+            'getResults() or getPaginatedResult().',
         );
     }
 

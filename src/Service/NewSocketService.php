@@ -32,7 +32,7 @@ readonly class NewSocketService extends AbstractService
         try {
             $this->hub->publish(new Update(
                 "{$this->project}_{$topic}",
-                $message
+                $message,
             ));
         } catch (Throwable $e) {
             $this->alertService->sendThrowable(
@@ -57,7 +57,7 @@ readonly class NewSocketService extends AbstractService
             JsonUtil::encode([
                 'context' => $context,
                 'payload' => $payload,
-            ])
+            ]),
         );
     }
 
@@ -73,7 +73,7 @@ readonly class NewSocketService extends AbstractService
             JsonUtil::encode([
                 'context' => $context,
                 'payload' => $payload,
-            ])
+            ]),
         );
     }
 
@@ -89,7 +89,7 @@ readonly class NewSocketService extends AbstractService
             JsonUtil::encode([
                 'context' => $context,
                 'payload' => $payload,
-            ])
+            ]),
         );
     }
 }

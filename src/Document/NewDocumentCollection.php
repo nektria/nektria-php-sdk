@@ -68,7 +68,7 @@ readonly class NewDocumentCollection extends Document implements IteratorAggrega
     {
         $tmp = ArrayUtil::classify(
             $this->items,
-            static fn (Document $item) => $item->data(null)[$field] ?? 'null'
+            static fn (Document $item) => $item->data(null)[$field] ?? 'null',
         );
 
         $ret = [];
@@ -145,7 +145,7 @@ readonly class NewDocumentCollection extends Document implements IteratorAggrega
     {
         return ArrayUtil::mapify(
             $this->items,
-            static fn (Document $item) => $item->data(null)[$field] ?? 'null'
+            static fn (Document $item) => $item->data(null)[$field] ?? 'null',
         );
     }
 

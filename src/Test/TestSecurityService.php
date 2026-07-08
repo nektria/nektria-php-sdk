@@ -34,7 +34,7 @@ readonly class TestSecurityService extends SecurityService
             aiAssistantId: null,
             timezone: 'Europe/Madrid',
             alias: 'test',
-            countryCode: 'ES'
+            countryCode: 'ES',
         );
         $tenant1 = $this->tenant1;
 
@@ -45,7 +45,7 @@ readonly class TestSecurityService extends SecurityService
             aiAssistantId: null,
             timezone: 'Europe/Madrid',
             alias: 'test2',
-            countryCode: 'ES'
+            countryCode: 'ES',
         );
         $tenant2 = $this->tenant2;
 

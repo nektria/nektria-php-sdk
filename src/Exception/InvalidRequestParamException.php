@@ -10,7 +10,7 @@ class InvalidRequestParamException extends NektriaRuntimeException
     {
         parent::__construct(
             errorCode: 'E_400',
-            message: "Invalid field '{$field}', {$mustBeType} is required."
+            message: "Invalid field '{$field}', {$mustBeType} is required.",
         );
     }
 }

@@ -10,6 +10,30 @@ use function in_array;
 
 readonly class RoleManager extends AbstractService
 {
+    public const string ROLE_ADMIN = 'ROLE_ADMIN';
+
+    public const string ROLE_ANY = 'ROLE_ANY';
+
+    public const string ROLE_API = 'ROLE_API';
+
+    public const string ROLE_DRIVER = 'ROLE_DRIVER';
+
+    public const string ROLE_GRID_VIEWER = 'ROLE_GRID_VIEWER';
+
+    public const string ROLE_MARKETING = 'ROLE_MARKETING';
+
+    public const string ROLE_PUBLIC = 'ROLE_PUBLIC';
+
+    public const string ROLE_SYSTEM = 'ROLE_SYSTEM';
+
+    public const string ROLE_TRAFFIC_CHIEF = 'ROLE_TRAFFIC_CHIEF';
+
+    public const string ROLE_TRAFFIC_CHIEF_EXPRESS = 'ROLE_TRAFFIC_CHIEF_EXPRESS';
+
+    public const string ROLE_USER = 'ROLE_USER';
+
+    public const string ROLE_WAREHOUSE_SUPERVISOR = 'ROLE_WAREHOUSE_SUPERVISOR';
+
     private const array HIERARCHY = [
         self::ROLE_SYSTEM => [
             self::ROLE_ADMIN,
@@ -64,30 +88,6 @@ readonly class RoleManager extends AbstractService
         self::ROLE_WAREHOUSE_SUPERVISOR => [self::ROLE_GRID_VIEWER],
         self::ROLE_MARKETING => [],
     ];
-
-    public const string ROLE_ADMIN = 'ROLE_ADMIN';
-
-    public const string ROLE_ANY = 'ROLE_ANY';
-
-    public const string ROLE_API = 'ROLE_API';
-
-    public const string ROLE_DRIVER = 'ROLE_DRIVER';
-
-    public const string ROLE_GRID_VIEWER = 'ROLE_GRID_VIEWER';
-
-    public const string ROLE_MARKETING = 'ROLE_MARKETING';
-
-    public const string ROLE_PUBLIC = 'ROLE_PUBLIC';
-
-    public const string ROLE_SYSTEM = 'ROLE_SYSTEM';
-
-    public const string ROLE_TRAFFIC_CHIEF = 'ROLE_TRAFFIC_CHIEF';
-
-    public const string ROLE_TRAFFIC_CHIEF_EXPRESS = 'ROLE_TRAFFIC_CHIEF_EXPRESS';
-
-    public const string ROLE_USER = 'ROLE_USER';
-
-    public const string ROLE_WAREHOUSE_SUPERVISOR = 'ROLE_WAREHOUSE_SUPERVISOR';
 
     /**
      * @param string[] $targetRoles

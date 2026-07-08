@@ -200,7 +200,7 @@ readonly class ProxyClient extends AbstractService
         $this->requestClient()->files(
             "{$proxyHost}/api/admin/files/picking-shifts/{$pickingShiftId}/orders",
             filenames: [
-                'ordersFile' => $filename
+                'ordersFile' => $filename,
             ],
             headers: $this->getHeaders(),
         );

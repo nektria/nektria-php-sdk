@@ -20,7 +20,7 @@ abstract class RequestListener extends BaseRequestListener
         ContainerInterface $container,
     ) {
         parent::__construct(
-            container: $container
+            container: $container,
         );
     }
 
@@ -130,7 +130,7 @@ abstract class RequestListener extends BaseRequestListener
     protected function exposedHeaders(): array
     {
         return [
-            'Link', 'X-Authorization'
+            'Link', 'X-Authorization',
         ];
     }
 

@@ -31,7 +31,7 @@ class SetupResourceConsole extends Console
             'r',
             InputOption::VALUE_REQUIRED,
             'Resource name.',
-            ''
+            '',
         );
     }
 
@@ -116,7 +116,7 @@ class SetupResourceConsole extends Console
                 $hypenCaseResource,
                 $pathResource,
             ],
-            $text
+            $text,
         );
     }
 }

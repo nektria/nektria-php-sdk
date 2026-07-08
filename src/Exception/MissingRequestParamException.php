@@ -10,7 +10,7 @@ class MissingRequestParamException extends NektriaRuntimeException
     {
         parent::__construct(
             errorCode: 'E_400',
-            message: "Missing field '{$field}'."
+            message: "Missing field '{$field}'.",
         );
     }
 }

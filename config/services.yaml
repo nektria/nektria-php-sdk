@@ -6,7 +6,7 @@ services:
     autowire: true
     autoconfigure: true
     bind:
-      array $googleScopes: ["https://www.googleapis.com/auth/generative-language.retriever"]
+      array $googleScopes: [ "https://www.googleapis.com/auth/generative-language.retriever" ]
       string $alertsToken: 'none'
       string $compassHost: 'none'
       string $env: '%kernel.environment%'

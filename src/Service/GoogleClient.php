@@ -39,14 +39,14 @@ readonly class GoogleClient extends AbstractService
                         'parts' => [
                             [
                                 'text' => 'Dame la direccion del almacen de getafe.',
-                            ]
+                            ],
                         ],
-                    ]
+                    ],
                 ],
             ],
             headers: [
                 'Content-Type' => 'application/json',
-            ]
+            ],
         );
 
         file_put_contents('tmp/test1.json', JsonUtil::encode($respo->json(), pretty: true));
@@ -64,9 +64,9 @@ readonly class GoogleClient extends AbstractService
                         'parts' => [
                             [
                                 'text' => 'Dame la direccion del almacen de getafe.',
-                            ]
+                            ],
                         ],
-                    ]
+                    ],
                 ],
                 'tools' => [
                     [
@@ -84,14 +84,14 @@ readonly class GoogleClient extends AbstractService
                                     ],
                                     'required' => ['location'],
                                 ],
-                            ]
+                            ],
                         ],
-                    ]
+                    ],
                 ],
             ],
             headers: [
                 'Content-Type' => 'application/json',
-            ]
+            ],
         );
 
         file_put_contents('tmp/test1.json', JsonUtil::encode($respo->json(), pretty: true));
@@ -113,7 +113,7 @@ readonly class GoogleClient extends AbstractService
                 "https://storage.googleapis.com/storage/v1/b/{$bucket}/o/{$folder}{$filename}",
                 headers: [
                     'Content-Type' => 'application/json',
-                ]
+                ],
             );
         } catch (RequestException $e) {
             throw new NektriaException('E_500', $e->response()->json()['_response'] ?? $e->response()->body);
@@ -133,7 +133,7 @@ readonly class GoogleClient extends AbstractService
                 "https://storage.googleapis.com/storage/v1/b/{$bucket}/folders/{$folder}",
                 headers: [
                     'Content-Type' => 'application/json',
-                ]
+                ],
             );
         } catch (RequestException $e) {
             throw new NektriaException('E_500', $e->response()->json()['_response']);
@@ -186,7 +186,7 @@ readonly class GoogleClient extends AbstractService
                 data: [
                     'name' => "{$folder}{$name}",
                     'uploadType' => 'media',
-                ]
+                ],
             );
         } catch (RequestException $e) {
             $json = $e->response()->json();
@@ -315,7 +315,7 @@ readonly class GoogleClient extends AbstractService
                 $url,
                 data: $data,
                 headers: $headers,
-                sendBodyAsObject: $sendBodyAsObject
+                sendBodyAsObject: $sendBodyAsObject,
             );
         } catch (RequestException $e) {
             if ($retry && $e->response()->status === 401) {
@@ -351,7 +351,7 @@ readonly class GoogleClient extends AbstractService
         $signedJwt = JWT::encode(
             $payload,
             $p12['private_key'],
-            'RS256'
+            'RS256',
         );
 
         try {

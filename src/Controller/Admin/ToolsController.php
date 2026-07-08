@@ -204,7 +204,7 @@ readonly class ToolsController extends Controller
                 order: $this->requestData->retrieveString('orderBy'),
                 page: $this->requestData->getInt('page') ?? 1,
                 limit: $this->requestData->getInt('limit') ?? 50,
-                filters: $this->requestData->getArray('filters') ?? []
+                filters: $this->requestData->getArray('filters') ?? [],
             ),
         );
     }

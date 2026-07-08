@@ -345,7 +345,7 @@ abstract class BaseRequestListener implements EventSubscriberInterface
                             'size' => $length,
                         ],
                         $resume,
-                        in_array($route, $this->ignoreLogs(), true)
+                        in_array($route, $this->ignoreLogs(), true),
                     );
                 } else {
                     $this->logService()->info([

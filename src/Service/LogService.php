@@ -132,7 +132,7 @@ readonly class LogService extends AbstractService
                         'tenant' => $user->tenant->alias ?? 'none',
                         'tenantId' => $user->tenant->id ?? 'none',
                         'authId' => $user->id ?? 'none',
-                    ]
+                    ],
                 ],
                 'logging.googleapis.com/trace_sampled' => false,
             ];

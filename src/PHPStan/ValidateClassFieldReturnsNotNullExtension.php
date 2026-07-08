@@ -34,11 +34,6 @@ class ValidateClassFieldReturnsNotNullExtension implements
         return $staticMethodReflection->getName() === 'classFieldReturnsNotNull' && $context->null();
     }
 
-    public function setTypeSpecifier(TypeSpecifier $typeSpecifier): void
-    {
-        $this->typeSpecifier = $typeSpecifier;
-    }
-
     public function specifyTypes(
         MethodReflection $staticMethodReflection,
         StaticCall $node,
@@ -53,7 +48,12 @@ class ValidateClassFieldReturnsNotNullExtension implements
             $expr,
             $type,
             TypeSpecifierContext::createTruthy(),
-            scope: $scope
+            scope: $scope,
         );
+    }
+
+    public function setTypeSpecifier(TypeSpecifier $typeSpecifier): void
+    {
+        $this->typeSpecifier = $typeSpecifier;
     }
 }

@@ -30,7 +30,7 @@ class MercureTestConsole extends Console
 
         $this->socketService->publishToTenant('mercure.test', new ArrayDocument([
             'project' => $this->contextService->project(),
-            'message' => 'Hello'
+            'message' => 'Hello',
         ]));
     }
 }

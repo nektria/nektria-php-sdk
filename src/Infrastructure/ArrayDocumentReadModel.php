@@ -21,8 +21,8 @@ class ArrayDocumentReadModel extends ReadModel
                 WHERE queue_name ~ :queue
             ',
             [
-                'queue' => $queue
-            ]
+                'queue' => $queue,
+            ],
         );
     }
 
@@ -50,7 +50,7 @@ class ArrayDocumentReadModel extends ReadModel
                 FROM messenger_messages
                 GROUP BY class_name, queue_name
                 ORDER BY class_name ASC;
-            SQL
+            SQL,
         ));
     }
 
@@ -91,7 +91,7 @@ class ArrayDocumentReadModel extends ReadModel
                 SELECT *
                 FROM doctrine_migration_versions
                 ORDER BY version
-            '
+            ',
         ));
     }
 
@@ -118,7 +118,7 @@ class ArrayDocumentReadModel extends ReadModel
                 'body' => $field . '\\\\";\\s*s:\\d+:\\\\"([^"]+)\\\\"',
                 'queue' => $queue,
                 'field' => $field,
-            ]
+            ],
         ));
     }
 

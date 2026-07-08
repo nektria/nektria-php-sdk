@@ -208,9 +208,9 @@ readonly class PostmanController extends Controller
                             [
                                 'key' => 'token',
                                 'value' => '{{api_admin_key}}',
-                                'type' => 'string'
-                            ]
-                        ]
+                                'type' => 'string',
+                            ],
+                        ],
                     ];
                 } elseif ($folder1 === 'Admin') {
                     $bcs[$folder1]['auth'] = [
@@ -225,7 +225,7 @@ readonly class PostmanController extends Controller
                                 'key' => 'key',
                                 'value' => 'x-api-id',
                                 'type' => 'string',
-                            ]
+                            ],
                         ],
                     ];
                 } elseif (str_starts_with($folder1, 'Api') || $folder1 === 'Web') {
@@ -241,7 +241,7 @@ readonly class PostmanController extends Controller
                                 'key' => 'key',
                                 'value' => 'x-api-id',
                                 'type' => 'string',
-                            ]
+                            ],
                         ],
                     ];
                 }
@@ -369,9 +369,9 @@ readonly class PostmanController extends Controller
                             'key' => 'key',
                             'value' => 'x-api-id',
                             'type' => 'string',
-                        ]
+                        ],
                     ],
-                ]
+                ],
             ];
         }
 
@@ -511,7 +511,7 @@ readonly class PostmanController extends Controller
                 'key' => 'X-origin',
                 'value' => $origin,
                 'type' => 'text',
-            ]
+            ],
         ];
 
         if ($this->context->isPlayEnvironment()) {

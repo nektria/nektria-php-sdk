@@ -137,7 +137,7 @@ readonly class BaseRequestClient extends AbstractService
                 'responseHeaders' => $respHeaders,
                 'status' => $returnResponse->status,
                 'url' => $url,
-                'duration' => $end
+                'duration' => $end,
             ], "{$status} {$method} {$url}");
         }
 
@@ -422,7 +422,7 @@ readonly class BaseRequestClient extends AbstractService
                 $content,
                 $headers,
                 $respHeaders,
-                $cookies
+                $cookies,
             );
 
             (microtime(true) - $start) * 1000;
@@ -550,7 +550,7 @@ readonly class BaseRequestClient extends AbstractService
                 $content,
                 $headers,
                 $respHeaders,
-                $cookies
+                $cookies,
             );
         } catch (Throwable $e) {
             throw NektriaException::new($e);
@@ -697,7 +697,7 @@ readonly class BaseRequestClient extends AbstractService
                 'responseHeaders' => $respHeaders,
                 'status' => $response->status,
                 'url' => $url,
-                'duration' => $end
+                'duration' => $end,
             ], "{$status} {$method} {$url}");
         }
 

@@ -41,7 +41,7 @@ class RedisStatsConsole extends Console
                 $size = $stat[0];
                 $mem = round($stat[1] / (1024 * 1024), 3);
                 $this->output()->writeln(
-                    "[{$class}] <green>{$cache->fqn}:</green> {$size} (<yellow1>{$mem} MB</yellow1>)"
+                    "[{$class}] <green>{$cache->fqn}:</green> {$size} (<yellow1>{$mem} MB</yellow1>)",
                 );
                 $total += $mem;
 
@@ -52,7 +52,7 @@ class RedisStatsConsole extends Console
                 if ($lines === 10) {
                     $this->alertService->simpleMessage(
                         AlertService::CHANNEL_BUGS,
-                        $output
+                        $output,
                     );
                     $output = '';
                     $lines = 0;
@@ -63,7 +63,7 @@ class RedisStatsConsole extends Console
         $output .= "Total: {$total} MB";
         $this->alertService->simpleMessage(
             AlertService::CHANNEL_BUGS,
-            $output
+            $output,
         );
 
         $this->output()->writeln("<green>Total:</green> {$total} MB");
