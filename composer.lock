@@ -6862,12 +6862,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-        "reference": "908d97af8992b4ca5497db2184f7b9eaa03c3b03"
+        "reference": "b4a262482aec288be686762ba61800eaf630276a"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/908d97af8992b4ca5497db2184f7b9eaa03c3b03",
-        "reference": "908d97af8992b4ca5497db2184f7b9eaa03c3b03",
+        "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/b4a262482aec288be686762ba61800eaf630276a",
+        "reference": "b4a262482aec288be686762ba61800eaf630276a",
         "shasum": ""
       },
       "require": {
@@ -6960,7 +6960,7 @@
           "type": "github"
         }
       ],
-      "time": "2026-07-10T18:38:13+00:00"
+      "time": "2026-07-11T10:35:17+00:00"
     },
     {
       "name": "myclabs/deep-copy",
@@ -8543,12 +8543,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/Roave/SecurityAdvisories.git",
-        "reference": "c07b0e39a3b653e4910b4fa3ce5b7933e85c48a3"
+        "reference": "d162f89e37b3026c5b00680c8e64b70d3ad57024"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/c07b0e39a3b653e4910b4fa3ce5b7933e85c48a3",
-        "reference": "c07b0e39a3b653e4910b4fa3ce5b7933e85c48a3",
+        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/d162f89e37b3026c5b00680c8e64b70d3ad57024",
+        "reference": "d162f89e37b3026c5b00680c8e64b70d3ad57024",
         "shasum": ""
       },
       "conflict": {
@@ -9232,7 +9232,7 @@
         "prestashop/ps_checkout": "<5.3",
         "prestashop/ps_contactinfo": "<=3.3.2",
         "prestashop/ps_emailsubscription": "<2.6.1",
-        "prestashop/ps_facetedsearch": "<3.4.1",
+        "prestashop/ps_facetedsearch": "<4.0.4",
         "prestashop/ps_linklist": "<3.1",
         "privatebin/privatebin": "<1.4|>=1.5,<1.7.4|>=1.7.7,<2.0.3",
         "processwire/processwire": "<=3.0.255",
@@ -9655,7 +9655,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-07-10T20:22:29+00:00"
+      "time": "2026-07-10T22:02:12+00:00"
     },
     {
       "name": "sebastian/cli-parser",
