@@ -1,3 +1,0 @@
-#!/bin/bash
-#bin/docker/stop
-docker compose -f server/php-sdk-dev/docker-compose.yml up -d --remove-orphans

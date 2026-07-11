@@ -7,7 +7,7 @@ git add .
 git commit -am "auto commit"
 
 bin/tools/composer-update
-bin/validate
+composer check
 #bin/tools/composer-update
 git commit -am "increase version"
 git push
