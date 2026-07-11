@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nektria\Test;
 
+use Nektria\Dto\LocalClock;
 use Nektria\Exception\NektriaException;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -72,7 +73,7 @@ class TestCase extends WebTestCase
     protected function boot(): void
     {
         $runnerListener = $this->loadService(TestRunnerListener::class);
-
+        LocalClock::defaultTimezone('Europe/Madrid');
         $methods = get_class_methods($this);
         sort($methods);
 
