@@ -72,7 +72,7 @@ class Validate
     public static function greaterOrEqualThan(
         int | float | string $number,
         int | float | string $limit,
-        ?string $message = null
+        ?string $message = null,
     ): void {
         $message ??= "Invalid '{$number}', must be greater than {$limit}.";
         if ((string) $number < (string) $limit) {
@@ -83,7 +83,7 @@ class Validate
     public static function greaterThan(
         int | float | string $number,
         int | float | string $limit,
-        ?string $message = null
+        ?string $message = null,
     ): void {
         $message ??= "Invalid '{$number}', must be greater than {$limit}.";
         if ((string) $number <= (string) $limit) {

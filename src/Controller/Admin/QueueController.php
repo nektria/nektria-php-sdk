@@ -10,10 +10,10 @@ use Nektria\Document\DocumentResponse;
 use Nektria\Infrastructure\ArrayDocumentReadModel;
 use Nektria\Util\Controller\Route;
 
-#[Route('/api/admin/queue')]
+#[Route('/api/admin/queues')]
 readonly class QueueController extends Controller
 {
-    #[Route('/queues/{queue}', method: 'DELETE')]
+    #[Route('/{queue}', method: 'DELETE')]
     public function deleteAQueue(ArrayDocumentReadModel $arrayDocumentReadModel, string $queue): DocumentResponse
     {
         $arrayDocumentReadModel->deleteAQueue($queue);
@@ -21,7 +21,7 @@ readonly class QueueController extends Controller
         return $this->emptyResponse();
     }
 
-    #[Route('/queues', method: 'GET')]
+    #[Route('', method: 'GET')]
     public function getAllQueuesMessages(ArrayDocumentReadModel $arrayDocumentReadModel): DocumentResponse
     {
         $list = $arrayDocumentReadModel->readAllQueuesMessages();
@@ -36,10 +36,10 @@ readonly class QueueController extends Controller
         return $this->documentResponse(new ArrayDocument($data));
     }
 
-    #[Route('/queues/{ref}', method: 'GET')]
+    #[Route('/{ref}', method: 'GET')]
     public function getAllQueuesValueMessages(
         string $ref,
-        ArrayDocumentReadModel $arrayDocumentReadModel
+        ArrayDocumentReadModel $arrayDocumentReadModel,
     ): DocumentResponse {
         $list = $arrayDocumentReadModel->readValuesFromQueueMessages(
             queue: $ref,

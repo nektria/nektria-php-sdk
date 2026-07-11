@@ -14,8 +14,8 @@ includes:
 parameters:
     level: 8
     paths:
-        - ../../src
-        - ../../tests
+        - '%currentWorkingDirectory%/src'
+        - '%currentWorkingDirectory%/tests'
 
     excludePaths:
         - '%currentWorkingDirectory%/vendor'

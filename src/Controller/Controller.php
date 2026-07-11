@@ -72,7 +72,7 @@ readonly class Controller
         Command $command,
         ?string $transport = null,
         ?int $delayMs = null,
-        ?array $retryOptions = null
+        ?array $retryOptions = null,
     ): void {
         $this->bus->dispatchCommand($command, $transport, $delayMs, $retryOptions);
     }
@@ -97,7 +97,7 @@ readonly class Controller
         ?Command $command = null,
         ?string $transport = null,
         ?int $delayMs = null,
-        ?array $retryOptions = null
+        ?array $retryOptions = null,
     ): DocumentResponse {
         if ($command !== null) {
             $this->command($command, $transport, $delayMs, $retryOptions);

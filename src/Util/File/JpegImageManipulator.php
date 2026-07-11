@@ -9,9 +9,8 @@ use Nektria\Exception\NektriaException;
 readonly class JpegImageManipulator implements ImageManipulator
 {
     public function __construct(
-        public string $filename
-    ) {
-    }
+        public string $filename,
+    ) {}
 
     public function resizeTo(string $destFile, int $maxSize): void
     {

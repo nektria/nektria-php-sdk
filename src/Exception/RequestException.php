@@ -10,7 +10,7 @@ class RequestException extends NektriaRuntimeException
 {
     public function __construct(
         private readonly RequestResponse $response,
-        bool $silent = false
+        bool $silent = false,
     ) {
         parent::__construct(
             errorCode: "RE_{$this->response->status}",

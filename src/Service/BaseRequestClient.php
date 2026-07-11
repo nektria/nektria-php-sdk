@@ -24,7 +24,7 @@ readonly class BaseRequestClient extends AbstractService
         array $data = [],
         array $headers = [],
         array $options = [],
-        ?bool $enableDebugFallback = null
+        ?bool $enableDebugFallback = null,
     ): RequestResponse {
         return $this->request(
             'DELETE',
@@ -49,7 +49,7 @@ readonly class BaseRequestClient extends AbstractService
         array $headers = [],
         array $options = [],
         bool $sendBodyAsObject = false,
-        ?bool $enableDebugFallback = null
+        ?bool $enableDebugFallback = null,
     ): RequestResponse {
         $body = JsonUtil::encode($data);
         $headers = array_merge($this->defaultHeaders(), $headers);
@@ -252,7 +252,7 @@ readonly class BaseRequestClient extends AbstractService
         array $data = [],
         array $headers = [],
         array $options = [],
-        ?bool $enableDebugFallback = null
+        ?bool $enableDebugFallback = null,
     ): RequestResponse {
         return $this->request(
             'GET',
@@ -275,7 +275,7 @@ readonly class BaseRequestClient extends AbstractService
         array $headers = [],
         array $options = [],
         bool $sendBodyAsObject = false,
-        ?bool $enableDebugFallback = null
+        ?bool $enableDebugFallback = null,
     ): RequestResponse {
         return $this->request(
             'PATCH',
@@ -299,7 +299,7 @@ readonly class BaseRequestClient extends AbstractService
         array $headers = [],
         array $options = [],
         bool $sendBodyAsObject = false,
-        ?bool $enableDebugFallback = null
+        ?bool $enableDebugFallback = null,
     ): RequestResponse {
         return $this->request(
             'POST',
@@ -323,7 +323,7 @@ readonly class BaseRequestClient extends AbstractService
         array $headers = [],
         array $options = [],
         bool $sendBodyAsObject = false,
-        ?bool $enableDebugFallback = null
+        ?bool $enableDebugFallback = null,
     ): RequestResponse {
         return $this->request(
             'PUT',
@@ -609,7 +609,7 @@ readonly class BaseRequestClient extends AbstractService
         array $headers = [],
         array $options = [],
         bool $sendBodyAsObject = false,
-        ?bool $enableDebugFallback = null
+        ?bool $enableDebugFallback = null,
     ): RequestResponse {
         $body = JsonUtil::encode($data);
         $headers = array_merge($this->defaultHeaders(), $headers);

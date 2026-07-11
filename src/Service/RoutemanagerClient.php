@@ -241,7 +241,7 @@ readonly class RoutemanagerClient extends AbstractService
 {
     public function __construct(
         protected SharedUserV2Cache $sharedUserCache,
-        private string $routemanagerHost
+        private string $routemanagerHost,
     ) {
         parent::__construct();
     }
@@ -329,7 +329,7 @@ readonly class RoutemanagerClient extends AbstractService
         string $orderNumber,
         float $latitude,
         float $longitude,
-        Clock $at
+        Clock $at,
     ): void {
         if ($this->contextService()->isTest()) {
             return;
@@ -598,7 +598,7 @@ readonly class RoutemanagerClient extends AbstractService
         string $driverId,
         float $latitude,
         float $longitude,
-        Clock $at
+        Clock $at,
     ): void {
         if ($this->contextService()->isTest()) {
             return;

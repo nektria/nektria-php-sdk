@@ -347,9 +347,7 @@ abstract class MessageListener implements EventSubscriberInterface
         return null;
     }
 
-    protected function cleanMemory(): void
-    {
-    }
+    protected function cleanMemory(): void {}
 
     private function normalizeClass(string $class): string
     {

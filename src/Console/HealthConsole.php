@@ -13,7 +13,7 @@ use function count;
 class HealthConsole extends Console
 {
     public function __construct(
-        private readonly HealthService $healthService
+        private readonly HealthService $healthService,
     ) {
         parent::__construct('sdk:health');
     }

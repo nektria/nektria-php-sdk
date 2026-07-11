@@ -21,8 +21,7 @@ readonly abstract class ConsoleListener implements EventSubscriberInterface
         private ContextService $contextService,
         private LogService $logService,
         private VariableCache $variableCache,
-    ) {
-    }
+    ) {}
 
     /**
      * @return array<string, string>

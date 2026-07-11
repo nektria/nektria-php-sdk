@@ -12,7 +12,6 @@ readonly class ContextStamp implements StampInterface
         public string $traceId,
         public string $context,
         public ?string $tenantId,
-        public ?string $userId
-    ) {
-    }
+        public ?string $userId,
+    ) {}
 }

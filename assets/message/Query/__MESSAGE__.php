@@ -17,6 +17,5 @@ readonly class __MESSAGE__ implements Query
 {
     public function __construct(
         public string $__ENTITY_CC__Id,
-    ) {
-    }
+    ) {}
 }

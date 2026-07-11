@@ -23,7 +23,7 @@ readonly class MetricsClient extends AbstractService
 {
     public function __construct(
         protected SharedUserV2Cache $sharedUserCache,
-        private string $metricsHost
+        private string $metricsHost,
     ) {
         parent::__construct();
     }
@@ -102,7 +102,7 @@ readonly class MetricsClient extends AbstractService
         LocalClock $date,
         ?float $globalConnectivity = null,
         ?float $routeConnectivity = null,
-        ?float $slotConnectivity = null
+        ?float $slotConnectivity = null,
     ): void {
         if ($this->contextService()->isTest()) {
             return;

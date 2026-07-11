@@ -25,7 +25,7 @@ readonly class DocumentCollection extends Document implements IteratorAggregate,
      * @param T[] $items
      */
     public function __construct(
-        private array $items = []
+        private array $items = [],
     ) {
         parent::__construct();
     }

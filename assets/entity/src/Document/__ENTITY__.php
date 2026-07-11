@@ -14,8 +14,7 @@ readonly class __ENTITY__ extends Document
         public string $id,
         public Clock $createdAt,
         public Clock $updatedAt,
-    ) {
-    }
+    ) {}
 
     protected function toArray(?ContextService $context): array
     {

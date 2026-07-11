@@ -10,7 +10,7 @@ readonly class CsvFileReader extends FileReader
 {
     public function __construct(
         string $file,
-        private string $separator
+        private string $separator,
     ) {
         parent::__construct($file);
     }

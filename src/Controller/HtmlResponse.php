@@ -6,6 +6,4 @@ namespace Nektria\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class HtmlResponse extends Response
-{
-}
+class HtmlResponse extends Response {}

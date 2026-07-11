@@ -73,9 +73,7 @@ class OutputService
         $this->writeln("<white>{$this->fixMessage($output)}</white>");
     }
 
-    public function setContainer(ContainerInterface $container): void
-    {
-    }
+    public function setContainer(ContainerInterface $container): void {}
 
     public function warning(string | int | float | bool $output): void
     {

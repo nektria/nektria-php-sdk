@@ -15,7 +15,6 @@ use Nektria\Util\Controller\Route;
 use Nektria\Util\FileUtil;
 use Nektria\Util\JsonUtil;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Throwable;
 
 use function count;
@@ -35,13 +34,13 @@ readonly class CommonController extends Controller
     }
 
     #[Route('/ping', method: 'GET')]
-    public function ping(): JsonResponse
+    public function ping(): DocumentResponse
     {
-        return new JsonResponse(['response' => 'pong']);
+        return $this->documentResponse(new ArrayDocument(['response' => 'pong']));
     }
 
     #[Route('/version', method: 'GET')]
-    public function version(ContainerInterface $container, ContextService $contextService): JsonResponse
+    public function version(ContainerInterface $container, ContextService $contextService): DocumentResponse
     {
         $migrationVersion = null;
 

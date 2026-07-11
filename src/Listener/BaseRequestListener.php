@@ -52,7 +52,7 @@ abstract class BaseRequestListener implements EventSubscriberInterface
     private ?Response $originalResponse;
 
     public function __construct(
-        private readonly ContainerInterface $container
+        private readonly ContainerInterface $container,
     ) {
         /** @var string[] $cors */
         $cors = $container->getParameter('allowed_cors');
@@ -448,9 +448,7 @@ abstract class BaseRequestListener implements EventSubscriberInterface
         return $service;
     }
 
-    protected function checkAccess(Request $request): void
-    {
-    }
+    protected function checkAccess(Request $request): void {}
 
     protected function contextService(): ContextService
     {
@@ -492,9 +490,7 @@ abstract class BaseRequestListener implements EventSubscriberInterface
         return $service;
     }
 
-    protected function onRequestReceived(Request $request): void
-    {
-    }
+    protected function onRequestReceived(Request $request): void {}
 
     protected function processRegistry(): ProcessRegistry
     {

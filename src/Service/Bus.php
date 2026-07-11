@@ -13,7 +13,6 @@ use Nektria\Message\Event;
 use Nektria\Message\Query;
 use Nektria\Util\Annotation\RolesRequired;
 use Nektria\Util\MessageStamp\ContextStamp;
-use Nektria\Util\MessageStamp\RetryStamp;
 use ReflectionClass;
 use RuntimeException;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
@@ -61,7 +60,7 @@ readonly class Bus extends AbstractService implements BusInterface
         Event $event,
         ?string $transport = null,
         ?int $delayMs = null,
-        ?array $retryOptions = null
+        ?array $retryOptions = null,
     ): void {
         $this->dispatchEvent($event, $transport, $delayMs, $retryOptions);
     }
@@ -78,7 +77,7 @@ readonly class Bus extends AbstractService implements BusInterface
         Command $command,
         ?string $transport = null,
         ?int $delayMs = null,
-        ?array $retryOptions = null
+        ?array $retryOptions = null,
     ): void {
         $this->validateAccess($command);
 
@@ -97,22 +96,6 @@ readonly class Bus extends AbstractService implements BusInterface
 
         if ($this->contextService()->forceSync()) {
             $stamps[] = new TransportNamesStamp(['sync']);
-        }
-
-        if ($retryOptions !== null) {
-            if ($this->contextService()->env() === ContextService::DEV) {
-                $stamps[] = new RetryStamp(
-                    max(1, $retryOptions['currentTry'] ?? 1),
-                    min(10, $retryOptions['maxTries']),
-                    min(10_000, $retryOptions['interval']),
-                );
-            } else {
-                $stamps[] = new RetryStamp(
-                    max(1, $retryOptions['currentTry'] ?? 1),
-                    $retryOptions['maxTries'],
-                    $retryOptions['interval'],
-                );
-            }
         }
 
         if ($delayMs !== null) {
@@ -158,7 +141,7 @@ readonly class Bus extends AbstractService implements BusInterface
         Event $event,
         ?string $transport = null,
         ?int $delayMs = null,
-        ?array $retryOptions = null
+        ?array $retryOptions = null,
     ): void {
         $stamps = [
             new ContextStamp(
@@ -175,22 +158,6 @@ readonly class Bus extends AbstractService implements BusInterface
 
         if ($this->contextService()->forceSync()) {
             $stamps[] = new TransportNamesStamp(['sync']);
-        }
-
-        if ($retryOptions !== null) {
-            if ($this->contextService()->env() === ContextService::DEV) {
-                $stamps[] = new RetryStamp(
-                    max(1, $retryOptions['currentTry'] ?? 1),
-                    min(10, $retryOptions['maxTries']),
-                    min(10_000, $retryOptions['interval']),
-                );
-            } else {
-                $stamps[] = new RetryStamp(
-                    max(1, $retryOptions['currentTry'] ?? 1),
-                    $retryOptions['maxTries'],
-                    $retryOptions['interval'],
-                );
-            }
         }
 
         if ($delayMs !== null) {

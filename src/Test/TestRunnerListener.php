@@ -13,17 +13,14 @@ use Throwable;
 readonly class TestRunnerListener
 {
     public function __construct(
-        protected ContainerInterface $container
-    ) {
-    }
+        protected ContainerInterface $container,
+    ) {}
 
-    public function onBoot(): void
-    {
-    }
+    public function onBoot(): void {}
 
     public function restartDatabase(
         bool $reuseDatabase = true,
-        bool $useMigrations = true
+        bool $useMigrations = true,
     ): void {
         try {
             if (!$reuseDatabase) {

@@ -22,7 +22,7 @@ interface BusInterface
         Event $event,
         ?string $transport = null,
         ?int $delayMs = null,
-        ?array $retryOptions = null
+        ?array $retryOptions = null,
     ): void;
 
     /**
@@ -36,7 +36,7 @@ interface BusInterface
         Command $command,
         ?string $transport = null,
         ?int $delayMs = null,
-        ?array $retryOptions = null
+        ?array $retryOptions = null,
     ): void;
 
     public function dispatchDelayedEvents(): void;
@@ -52,7 +52,7 @@ interface BusInterface
         Event $event,
         ?string $transport = null,
         ?int $delayMs = null,
-        ?array $retryOptions = null
+        ?array $retryOptions = null,
     ): void;
 
     /**

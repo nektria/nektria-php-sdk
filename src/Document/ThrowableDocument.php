@@ -32,7 +32,7 @@ readonly class ThrowableDocument extends Document
     private string $errorCode;
 
     public function __construct(
-        Throwable $throwable
+        Throwable $throwable,
     ) {
         parent::__construct();
         $exception = $throwable;

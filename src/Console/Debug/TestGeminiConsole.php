@@ -12,7 +12,7 @@ use Throwable;
 class TestGeminiConsole extends Console
 {
     public function __construct(
-        private readonly GoogleClient $googleClient
+        private readonly GoogleClient $googleClient,
     ) {
         parent::__construct('debug:gemini');
     }

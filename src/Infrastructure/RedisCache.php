@@ -12,16 +12,16 @@ use function count;
 
 abstract class RedisCache
 {
-    private static ?Redis $connection = null;
-
     public readonly string $fqn;
+
+    private static ?Redis $connection = null;
 
     private readonly string $redisDsn;
 
     public function __construct(
         string $redisDsn,
         string $env,
-        string $prefix
+        string $prefix,
     ) {
         $parts = explode('\\', static::class);
         $name = substr(end($parts), 0, -5);

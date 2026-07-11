@@ -63,9 +63,7 @@ class HealthService
         ];
     }
 
-    public function setContainer(ContainerInterface $container): void
-    {
-    }
+    public function setContainer(ContainerInterface $container): void {}
 
     protected function addError(string $key, string $message): void
     {

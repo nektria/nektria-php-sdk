@@ -225,7 +225,7 @@ readonly class AlertService extends AbstractService
         array $input,
         ThrowableDocument $document,
         int $times = 1,
-        ?int $flags = null
+        ?int $flags = null,
     ): void {
         if ($this->contextService()->env() === 'test') {
             return;
@@ -295,7 +295,7 @@ readonly class AlertService extends AbstractService
     public function simpleDebugMessage(
         string $message,
         array $embeds = [],
-        ?int $flags = null
+        ?int $flags = null,
     ): void {
         if (count($embeds) > 0) {
             $embeds = [
@@ -321,7 +321,7 @@ readonly class AlertService extends AbstractService
         string $channel,
         string $message,
         array $embeds = [],
-        ?int $flags = null
+        ?int $flags = null,
     ): void {
         if (count($embeds) > 0) {
             $embeds = [
