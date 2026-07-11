@@ -3,13 +3,10 @@
 set -e
 
 git pull
+
+composer update
+composer check
+
 git add .
 git commit -am "auto commit"
-
-bin/tools/composer-update
-composer check
-#bin/tools/composer-update
-git commit -am "increase version"
 git push
-#git tag "$VERSION"
-#git push --tags
