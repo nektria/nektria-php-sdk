@@ -38,13 +38,13 @@ class LocalClockType extends Type
         return LocalClock::fromString($value);
     }
 
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
-    {
-        return 'TIMESTAMP(0) WITHOUT TIME ZONE';
-    }
-
     public function getName(): string
     {
         return 'local_clock';
+    }
+
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    {
+        return 'TIMESTAMP(0) WITHOUT TIME ZONE';
     }
 }

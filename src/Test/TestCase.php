@@ -29,14 +29,14 @@ class TestCase extends WebTestCase
 
     public const string WAREHOUSE_ID = 'be878e2b-88fa-449d-875d-7a9567fa671a';
 
+    private static bool $onBootExecuted = false;
+
     protected KernelBrowser $client;
 
     /**
      * @var array<string, bool>
      */
     private array $inits = [];
-
-    private static bool $onBootExecuted = false;
 
     /**
      * @param mixed[] $expected
@@ -67,94 +67,6 @@ class TestCase extends WebTestCase
     protected static function assertJsonType(array $expected, array $target): void
     {
         self::assertJsonTypeInternal($expected, $target, '');
-    }
-
-    protected function boot(): void
-    {
-        $runnerListener = $this->loadService(TestRunnerListener::class);
-
-        $methods = get_class_methods($this);
-        sort($methods);
-
-        if (!self::$onBootExecuted) {
-            self::$onBootExecuted = true;
-            $runnerListener->onBoot();
-
-            foreach ($methods as $method) {
-                if ($method === 'boot') {
-                    continue;
-                }
-
-                if (str_starts_with($method, 'boot')) {
-                    $this->inits[$method] = true;
-                    // @phpstan-ignore-next-line
-                    $this->$method();
-                }
-            }
-        }
-    }
-
-    public function getTestName(): string
-    {
-        $key = '';
-        $traces = debug_backtrace();
-        foreach ($traces as $trace) {
-            if (strncmp($trace['function'], 'test', 4) === 0) {
-                $key = ($trace['class'] ?? '') . '::' . $trace['function'];
-
-                break;
-            }
-        }
-
-        if ($key === '') {
-            throw new NektriaException('E_500', 'Test function starting with "test" has not been found.');
-        }
-
-        return str_replace(['::', '\\'], ['__', '_'], $key);
-    }
-
-    protected function init(): void
-    {
-        if (self::$booted) {
-            return;
-        }
-
-        $this->client = self::createClient();
-
-        $this->boot();
-
-        $methods = get_class_methods($this);
-        sort($methods);
-        foreach ($methods as $method) {
-            if ($method === 'init') {
-                continue;
-            }
-
-            if (!isset($this->inits[$method]) && str_starts_with($method, 'init')) {
-                $this->inits[$method] = true;
-                // @phpstan-ignore-next-line
-                $this->$method();
-            }
-        }
-    }
-
-    /**
-     * @template T of object
-     * @param class-string<T> $name
-     * @return T
-     */
-    protected function loadService(string $name): object
-    {
-        /** @var T|null $service */
-        $service = self::$kernel?->getContainer()->get($name);
-        self::assertNotNull($service);
-
-        return $service;
-    }
-
-    protected function setUp(): void
-    {
-        $this->init();
     }
 
     /**
@@ -330,5 +242,93 @@ class TestCase extends WebTestCase
                 throw new ExpectationFailedException("Field '{$root}{$key}' ({$receivedType}) is not expected.");
             }
         }
+    }
+
+    public function getTestName(): string
+    {
+        $key = '';
+        $traces = debug_backtrace();
+        foreach ($traces as $trace) {
+            if (strncmp($trace['function'], 'test', 4) === 0) {
+                $key = ($trace['class'] ?? '') . '::' . $trace['function'];
+
+                break;
+            }
+        }
+
+        if ($key === '') {
+            throw new NektriaException('E_500', 'Test function starting with "test" has not been found.');
+        }
+
+        return str_replace(['::', '\\'], ['__', '_'], $key);
+    }
+
+    protected function boot(): void
+    {
+        $runnerListener = $this->loadService(TestRunnerListener::class);
+
+        $methods = get_class_methods($this);
+        sort($methods);
+
+        if (!self::$onBootExecuted) {
+            self::$onBootExecuted = true;
+            $runnerListener->onBoot();
+
+            foreach ($methods as $method) {
+                if ($method === 'boot') {
+                    continue;
+                }
+
+                if (str_starts_with($method, 'boot')) {
+                    $this->inits[$method] = true;
+                    // @phpstan-ignore-next-line
+                    $this->$method();
+                }
+            }
+        }
+    }
+
+    protected function init(): void
+    {
+        if (self::$booted) {
+            return;
+        }
+
+        $this->client = self::createClient();
+
+        $this->boot();
+
+        $methods = get_class_methods($this);
+        sort($methods);
+        foreach ($methods as $method) {
+            if ($method === 'init') {
+                continue;
+            }
+
+            if (!isset($this->inits[$method]) && str_starts_with($method, 'init')) {
+                $this->inits[$method] = true;
+                // @phpstan-ignore-next-line
+                $this->$method();
+            }
+        }
+    }
+
+    /**
+     * @template T of object
+     * @param class-string<T> $name
+     * @return T
+     */
+    protected function loadService(string $name): object
+    {
+        /** @var T|null $service */
+        $service = self::$kernel?->getContainer()->get($name);
+        self::assertNotNull($service);
+
+        return $service;
+    }
+
+    protected function setUp(): void
+    {
+        $this->init();
     }
 }

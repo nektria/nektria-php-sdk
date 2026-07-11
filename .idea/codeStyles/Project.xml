@@ -27,8 +27,10 @@
     <PHPCodeStyleSettings>
       <option name="KEEP_RPAREN_AND_LBRACE_ON_ONE_LINE" value="true" />
       <option name="SPACE_BEFORE_SHORT_CLOSURE_LEFT_PARENTHESIS" value="true" />
+      <option name="SPACES_AROUND_PIPE_IN_UNION_TYPE" value="true" />
     </PHPCodeStyleSettings>
     <codeStyleSettings language="PHP">
+      <option name="ALIGN_MULTILINE_PARAMETERS" value="false" />
       <option name="SPACE_AFTER_TYPE_CAST" value="true" />
       <arrangement>
         <groups />

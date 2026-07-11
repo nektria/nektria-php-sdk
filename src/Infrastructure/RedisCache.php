@@ -12,9 +12,9 @@ use function count;
 
 abstract class RedisCache
 {
-    public readonly string $fqn;
-
     private static ?Redis $connection = null;
+
+    public readonly string $fqn;
 
     private readonly string $redisDsn;
 

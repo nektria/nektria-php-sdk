@@ -18,10 +18,12 @@ use Symfony\Component\Console\Exception\InvalidArgumentException;
 use function count;
 use function sprintf;
 use function strlen;
+use function substr;
 
 final class Color
 {
-    private const AVAILABLE_OPTIONS = [
+    /** @var array<string, array{set:int, unset:int}> */
+    private const array AVAILABLE_OPTIONS = [
         'bold' => ['set' => 1, 'unset' => 22],
         'dim' => ['set' => 2, 'unset' => 22],
         'italic' => ['set' => 3, 'unset' => 23],
@@ -31,7 +33,8 @@ final class Color
         'conceal' => ['set' => 8, 'unset' => 28],
     ];
 
-    private const BRIGHT_COLORS = [
+    /** @var array<string, int> */
+    private const array BRIGHT_COLORS = [
         'gray' => 0,
         'bright-red' => 1,
         'bright-green' => 2,
@@ -42,7 +45,8 @@ final class Color
         'bright-white' => 7,
     ];
 
-    private const COLORS = [
+    /** @var array<string, int> */
+    private const array COLORS = [
         'black' => 0,
         'red' => 1,
         'green' => 2,
