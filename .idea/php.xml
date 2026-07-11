@@ -18,7 +18,7 @@
   <component name="PhpCodeSniffer">
     <phpcs_settings>
       <PhpCSConfiguration beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" tool_path="$PROJECT_DIR$/vendor/bin/phpcs" />
-      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="9cfe768c-6e12-4aad-b9a7-1c4014508406" beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" tool_path="/Users/xgc1986/Nektria/php-sdk/vendor/bin/phpcs" timeout="30000" />
+      <PhpCSConfiguration asDefaultInterpreter="true" beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" tool_path="$PROJECT_DIR$/vendor/bin/phpcs" />
     </phpcs_settings>
   </component>
   <component name="PhpIncludePathManager">
@@ -162,7 +162,7 @@
   <component name="PhpStan">
     <PhpStan_settings>
       <PhpStanConfiguration tool_path="$PROJECT_DIR$/vendor/bin/phpstan" />
-      <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="9cfe768c-6e12-4aad-b9a7-1c4014508406" tool_path="$PROJECT_DIR$/vendor/bin/phpstan" timeout="60000" />
+      <PhpStanConfiguration asDefaultInterpreter="true" tool_path="$PROJECT_DIR$/vendor/bin/phpstan" />
     </PhpStan_settings>
   </component>
   <component name="PhpStanOptionsConfiguration">

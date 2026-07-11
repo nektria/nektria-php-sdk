@@ -6,9 +6,7 @@ namespace Nektria\Controller\Admin;
 
 use Nektria\Controller\Controller;
 use Nektria\Document\ArrayDocument;
-use Nektria\Document\DocumentResponse;
 use Nektria\Exception\InsufficientCredentialsException;
-use Nektria\Infrastructure\ArrayDocumentReadModel;
 use Nektria\Service\ContextService;
 use Nektria\Util\Controller\Route;
 use Nektria\Util\FileUtil;
@@ -74,27 +72,6 @@ readonly class ToolsController extends Controller
         return $this->buildResponseForProcess($command);
     }
 
-    #[Route('/database/migrations', method: 'GET')]
-    public function executeDoctrineMigrationStatus(): Response
-    {
-        $command = new Process(array_merge(['../bin/console', 'doctrine:migrations:sync-metadata-storage']));
-        $command->run();
-
-        $command = new Process(array_merge(['../bin/console', 'doctrine:migration:status']));
-        $command->run();
-
-        return $this->buildResponseForProcess($command);
-    }
-
-    #[Route('/database/schema', method: 'GET')]
-    public function executeDoctrineSchemaUpdateDumpSql(): Response
-    {
-        $command = new Process(array_merge(['../bin/console', 'doctrine:schema:update', '--dump-sql']));
-        $command->run();
-
-        return $this->buildResponseForProcess($command);
-    }
-
     #[Route('/debug/status', method: 'PATCH')]
     public function getDebugConfigurationStatus(ContextService $contextService): JsonResponse
     {
@@ -132,20 +109,6 @@ readonly class ToolsController extends Controller
         );
 
         return new Response((string) $result);
-    }
-
-    #[Route('/database/read', method: 'POST')]
-    public function readFromDatabase(ArrayDocumentReadModel $readModel): DocumentResponse
-    {
-        return $this->documentResponse(
-            $readModel->readCustom(
-                table: $this->requestData->retrieveString('table'),
-                order: $this->requestData->retrieveString('orderBy'),
-                page: $this->requestData->getInt('page') ?? 1,
-                limit: $this->requestData->getInt('limit') ?? 50,
-                filters: $this->requestData->getArray('filters') ?? [],
-            ),
-        );
     }
 
     private function buildResponseForProcess(Process $process): Response
