@@ -26,6 +26,24 @@ class ArrayDocumentReadModel extends ReadModel
         );
     }
 
+    public function deleteQueuesFromFieldAndValue(string $queue, string $field, string $value): void
+    {
+        $this->getRawResults(
+            <<<'SQL'
+                DELETE
+                FROM messenger_messages 
+                WHERE 
+                    queue_name ~ :queue
+                    AND (regexp_match(body, :body))[1]::text = :value
+            SQL,
+            [
+                'body' => $field . '\\\\";\\s*s:\\d+:\\\\"([^"]+)\\\\"',
+                'queue' => $queue,
+                'value' => $value,
+            ],
+        );
+    }
+
     public function fixMigrations(): void
     {
         $this->getRawResult('

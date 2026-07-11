@@ -21,6 +21,22 @@ readonly class QueueController extends Controller
         return $this->emptyResponse();
     }
 
+    #[Route('/{queue}/{field}/{value}', method: 'DELETE')]
+    public function deleteAQueueWithValue(
+        ArrayDocumentReadModel $arrayDocumentReadModel,
+        string $queue,
+        string $field,
+        string $value,
+    ): DocumentResponse {
+        $arrayDocumentReadModel->deleteQueuesFromFieldAndValue(
+            $queue,
+            field: $field,
+            value: $value,
+        );
+
+        return $this->emptyResponse();
+    }
+
     #[Route('', method: 'GET')]
     public function getAllQueuesMessages(ArrayDocumentReadModel $arrayDocumentReadModel): DocumentResponse
     {
