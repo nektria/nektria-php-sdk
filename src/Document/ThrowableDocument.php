@@ -78,7 +78,7 @@ readonly class ThrowableDocument extends Document
         $this->throwable = $exception;
     }
 
-    public function toDevArray(): mixed
+    public function toDevArray(?ContextService $context): mixed
     {
         $exception = $this->throwable;
         if ($exception instanceof NektriaException) {
@@ -103,7 +103,7 @@ readonly class ThrowableDocument extends Document
             'type' => $exception::class,
             'file' => str_replace('/app/', '', $exception->getFile()),
             'line' => $exception->getLine(),
-            'trace' => $this->trace(null),
+            'trace' => $this->trace($context),
         ];
     }
 
@@ -121,7 +121,7 @@ readonly class ThrowableDocument extends Document
             $file = $item['file'] ?? '';
             $line = $item['line'] ?? 0;
 
-            if ($context === null || $context->isTest()) {
+            if ($context?->isTest()) {
                 $finalTrace[] = [
                     'file' => str_replace('/app/', '', $file),
                     'line' => $line,
