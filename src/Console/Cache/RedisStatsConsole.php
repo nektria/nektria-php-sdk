@@ -13,7 +13,7 @@ class RedisStatsConsole extends Console
 {
     public function __construct(
         private readonly ContainerInterface $container,
-        private readonly AlertService $alertService
+        private readonly AlertService $alertService,
     ) {
         parent::__construct('sdk:cache:stats');
     }

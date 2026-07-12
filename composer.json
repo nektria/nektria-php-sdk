@@ -1,7 +1,7 @@
 {
     "name": "nektria/php-sdk",
     "type": "library",
-    "description": "Nektria PHP SDK - 2.0.289",
+    "description": "Nektria PHP SDK - 2.0.296",
     "minimum-stability": "stable",
     "license": "proprietary",
     "autoload": {
@@ -61,13 +61,14 @@
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpstan/phpstan-symfony": "^2.0",
-        "phpunit/phpunit": "^11.0",
+        "phpunit/phpunit": "^13.0",
         "roave/security-advisories": "dev-master",
         "shipmonk/phpstan-rules": "^4.0",
         "spaze/phpstan-disallowed-calls": "^v4.0",
-        "squizlabs/php_codesniffer": "^3.0",
-        "symfony/browser-kit": "^7.0",
-        "symfony/var-dumper": "^7.0"
+        "squizlabs/php_codesniffer": "^4.0",
+        "symfony/browser-kit": "^8.0",
+        "symfony/var-dumper": "^8.0",
+        "ekino/phpstan-banned-code": "v3.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -86,8 +87,8 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "--check": "docker exec -it php-sdk /scripts/tools/validate",
-        "check": "bin/validate",
-        "test": "docker exec -it php-sdk /scripts/tools/phpunit"
+        "qf": "docker exec -it nektria-php-sdk cp /app/phpstan.neon /scripts/phpstan.neon",
+        "check": "docker exec -it nektria-php-sdk /scripts/tools/validate",
+        "test": "docker exec -it nektria-php-sdk /scripts/tools/phpunit"
     }
 }

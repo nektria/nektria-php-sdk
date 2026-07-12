@@ -252,14 +252,14 @@ readonly class YieldmanagerClient extends AbstractService
 {
     public function __construct(
         protected SharedUserV2Cache $sharedUserCache,
-        protected string $yieldmanagerHost
+        protected string $yieldmanagerHost,
     ) {
         parent::__construct();
     }
 
     public function deleteAreaFromExpressShifts(
         LocalClock $date,
-        string $area
+        string $area,
     ): void {
         $this->requestClient()->patch(
             "{$this->yieldmanagerHost}/api/admin/areas/delete-areas-to-express-shifts",
@@ -273,7 +273,7 @@ readonly class YieldmanagerClient extends AbstractService
 
     public function deleteAreaFromShifts(
         LocalClock $date,
-        string $area
+        string $area,
     ): void {
         $this->requestClient()->patch(
             "{$this->yieldmanagerHost}/api/admin/areas/delete-areas-to-shifts",
@@ -632,7 +632,7 @@ readonly class YieldmanagerClient extends AbstractService
     public function saveWarehouseDailyInfoDayOff(
         string $warehouseId,
         LocalClock $date,
-        bool $dayOff
+        bool $dayOff,
     ): void {
         $this->requestClient()->put(
             "{$this->yieldmanagerHost}/api/admin/warehouses/{$warehouseId}/{$date->dateString()}/day-off",
@@ -646,7 +646,7 @@ readonly class YieldmanagerClient extends AbstractService
     public function saveWarehouseDailyInfoMaxOrders(
         string $warehouseId,
         LocalClock $date,
-        ?int $maxOrders
+        ?int $maxOrders,
     ): void {
         $this->requestClient()->put(
             "{$this->yieldmanagerHost}/api/admin/warehouses/{$warehouseId}/{$date->dateString()}/max-orders",
@@ -660,7 +660,7 @@ readonly class YieldmanagerClient extends AbstractService
     public function saveWarehouseDailyInfoMaxProductLines(
         string $warehouseId,
         LocalClock $date,
-        ?int $maxProductLines
+        ?int $maxProductLines,
     ): void {
         $this->requestClient()->put(
             "{$this->yieldmanagerHost}/api/admin/warehouses/{$warehouseId}/{$date->dateString()}/max-product-lines",
@@ -674,7 +674,7 @@ readonly class YieldmanagerClient extends AbstractService
     public function saveWarehouseDailyInfoMaxWeight(
         string $warehouseId,
         LocalClock $date,
-        ?int $maxWeight
+        ?int $maxWeight,
     ): void {
         $this->requestClient()->put(
             "{$this->yieldmanagerHost}/api/admin/warehouses/{$warehouseId}/{$date->dateString()}/max-weight",

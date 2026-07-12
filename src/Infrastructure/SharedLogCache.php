@@ -26,7 +26,7 @@ class SharedLogCache extends SharedRedisCache
     public function __construct(
         private readonly ContextService $contextService,
         string $redisDsn,
-        string $env
+        string $env,
     ) {
         parent::__construct($redisDsn, $env);
     }

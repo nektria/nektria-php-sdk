@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Nektria\PHPStan;
 
 use DateTimeInterface;
+use Nektria\Dto\Clock;
 use PhpParser\Node;
 use PhpParser\Node\Expr\BinaryOp;
 use PhpParser\Node\Expr\BinaryOp\Equal;
@@ -53,8 +54,8 @@ class AllowComparingOnlyComparableTypesRule implements Rule
             return [];
         }
 
-        $clockType = new ObjectType('Nektria\Dto\Clock');
-        $clock2Type = new ObjectType('Nektria\Dto\Clock');
+        $clockType = new ObjectType(Clock::class);
+        $clock2Type = new ObjectType(Clock::class);
 
         $leftType = $scope->getType($node->left);
         $rightType = $scope->getType($node->right);
@@ -155,18 +156,18 @@ class AllowComparingOnlyComparableTypesRule implements Rule
         $stringType = new StringType();
         $dateTimeType = new ObjectType(DateTimeInterface::class);
 
-        return (
-            $this->containsOnlyTypes($leftType, [$intType, $floatType]) && $this->containsOnlyTypes(
-                $rightType,
-                [$intType, $floatType],
-            )) || ($this->containsOnlyTypes($leftType, [$stringType]) && $this->containsOnlyTypes(
-                $rightType,
-                [$stringType],
-            )) || (
-                $this->containsOnlyTypes($leftType, [$dateTimeType]) && $this->containsOnlyTypes(
-                    $rightType,
-                    [$dateTimeType],
-                )
+        return
+            (
+                $this->containsOnlyTypes($leftType, [$intType, $floatType])
+                && $this->containsOnlyTypes($rightType, [$intType, $floatType])
+            )
+            || (
+                $this->containsOnlyTypes($leftType, [$stringType])
+                && $this->containsOnlyTypes($rightType, [$stringType])
+            )
+            || (
+                $this->containsOnlyTypes($leftType, [$dateTimeType])
+                && $this->containsOnlyTypes($rightType, [$dateTimeType])
             );
     }
 }

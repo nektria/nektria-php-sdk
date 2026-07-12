@@ -9,6 +9,4 @@ use Nektria\Document\Document;
 /**
  * @template T of Document
  */
-interface Query
-{
-}
+interface Query {}

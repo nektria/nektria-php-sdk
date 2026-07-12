@@ -24,7 +24,7 @@ class SharedUserV2Cache extends SharedRedisCache
     public function __construct(
         private readonly SharedTenantCache $sharedTenantCache,
         string $redisDsn,
-        string $env
+        string $env,
     ) {
         parent::__construct($redisDsn, $env);
     }

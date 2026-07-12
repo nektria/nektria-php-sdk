@@ -102,7 +102,7 @@ readonly class GoogleClient extends AbstractService
     public function storageDeleteFile(
         string $folder,
         string $filename,
-        ?string $project = null
+        ?string $project = null,
     ): void {
         try {
             $project ??= $this->contextService()->project();
@@ -122,7 +122,7 @@ readonly class GoogleClient extends AbstractService
 
     public function storageDeleteFolder(
         string $folder,
-        ?string $project = null
+        ?string $project = null,
     ): void {
         try {
             $project ??= $this->contextService()->project();
@@ -143,7 +143,7 @@ readonly class GoogleClient extends AbstractService
     public function storageDownloadFile(
         string $folder,
         string $filename,
-        ?string $project = null
+        ?string $project = null,
     ): FileDocument {
         try {
             $project ??= $this->contextService()->project();
@@ -173,7 +173,7 @@ readonly class GoogleClient extends AbstractService
         string $folder,
         string $name,
         string $uploadFilename,
-        ?string $project = null
+        ?string $project = null,
     ): void {
         try {
             $project ??= $this->contextService()->project();

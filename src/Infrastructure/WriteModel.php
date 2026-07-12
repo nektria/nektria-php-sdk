@@ -28,7 +28,7 @@ abstract class WriteModel
     private EntityManager $manager;
 
     public function __construct(
-        private readonly ManagerRegistry $managerRegistry
+        private readonly ManagerRegistry $managerRegistry,
     ) {
         $manager = $this->managerRegistry->getManager();
         if (!$manager instanceof EntityManager) {

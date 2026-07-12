@@ -9,7 +9,5 @@ use Attribute;
 #[Attribute]
 class IgnoreProperty
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 }

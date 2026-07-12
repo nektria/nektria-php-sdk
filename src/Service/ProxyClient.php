@@ -91,7 +91,7 @@ readonly class ProxyClient extends AbstractService
         );
     }
 
-    public function sendOrderIsUpdated(string $orderNumber): void
+    public function sendOrderIsUpdated(string $warehouseId, string $orderNumber): void
     {
         $proxyHost = $this->securityService()->retrieveCurrentUser()->tenant->metadata->proxyHost();
 
@@ -101,6 +101,9 @@ readonly class ProxyClient extends AbstractService
 
         $this->requestClient()->patch(
             "{$proxyHost}/api/admin/orders/{$orderNumber}/updated",
+            data: [
+                'warehouseId' => $warehouseId,
+            ],
             headers: $this->getHeaders(),
         );
     }
@@ -157,7 +160,7 @@ readonly class ProxyClient extends AbstractService
         }
     }
 
-    public function sendRouteIsUpdated(string $routeId): void
+    public function sendRouteIsUpdated(string $warehouseId, string $routeId): void
     {
         $proxyHost = $this->securityService()->retrieveCurrentUser()->tenant->metadata->proxyHost();
 
@@ -167,6 +170,9 @@ readonly class ProxyClient extends AbstractService
 
         $this->requestClient()->patch(
             "{$proxyHost}/api/admin/routes/{$routeId}/updated",
+            data: [
+                'warehouseId' => $warehouseId,
+            ],
             headers: $this->getHeaders(),
         );
     }

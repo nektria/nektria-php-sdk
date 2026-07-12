@@ -11,7 +11,5 @@ class PingConsole extends Console
         parent::__construct('sdk:ping');
     }
 
-    protected function play(): void
-    {
-    }
+    protected function play(): void {}
 }

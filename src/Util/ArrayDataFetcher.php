@@ -26,9 +26,7 @@ readonly class ArrayDataFetcher
     /**
      * @param mixed[] $data
      */
-    public function __construct(protected readonly array $data)
-    {
-    }
+    public function __construct(protected readonly array $data) {}
 
     /**
      * @return mixed[]

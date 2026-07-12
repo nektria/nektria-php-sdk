@@ -21,7 +21,7 @@ abstract class RedisCache
     public function __construct(
         string $redisDsn,
         string $env,
-        string $prefix
+        string $prefix,
     ) {
         $parts = explode('\\', static::class);
         $name = substr(end($parts), 0, -5);

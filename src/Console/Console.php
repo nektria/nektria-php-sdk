@@ -40,7 +40,7 @@ abstract class Console extends BaseCommand
     }
 
     public function inject(
-        ContainerInterface $container
+        ContainerInterface $container,
     ): void {
         $this->container = $container;
 
@@ -126,7 +126,7 @@ abstract class Console extends BaseCommand
         ?string $tenantId = null,
         bool $async = false,
         ?int $delayMs = null,
-        ?array $retryOptions = null
+        ?array $retryOptions = null,
     ): void {
         if ($tenantId !== null) {
             $this->userService()->authenticateSystem($tenantId);

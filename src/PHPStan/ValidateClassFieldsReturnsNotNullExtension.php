@@ -32,7 +32,7 @@ class ValidateClassFieldsReturnsNotNullExtension implements
     public function isStaticMethodSupported(
         MethodReflection $staticMethodReflection,
         StaticCall $node,
-        TypeSpecifierContext $context
+        TypeSpecifierContext $context,
     ): bool {
         return $staticMethodReflection->getName() === 'classFieldsReturnsNotNull' && $context->null();
     }
@@ -41,7 +41,7 @@ class ValidateClassFieldsReturnsNotNullExtension implements
         MethodReflection $staticMethodReflection,
         StaticCall $node,
         Scope $scope,
-        TypeSpecifierContext $context
+        TypeSpecifierContext $context,
     ): SpecifiedTypes {
         $fields = $node->getArgs()[2]->value;
         $objectExpr = $node->getArgs()[0]->value;

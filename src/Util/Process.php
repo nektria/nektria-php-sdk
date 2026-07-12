@@ -20,7 +20,7 @@ class Process
     public static function command(
         string | array $command,
         ?array $envs = null,
-        ?callable $callback = null
+        ?callable $callback = null,
     ): string {
         if (is_string($command)) {
             return self::command(explode(' ', $command), envs: $envs, callback: $callback);
@@ -46,7 +46,7 @@ class Process
     public static function jsonCommand(
         string | array $command,
         ?array $envs = null,
-        ?callable $callback = null
+        ?callable $callback = null,
     ): mixed {
         return JsonUtil::decode(self::command($command, envs: $envs, callback: $callback));
     }
@@ -60,7 +60,7 @@ class Process
     public static function linesCommand(
         string | array $command,
         ?array $envs = null,
-        ?callable $callback = null
+        ?callable $callback = null,
     ): array {
         return explode(PHP_EOL, self::command($command, envs: $envs, callback: $callback));
     }
@@ -72,7 +72,7 @@ class Process
     public static function shellCommand(
         string $shell,
         ?array $envs = null,
-        ?callable $callback = null
+        ?callable $callback = null,
     ): string {
         $process = \Symfony\Component\Process\Process::fromShellCommandline($shell);
         $process->setTimeout(600);

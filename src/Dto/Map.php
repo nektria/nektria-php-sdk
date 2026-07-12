@@ -14,9 +14,7 @@ class Map
      */
     private array $map = [];
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function get(string $key): mixed
     {

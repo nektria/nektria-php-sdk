@@ -49,7 +49,7 @@ readonly class LogService extends AbstractService
     public function debug(
         array $payload,
         string $message,
-        bool $ignoreRedis = false
+        bool $ignoreRedis = false,
     ): void {
         $user = $this->securityService()->currentUser();
         if (!$ignoreRedis && ($this->data['channel'] === false || !$this->contextService->debugMode())) {
@@ -251,7 +251,7 @@ readonly class LogService extends AbstractService
     private function build(
         array $payload,
         string $message,
-        string $level
+        string $level,
     ): array {
         $user = $this->securityService()->currentUser();
 

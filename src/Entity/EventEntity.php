@@ -33,9 +33,7 @@ abstract class EventEntity implements EntityInterface
         return (string) $this->timestamp;
     }
 
-    public function refresh(): void
-    {
-    }
+    public function refresh(): void {}
 
     public function tenantId(): string
     {

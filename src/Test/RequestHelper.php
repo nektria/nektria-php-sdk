@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Nektria\Test;
 
-use Nektria\Dto\Clock;
+use Nektria\Dto\LocalClock;
 use Nektria\Util\JsonUtil;
 use Nektria\Util\StringUtil;
 use RuntimeException;
@@ -177,7 +177,7 @@ trait RequestHelper
             [
                 self::WAREHOUSE_ID,
                 self::TENANT_ID,
-                Clock::now()->dateString(),
+                LocalClock::now()->dateString(),
                 $this->requestArea,
                 StringUtil::uuid4(),
                 StringUtil::uuid4(),

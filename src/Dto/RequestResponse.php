@@ -22,8 +22,7 @@ readonly class RequestResponse
         public array $requestHeaders,
         public array $responseHeaders,
         public array $cookies,
-    ) {
-    }
+    ) {}
 
     public function isSuccessful(): bool
     {

@@ -6,10 +6,7 @@ namespace Nektria\Controller\Admin;
 
 use Nektria\Controller\Controller;
 use Nektria\Document\ArrayDocument;
-use Nektria\Document\DocumentResponse;
-use Nektria\Exception\DomainException;
 use Nektria\Exception\InsufficientCredentialsException;
-use Nektria\Infrastructure\ArrayDocumentReadModel;
 use Nektria\Service\ContextService;
 use Nektria\Util\Controller\Route;
 use Nektria\Util\FileUtil;
@@ -58,20 +55,6 @@ readonly class ToolsController extends Controller
         )));
     }
 
-    #[Route('/queues/{queue}', method: 'DELETE')]
-    public function deleteAQueue(ArrayDocumentReadModel $arrayDocumentReadModel, string $queue): DocumentResponse
-    {
-        $arrayDocumentReadModel->deleteAQueue($queue);
-
-        return $this->emptyResponse();
-    }
-
-    #[Route('/rabbit/delete', method: 'PATCH')]
-    public function deleteARabbitQueue(): DocumentResponse
-    {
-        throw new DomainException('E_500', 'Not implemented');
-    }
-
     #[Route('/console', method: 'PATCH')]
     public function executeAConsoleCommand(): Response
     {
@@ -89,79 +72,12 @@ readonly class ToolsController extends Controller
         return $this->buildResponseForProcess($command);
     }
 
-    #[Route('/rabbit-delays/enable', method: 'PATCH')]
-    public function executeDisableRabbitDelays(): JsonResponse
-    {
-        throw new DomainException('E_500', 'Not implemented');
-    }
-
-    #[Route('/database/migrations', method: 'GET')]
-    public function executeDoctrineMigrationStatus(): Response
-    {
-        $command = new Process(array_merge(['../bin/console', 'doctrine:migrations:sync-metadata-storage']));
-        $command->run();
-
-        $command = new Process(array_merge(['../bin/console', 'doctrine:migration:status']));
-        $command->run();
-
-        return $this->buildResponseForProcess($command);
-    }
-
-    #[Route('/database/schema', method: 'GET')]
-    public function executeDoctrineSchemaUpdateDumpSql(): Response
-    {
-        $command = new Process(array_merge(['../bin/console', 'doctrine:schema:update', '--dump-sql']));
-        $command->run();
-
-        return $this->buildResponseForProcess($command);
-    }
-
-    #[Route('/rabbit-delays/enable', method: 'PATCH')]
-    public function executeEnableRabbitDelays(): JsonResponse
-    {
-        throw new DomainException('E_500', 'Not implemented');
-    }
-
-    #[Route('/queues', method: 'GET')]
-    public function getAllQueuesMessages(ArrayDocumentReadModel $arrayDocumentReadModel): DocumentResponse
-    {
-        $list = $arrayDocumentReadModel->readAllQueuesMessages();
-
-        $queues = $list->classify('queue_name');
-        $data = [];
-
-        foreach ($queues as $name => $messages) {
-            $data[$name] = $messages->data($this->context);
-        }
-
-        return $this->documentResponse(new ArrayDocument($data));
-    }
-
-    #[Route('/queues/{ref}', method: 'GET')]
-    public function getAllQueuesValueMessages(
-        string $ref,
-        ArrayDocumentReadModel $arrayDocumentReadModel
-    ): DocumentResponse {
-        $list = $arrayDocumentReadModel->readValuesFromQueueMessages(
-            queue: $ref,
-            field: $this->requestData->retrieveString('field'),
-        );
-
-        return $this->documentResponse($list);
-    }
-
     #[Route('/debug/status', method: 'PATCH')]
     public function getDebugConfigurationStatus(ContextService $contextService): JsonResponse
     {
         return new JsonResponse($contextService->debugModes(
             $this->requestData->retrieveStringArray('projects'),
         ));
-    }
-
-    #[Route('/rabbit/status', method: 'GET')]
-    public function getRabbitStatus(): DocumentResponse
-    {
-        throw new DomainException('E_500', 'Not implemented');
     }
 
     #[Route('/crypt', method: 'GET')]
@@ -193,20 +109,6 @@ readonly class ToolsController extends Controller
         );
 
         return new Response((string) $result);
-    }
-
-    #[Route('/database/read', method: 'POST')]
-    public function readFromDatabase(ArrayDocumentReadModel $readModel): DocumentResponse
-    {
-        return $this->documentResponse(
-            $readModel->readCustom(
-                table: $this->requestData->retrieveString('table'),
-                order: $this->requestData->retrieveString('orderBy'),
-                page: $this->requestData->getInt('page') ?? 1,
-                limit: $this->requestData->getInt('limit') ?? 50,
-                filters: $this->requestData->getArray('filters') ?? [],
-            ),
-        );
     }
 
     private function buildResponseForProcess(Process $process): Response

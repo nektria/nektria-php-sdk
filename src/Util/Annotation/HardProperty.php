@@ -9,7 +9,5 @@ use Attribute;
 #[Attribute]
 class HardProperty
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 }

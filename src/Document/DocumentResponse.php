@@ -16,7 +16,7 @@ class DocumentResponse extends JsonResponse
         public readonly Document $document,
         ContextService $context,
         int $status = 200,
-        array $headers = []
+        array $headers = [],
     ) {
         if ($this->document instanceof ThrowableDocument) {
             parent::__construct($this->document->data($context), $this->document->status);

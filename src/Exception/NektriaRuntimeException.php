@@ -17,7 +17,7 @@ abstract class NektriaRuntimeException extends RuntimeException
         string $errorCode,
         string $message,
         ?Throwable $previous = null,
-        bool $silent = false
+        bool $silent = false,
     ) {
         parent::__construct($message, 0, $previous);
         $this->silent = $silent;

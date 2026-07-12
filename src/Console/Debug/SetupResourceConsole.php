@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\InputOption;
 class SetupResourceConsole extends Console
 {
     public function __construct(
-        private readonly ContextService $contextService
+        private readonly ContextService $contextService,
     ) {
         parent::__construct('debug:setup:resource');
     }

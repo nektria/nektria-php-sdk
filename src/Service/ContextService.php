@@ -183,9 +183,7 @@ class ContextService
         return $this->project;
     }
 
-    public function setContainer(ContainerInterface $container): void
-    {
-    }
+    public function setContainer(ContainerInterface $container): void {}
 
     public function setContext(string $context): void
     {
