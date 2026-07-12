@@ -121,7 +121,7 @@ readonly class ThrowableDocument extends Document
             $file = $item['file'] ?? '';
             $line = $item['line'] ?? 0;
 
-            if ($context?->isTest()) {
+            if ($context?->isTest() === true) {
                 $finalTrace[] = [
                     'file' => str_replace('/app/', '', $file),
                     'line' => $line,

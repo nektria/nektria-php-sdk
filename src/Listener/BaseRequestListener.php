@@ -168,7 +168,7 @@ abstract class BaseRequestListener implements EventSubscriberInterface
             $fileResponse->headers->set('Content-Type', $response->document->mime);
             if ($response->document->maxAge !== null) {
                 $fileResponse->headers->set('Cache-Control', "public, max-age={$response->document->maxAge}");
-                $clock = Clock::now()->add($response->document->maxAge, 'seconds');
+                $clock = Clock::now()->add($response->document->maxAge);
                 $fileResponse->headers->set('Expires', $clock->rfc1123String());
             }
             $fileResponse->setContentDisposition(
@@ -243,7 +243,7 @@ abstract class BaseRequestListener implements EventSubscriberInterface
                 $responseContent = [];
             }
         } elseif ($document instanceof ThrowableDocument) {
-            $responseContent = $document->toDevArray();
+            $responseContent = $document->toDevArray($this->contextService());
         } else {
             $responseContent = $document->data($this->contextService());
         }

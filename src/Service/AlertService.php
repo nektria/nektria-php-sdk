@@ -244,7 +244,7 @@ readonly class AlertService extends AbstractService
         }
 
         $inputString = JsonUtil::encode($input, true);
-        $documentString = JsonUtil::encode($document->toDevArray(), true);
+        $documentString = JsonUtil::encode($document->toDevArray(null), true);
         $eol = self::EMPTY_LINE;
         $manyTimes = $times === 1 ? '' : " (x{$times})";
         $content =
