@@ -65,9 +65,37 @@ class TestCase extends WebTestCase
      * @param mixed[] $expected
      * @param mixed[] $target
      */
+    protected static function assertJsonCollectionType(array $expected, array $target): void
+    {
+        self::assertJsonTypeInternal([
+            'list[]' => $expected,
+        ], $target, '');
+    }
+
+    /**
+     * @param mixed[] $expected
+     * @param mixed[] $target
+     */
     protected static function assertJsonType(array $expected, array $target): void
     {
         self::assertJsonTypeInternal($expected, $target, '');
+    }
+
+    /**
+     * @param mixed[] $expected
+     * @param mixed[] $target
+     */
+    protected static function assertJsonpaginationType(array $expected, array $target): void
+    {
+        self::assertJsonTypeInternal([
+            'list[]' => $expected,
+            'info' => [
+                'page' => 'int',
+                'pageSize' => 'int',
+                'totalItems' => 'int',
+                'totalPages' => 'int',
+            ],
+        ], $target, '');
     }
 
     protected function boot(): void
