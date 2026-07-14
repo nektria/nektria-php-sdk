@@ -96,7 +96,7 @@ trait RequestHelper
         $path = $this->fillString($path);
         $headers = ['Content-Type' => 'application/json'];
         $headers['HTTP_X-Api-Id'] = $this->apiId;
-        $headers['Authorization'] = "Bearer {$this->apiId}";
+        $headers['HTTP_Authorization'] = "Bearer {$this->apiId}";
         $this->client->request('DELETE', $path, [], [], $headers, '{}');
     }
 
@@ -124,7 +124,7 @@ trait RequestHelper
 
         $headers = ['Content-Type' => 'application/json'];
         $headers['HTTP_X-Api-Id'] = $this->apiId;
-        $headers['Authorization'] = "Bearer {$this->apiId}";
+        $headers['HTTP_Authorization'] = "Bearer {$this->apiId}";
         $this->client->request('GET', $path . $query, [], [], $headers, $encodedJson);
     }
 
@@ -137,7 +137,7 @@ trait RequestHelper
         $encodedJson = $this->fillString(JsonUtil::encode($body));
         $headers = ['Content-Type' => 'application/json'];
         $headers['HTTP_X-Api-Id'] = $this->apiId;
-        $headers['Authorization'] = "Bearer {$this->apiId}";
+        $headers['HTTP_Authorization'] = "Bearer {$this->apiId}";
         $this->client->request('PATCH', $path, $body, [], $headers, $encodedJson);
     }
 
@@ -150,7 +150,7 @@ trait RequestHelper
         $encodedJson = $this->fillString(JsonUtil::encode($body));
         $headers = ['Content-Type' => 'application/json'];
         $headers['HTTP_X-Api-Id'] = $this->apiId;
-        $headers['Authorization'] = "Bearer {$this->apiId}";
+        $headers['HTTP_Authorization'] = "Bearer {$this->apiId}";
         $this->client->request('POST', $path, $body, [], $headers, $encodedJson);
     }
 
@@ -163,7 +163,7 @@ trait RequestHelper
         $encodedJson = $this->fillString(JsonUtil::encode($body));
         $headers = ['Content-Type' => 'application/json'];
         $headers['HTTP_X-Api-Id'] = $this->apiId;
-        $headers['Authorization'] = "Bearer {$this->apiId}";
+        $headers['HTTP_Authorization'] = "Bearer {$this->apiId}";
         $this->client->request('PUT', $path, $body, [], $headers, $encodedJson);
     }
 
