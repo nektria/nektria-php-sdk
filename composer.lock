@@ -1717,16 +1717,16 @@
     },
     {
       "name": "phpoffice/phpspreadsheet",
-      "version": "5.8.0",
+      "version": "5.9.0",
       "source": {
         "type": "git",
         "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-        "reference": "01964d92536edf1a3a874b9580a52824bebf6fbb"
+        "reference": "05e99ebf61238a70227b4d9cc02d0030d34f6339"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/01964d92536edf1a3a874b9580a52824bebf6fbb",
-        "reference": "01964d92536edf1a3a874b9580a52824bebf6fbb",
+        "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/05e99ebf61238a70227b4d9cc02d0030d34f6339",
+        "reference": "05e99ebf61238a70227b4d9cc02d0030d34f6339",
         "shasum": ""
       },
       "require": {
@@ -1748,7 +1748,7 @@
         "maennchen/zipstream-php": "^2.1 || ^3.0",
         "markbaker/complex": "^3.0",
         "markbaker/matrix": "^3.0",
-        "php": "^8.1",
+        "php": "^8.2",
         "psr/simple-cache": "^1.0 || ^2.0 || ^3.0"
       },
       "require-dev": {
@@ -1762,7 +1762,7 @@
         "phpstan/phpstan": "^1.1 || ^2.0",
         "phpstan/phpstan-deprecation-rules": "^1.0 || ^2.0",
         "phpstan/phpstan-phpunit": "^1.0 || ^2.0",
-        "phpunit/phpunit": "^10.5",
+        "phpunit/phpunit": "^10.5 || ^11.0",
         "squizlabs/php_codesniffer": "^3.7",
         "tecnickcom/tcpdf": "^6.5"
       },
@@ -1820,9 +1820,9 @@
       ],
       "support": {
         "issues": "https://github.com/PHPOffice/PhpSpreadsheet/issues",
-        "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/5.8.0"
+        "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/5.9.0"
       },
-      "time": "2026-06-07T03:51:10+00:00"
+      "time": "2026-07-12T19:17:39+00:00"
     },
     {
       "name": "psr/cache",
@@ -6935,12 +6935,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-        "reference": "f0f26daf426ae2933f0168ac0c9ce7bb69be8ea1"
+        "reference": "e8af9ca0ef18c0478869fe494ddd1a9eaa68477b"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/f0f26daf426ae2933f0168ac0c9ce7bb69be8ea1",
-        "reference": "f0f26daf426ae2933f0168ac0c9ce7bb69be8ea1",
+        "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/e8af9ca0ef18c0478869fe494ddd1a9eaa68477b",
+        "reference": "e8af9ca0ef18c0478869fe494ddd1a9eaa68477b",
         "shasum": ""
       },
       "require": {
@@ -7033,7 +7033,7 @@
           "type": "github"
         }
       ],
-      "time": "2026-07-11T18:11:30+00:00"
+      "time": "2026-07-13T10:36:44+00:00"
     },
     {
       "name": "myclabs/deep-copy",
@@ -7336,16 +7336,16 @@
     },
     {
       "name": "phpstan/phpstan-doctrine",
-      "version": "2.0.27",
+      "version": "2.0.28",
       "source": {
         "type": "git",
         "url": "https://github.com/phpstan/phpstan-doctrine.git",
-        "reference": "39b4ca45a07cdd6366eeefa2f7a993cddf3b9f9f"
+        "reference": "b4623954d5ffee6311e4ddbaef65c074ae0f781a"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/39b4ca45a07cdd6366eeefa2f7a993cddf3b9f9f",
-        "reference": "39b4ca45a07cdd6366eeefa2f7a993cddf3b9f9f",
+        "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/b4623954d5ffee6311e4ddbaef65c074ae0f781a",
+        "reference": "b4623954d5ffee6311e4ddbaef65c074ae0f781a",
         "shasum": ""
       },
       "require": {
@@ -7407,9 +7407,9 @@
       ],
       "support": {
         "issues": "https://github.com/phpstan/phpstan-doctrine/issues",
-        "source": "https://github.com/phpstan/phpstan-doctrine/tree/2.0.27"
+        "source": "https://github.com/phpstan/phpstan-doctrine/tree/2.0.28"
       },
-      "time": "2026-06-10T10:39:35+00:00"
+      "time": "2026-07-13T08:43:43+00:00"
     },
     {
       "name": "phpstan/phpstan-mockery",
@@ -8650,12 +8650,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/Roave/SecurityAdvisories.git",
-        "reference": "d162f89e37b3026c5b00680c8e64b70d3ad57024"
+        "reference": "8f95407ba11cb3d30d131744f7396c6ad61f2e54"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/d162f89e37b3026c5b00680c8e64b70d3ad57024",
-        "reference": "d162f89e37b3026c5b00680c8e64b70d3ad57024",
+        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/8f95407ba11cb3d30d131744f7396c6ad61f2e54",
+        "reference": "8f95407ba11cb3d30d131744f7396c6ad61f2e54",
         "shasum": ""
       },
       "conflict": {
@@ -8796,9 +8796,9 @@
         "concrete5/core": "<8.5.8|>=9,<9.1",
         "contao-components/mediaelement": ">=2.14.2,<2.21.1",
         "contao/comments-bundle": ">=2,<4.13.40|>=5.0.0.0-RC1-dev,<5.3.4",
-        "contao/contao": ">=3,<3.5.37|>=4,<4.4.56|>=4.5,<4.13.56|>=5,<5.3.38|>=5.4.0.0-RC1-dev,<5.6.1",
+        "contao/contao": ">=3,<3.5.37|>=4,<4.4.56|>=4.5,<5.3.48|>=5.4,<5.7.9",
         "contao/core": "<3.5.39",
-        "contao/core-bundle": "<4.13.57|>=5,<5.3.42|>=5.4,<5.6.5",
+        "contao/core-bundle": "<5.3.48|>=5.4,<5.7.9",
         "contao/listing-bundle": ">=3,<=3.5.30|>=4,<4.4.8",
         "contao/managed-edition": "<=1.5",
         "coreshop/core-shop": "<4.1.9|==5",
@@ -8931,7 +8931,7 @@
         "ezsystems/repository-forms": ">=2.3,<2.3.2.1-dev|>=2.5,<2.5.15",
         "ezyang/htmlpurifier": "<=4.2",
         "facade/ignition": "<1.16.15|>=2,<2.4.2|>=2.5,<2.5.2",
-        "facturascripts/facturascripts": "<=2025.92|>=2026,<=2026.1",
+        "facturascripts/facturascripts": "<=2026.2",
         "fastly/magento2": "<1.2.26",
         "feehi/cms": "<=2.1.1",
         "feehi/feehicms": "<=2.1.1",
@@ -9091,7 +9091,7 @@
         "kelvinmo/simplexrd": "<3.1.1",
         "kevinpapst/kimai2": "<1.16.7",
         "khodakhah/nodcms": "<=3.4.1",
-        "kimai/kimai": "<=2.57",
+        "kimai/kimai": "<2.59",
         "kitodo/presentation": "<3.2.3|>=3.3,<3.3.4",
         "klaviyo/magento2-extension": ">=1,<3",
         "knplabs/knp-snappy": "<=1.7",
@@ -9232,7 +9232,7 @@
         "noumo/easyii": "<=0.9",
         "novaksolutions/infusionsoft-php-sdk": "<1",
         "novosga/novosga": "<=2.2.12",
-        "nukeviet/nukeviet": "<4.5.02",
+        "nukeviet/nukeviet": "<4.6.00",
         "nyholm/psr7": "<1.6.1",
         "nystudio107/craft-seomatic": "<3.4.12",
         "nzedb/nzedb": "<0.8",
@@ -9762,7 +9762,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-07-10T22:02:12+00:00"
+      "time": "2026-07-14T14:50:25+00:00"
     },
     {
       "name": "sebastian/cli-parser",
@@ -10152,16 +10152,16 @@
     },
     {
       "name": "sebastian/exporter",
-      "version": "8.1.0",
+      "version": "8.1.1",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/exporter.git",
-        "reference": "c0d29a945f8cf82f300a05e69874508e307ca4c6"
+        "reference": "cfaa77c750dcad6f44c9bac8f62ac486e1c82c26"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/c0d29a945f8cf82f300a05e69874508e307ca4c6",
-        "reference": "c0d29a945f8cf82f300a05e69874508e307ca4c6",
+        "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/cfaa77c750dcad6f44c9bac8f62ac486e1c82c26",
+        "reference": "cfaa77c750dcad6f44c9bac8f62ac486e1c82c26",
         "shasum": ""
       },
       "require": {
@@ -10170,7 +10170,7 @@
         "sebastian/recursion-context": "^8.0"
       },
       "require-dev": {
-        "phpunit/phpunit": "^13.1.10"
+        "phpunit/phpunit": "^13.2.4"
       },
       "type": "library",
       "extra": {
@@ -10218,7 +10218,7 @@
       "support": {
         "issues": "https://github.com/sebastianbergmann/exporter/issues",
         "security": "https://github.com/sebastianbergmann/exporter/security/policy",
-        "source": "https://github.com/sebastianbergmann/exporter/tree/8.1.0"
+        "source": "https://github.com/sebastianbergmann/exporter/tree/8.1.1"
       },
       "funding": [
         {
@@ -10238,7 +10238,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-05-21T11:50:56+00:00"
+      "time": "2026-07-13T11:35:11+00:00"
     },
     {
       "name": "sebastian/file-filter",

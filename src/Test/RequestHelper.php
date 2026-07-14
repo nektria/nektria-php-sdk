@@ -159,6 +159,7 @@ trait RequestHelper
         $encodedJson = $this->fillString(JsonUtil::encode($body));
         $headers = ['Content-Type' => 'application/json'];
         $headers['HTTP_X-Api-Id'] = $this->apiId;
+        $headers['Authorization'] = "Bearer {$this->apiId}";
         $this->client->request('PUT', $path, $body, [], $headers, $encodedJson);
     }
 
