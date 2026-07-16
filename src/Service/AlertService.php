@@ -275,7 +275,10 @@ readonly class AlertService extends AbstractService
                 "**{$this->contextService()->project()}**{$eol}" .
                 "**{$tenantName}**{$eol}" .
                 $eol .
-                "**{$method}** _{$path}_ {$manyTimes}\n" .
+                $document->throwable->getMessage() .
+                $eol .
+                "**{$method}** _{$path}_ {$manyTimes}{$eol}" .
+
                 "Trace: {$this->contextService()->traceId()}\n" .
                 self::EMPTY_LINE;
 
