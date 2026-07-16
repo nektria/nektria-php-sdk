@@ -167,12 +167,12 @@ abstract class MessageListener implements EventSubscriberInterface
 
             $tenantName = $this->securityService->currentUser()?->tenant->name ?? 'none';
 
-            $key = "{$tenantName}-messenger-{$classHash}";
-            $key2 = "{$tenantName}-messenger-{$classHash}_count";
-            if ($this->contextService->env() === ContextService::DEV || $this->variableCache->refreshKey($key)) {
-                $times = $this->variableCache->readInt($key2, 1);
+            if ($this->shouldSendThrowable($exception)) {
+                $key = "{$tenantName}-messenger-{$classHash}";
+                $key2 = "{$tenantName}-messenger-{$classHash}_count";
 
-                if ($this->shouldSendThrowable($exception)) {
+                if ($this->contextService->env() === ContextService::DEV || $this->variableCache->refreshKey($key)) {
+                    $times = $this->variableCache->readInt($key2, 1);
                     $sendAlert = true;
                     if (
                         $originalException instanceof ResourceNotFoundException
@@ -191,12 +191,12 @@ abstract class MessageListener implements EventSubscriberInterface
                             $times,
                         );
                     }
-                }
 
-                $this->variableCache->saveInt($key2, 0);
-            } else {
-                $times = $this->variableCache->readInt($key2);
-                $this->variableCache->saveInt($key2, $times + 1);
+                    $this->variableCache->saveInt($key2, 0);
+                } else {
+                    $times = $this->variableCache->readInt($key2);
+                    $this->variableCache->saveInt($key2, $times + 1);
+                }
             }
 
             $this->securityService->clearAuthentication();
