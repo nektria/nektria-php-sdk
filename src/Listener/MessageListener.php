@@ -38,8 +38,6 @@ use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Throwable;
 
-use function in_array;
-
 abstract class MessageListener implements EventSubscriberInterface
 {
     public const string LOG_LEVEL_DEBUG = 'DEBUG';
@@ -172,13 +170,9 @@ abstract class MessageListener implements EventSubscriberInterface
             $key = "{$tenantName}-messenger-{$classHash}";
             $key2 = "{$tenantName}-messenger-{$classHash}_count";
             if ($this->contextService->env() === ContextService::DEV || $this->variableCache->refreshKey($key)) {
-                $ignoreMessages = [
-                    'Redelivered message from AMQP detected that will be rejected and trigger the retry logic.',
-                ];
-
                 $times = $this->variableCache->readInt($key2, 1);
 
-                if (!in_array($originalException->getMessage(), $ignoreMessages, true)) {
+                if ($this->shouldSendThrowable($exception)) {
                     $sendAlert = true;
                     if (
                         $originalException instanceof ResourceNotFoundException
@@ -348,6 +342,11 @@ abstract class MessageListener implements EventSubscriberInterface
     }
 
     protected function cleanMemory(): void {}
+
+    protected function shouldSendThrowable(ThrowableDocument $document): bool
+    {
+        return true;
+    }
 
     private function normalizeClass(string $class): string
     {

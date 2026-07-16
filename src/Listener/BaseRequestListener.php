@@ -400,7 +400,7 @@ abstract class BaseRequestListener implements EventSubscriberInterface
                 return;
             }
 
-            if ($document->status >= 500) {
+            if ($document->status >= 500 && $this->shouldSendThrowable($document)) {
                 $key = "{$route}_request_500";
                 $key2 = "{$route}_count";
                 if (
@@ -506,6 +506,11 @@ abstract class BaseRequestListener implements EventSubscriberInterface
         $service = $this->container->get(SharedTemporalConsumptionCache::class);
 
         return $service;
+    }
+
+    protected function shouldSendThrowable(ThrowableDocument $document): bool
+    {
+        return true;
     }
 
     protected function validateUser(User $user): bool
