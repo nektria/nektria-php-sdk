@@ -18,7 +18,7 @@
   <component name="PhpCodeSniffer">
     <phpcs_settings>
       <PhpCSConfiguration beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" tool_path="$PROJECT_DIR$/vendor/bin/phpcs" />
-      <PhpCSConfiguration asDefaultInterpreter="true" beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" tool_path="$PROJECT_DIR$/vendor/bin/phpcs" />
+      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="04a04b6f-dfb9-48e7-bdbd-813025b02867" beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" tool_path="/Users/xgc1986/Code/Nektria/php-sdk/vendor/bin/phpcs" timeout="30000" />
     </phpcs_settings>
   </component>
   <component name="PhpIncludePathManager">
@@ -157,6 +157,8 @@
       <path value="$PROJECT_DIR$/vendor/ekino/phpstan-banned-code" />
       <path value="$PROJECT_DIR$/vendor/sebastian/file-filter" />
       <path value="$PROJECT_DIR$/vendor/sebastian/git-state" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.5" />

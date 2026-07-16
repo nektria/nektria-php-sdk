@@ -17,6 +17,7 @@ use Nektria\Exception\RequestException;
 use Nektria\Exception\ResourceNotFoundException;
 use Nektria\Exception\TerminateException;
 use Nektria\Service\ContextService;
+use Nektria\Service\RoleManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
@@ -158,6 +159,8 @@ readonly class ThrowableDocument extends Document
         if (
             $context === null || $context->isPlayEnvironment()
             || $context->traceId() === '00000000-0000-4000-8000-000000000000'
+            || $context->getExtra('role') === RoleManager::ROLE_ADMIN
+            || $context->getExtra('role') === RoleManager::ROLE_SYSTEM
         ) {
             $message = $exception->getMessage();
         }

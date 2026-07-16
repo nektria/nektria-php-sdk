@@ -49,6 +49,7 @@ readonly class SecurityService extends AbstractService implements SecurityServic
         $this->contextService()->addExtra('tenantId', $user->tenantId);
         $this->contextService()->addExtra('tenantName', $user->tenant->name);
         $this->contextService()->addExtra('userId', $user->id);
+        $this->contextService()->addExtra('role', $user->role);
         LocalClock::defaultTimezone($user->tenant->timezone);
     }
 
@@ -70,6 +71,7 @@ readonly class SecurityService extends AbstractService implements SecurityServic
         $this->contextService()->addExtra('tenantId', $user->tenantId);
         $this->contextService()->addExtra('tenantName', $user->tenant->name);
         $this->contextService()->addExtra('userId', $user->id);
+        $this->contextService()->addExtra('role', $user->role);
         LocalClock::defaultTimezone($user->tenant->timezone);
     }
 
@@ -91,6 +93,7 @@ readonly class SecurityService extends AbstractService implements SecurityServic
         $this->contextService()->addExtra('tenantId', $user->tenantId);
         $this->contextService()->addExtra('tenantName', $user->tenant->name);
         $this->contextService()->addExtra('userId', $user->id);
+        $this->contextService()->addExtra('role', $user->role);
 
         LocalClock::defaultTimezone($user->tenant->timezone);
     }
@@ -129,6 +132,7 @@ readonly class SecurityService extends AbstractService implements SecurityServic
         $this->contextService()->addExtra('tenantId', null);
         $this->contextService()->addExtra('tenantName', null);
         $this->contextService()->addExtra('userId', null);
+        $this->contextService()->addExtra('role', null);
         LocalClock::defaultTimezone('UTC');
         $this->userContainer->setUser(null);
     }

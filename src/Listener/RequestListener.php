@@ -112,9 +112,6 @@ abstract class RequestListener extends BaseRequestListener
         } elseif (str_starts_with($route, 'app_web_') || str_starts_with($route, 'nektria_web_')) {
             $this->contextService()->setContext(ContextService::INTERNAL);
             $this->securityService->authenticateUser($apiKey);
-            if ($this->securityService->currentUser() !== null) {
-                $this->contextService()->addExtra('userId', $this->securityService->currentUser()->id);
-            }
         }
 
         if (!$this->validateUser($this->securityService->retrieveCurrentUser())) {

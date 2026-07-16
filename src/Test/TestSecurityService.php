@@ -12,6 +12,7 @@ use Nektria\Exception\InvalidAuthorizationException;
 use Nektria\Infrastructure\SharedUserV2Cache;
 use Nektria\Service\RoleManager;
 use Nektria\Service\SecurityService;
+use Override;
 
 readonly class TestSecurityService extends SecurityService
 {
@@ -149,6 +150,7 @@ readonly class TestSecurityService extends SecurityService
         ];
     }
 
+    #[Override]
     public function authenticateApi(string $apiKey): void
     {
         $this->clearAuthentication();
@@ -162,8 +164,10 @@ readonly class TestSecurityService extends SecurityService
         $this->contextService()->addExtra('tenantId', $this->currentUser()->tenantId);
         $this->contextService()->addExtra('tenantName', $this->currentUser()->tenant->name);
         $this->contextService()->addExtra('userId', $this->currentUser()->id);
+        $this->contextService()->addExtra('role', $this->currentUser()->role);
     }
 
+    #[Override]
     public function authenticateSystem(string $tenantId): void
     {
         $this->clearAuthentication();
@@ -174,8 +178,10 @@ readonly class TestSecurityService extends SecurityService
         $this->contextService()->addExtra('tenantId', $user->tenantId);
         $this->contextService()->addExtra('tenantName', $user->tenant->name);
         $this->contextService()->addExtra('userId', $user->id);
+        $this->contextService()->addExtra('role', $user->role);
     }
 
+    #[Override]
     public function authenticateUser(string $apiKey): void
     {
         $this->clearAuthentication();
@@ -189,13 +195,16 @@ readonly class TestSecurityService extends SecurityService
         $this->contextService()->addExtra('tenantId', $this->currentUser()->tenantId);
         $this->contextService()->addExtra('tenantName', $this->currentUser()->tenant->name);
         $this->contextService()->addExtra('userId', $this->currentUser()->id);
+        $this->contextService()->addExtra('role', $this->currentUser()->role);
     }
 
+    #[Override]
     public function clearAuthentication(?string $apiKey = null): void
     {
         $this->contextService()->addExtra('tenantId', null);
         $this->contextService()->addExtra('tenantName', null);
         $this->contextService()->addExtra('userId', null);
+        $this->contextService()->addExtra('role', null);
 
         $this->userContainer->setUser(null);
         LocalClock::defaultTimezone('Europe/Madrid');

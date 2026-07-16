@@ -308,8 +308,6 @@ abstract class MessageListener implements EventSubscriberInterface
                 if ($contextStamp->tenantId !== null) {
                     $this->securityService->authenticateSystem($contextStamp->tenantId);
                 }
-                $this->contextService->addExtra('userId', $contextStamp->userId);
-                $this->contextService->addExtra('tenantId', $contextStamp->tenantId);
             }
 
             $this->messageStartedAt = Clock::now()->iso8601String();
