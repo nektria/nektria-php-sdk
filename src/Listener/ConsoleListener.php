@@ -45,7 +45,12 @@ readonly abstract class ConsoleListener implements EventSubscriberInterface
         $path = '/Console/' . str_replace('\\', '/', $command::class);
 
         $this->logService->temporalLogs();
-        $this->logService->exception($event->getError(), []);
+        $this->logService->exception($event->getError());
+
+        $document = new ThrowableDocument($event->getError());
+        if (!$this->shouldSendThrowable($document)) {
+            return;
+        }
 
         if ($this->contextService->env() === ContextService::DEV || $this->variableCache->refreshKey($path)) {
             $tenantName = 'none';
@@ -63,8 +68,13 @@ readonly abstract class ConsoleListener implements EventSubscriberInterface
                     'arguments' => $args['receivers'] ?? [],
                     'options' => $options,
                 ],
-                new ThrowableDocument($event->getError()),
+                $document,
             );
         }
+    }
+
+    protected function shouldSendThrowable(ThrowableDocument $document): bool
+    {
+        return true;
     }
 }
