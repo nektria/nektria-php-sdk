@@ -310,6 +310,17 @@ readonly class YieldmanagerClient extends AbstractService
     /**
      * @return YMOrder
      */
+    public function getLastOrder(): array
+    {
+        return $this->requestClient()->get(
+            "{$this->yieldmanagerHost}/api/admin/orders/last",
+            headers: $this->getHeaders(),
+        )->json();
+    }
+
+    /**
+     * @return YMOrder
+     */
     public function getOrder(string $orderNumber): array
     {
         return $this->requestClient()->get(
