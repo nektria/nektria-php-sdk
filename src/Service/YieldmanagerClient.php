@@ -344,6 +344,20 @@ readonly class YieldmanagerClient extends AbstractService
     }
 
     /**
+     * @return YMOrder[]
+     */
+    public function getRecentOrders(int $interval): array
+    {
+        return $this->requestClient()->get(
+            "{$this->yieldmanagerHost}/api/admin/orders/recent",
+            data: [
+                'interval' => $interval,
+            ],
+            headers: $this->getHeaders(),
+        )->json()['list'];
+    }
+
+    /**
      * @return YMShift
      */
     public function getShift(string $shiftId): array
