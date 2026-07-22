@@ -52,7 +52,7 @@ class StaticAnalysisConsole extends Console
         }
 
         if ($failed) {
-            throw new NektriaException('E_500', 'Some endpoints are not correctly configured', silent: true);
+            throw new NektriaException('Some endpoints are not correctly configured');
         }
     }
 

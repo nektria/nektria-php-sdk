@@ -46,7 +46,7 @@ readonly class TestRunnerListener
                 (new Process(['bin/console', 'd:s:u', '-e', 'test', '--dump-sql', '--force']))->run();
             }
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 }

@@ -49,7 +49,7 @@ class SetupAssetsConsole extends Console
 
             if (is_dir($fromPath)) {
                 if (!is_dir($toPath) && !mkdir($toPath)) {
-                    throw new NektriaException('E_500', "Directory '{$toPath}' was not created.");
+                    throw new NektriaException("Directory '{$toPath}' was not created.");
                 }
                 $this->copyDir($fromPath, $toPath);
             } else {

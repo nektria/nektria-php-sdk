@@ -100,7 +100,7 @@ abstract class Console extends BaseCommand
     protected function container(): ContainerInterface
     {
         if ($this->container === null) {
-            throw new NektriaException('E_500', 'container not injected.');
+            throw new NektriaException('container not injected.');
         }
 
         return $this->container;
@@ -225,7 +225,7 @@ abstract class Console extends BaseCommand
         try {
             $this->play();
         } catch (Throwable $e) {
-            $isSilent = $e instanceof NektriaException && $e->silent();
+            $isSilent = $e instanceof NektriaException && $e->convertToAlert;
 
             if (!$isSilent) {
                 try {

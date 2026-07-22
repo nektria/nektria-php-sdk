@@ -32,36 +32,6 @@ readonly class NewDocumentCollection extends Document implements IteratorAggrega
     }
 
     /**
-     * @template X of Document
-     * @param DocumentCollection<X> $old
-     * @return NewDocumentCollection<X>
-     */
-    public static function fromOldDocumentCollection(DocumentCollection $old): self
-    {
-        return new self($old->list());
-    }
-
-    /**
-     * @template X of Document
-     * @param NewDocumentCollection<X> $a
-     * @param NewDocumentCollection<X> $b
-     * @return NewDocumentCollection<X>
-     */
-    public static function merge(self $a, self $b): self
-    {
-        return new self([...$a->items, ...$b->items]);
-    }
-
-    /**
-     * @param T[] $items
-     * @return NewDocumentCollection<T>
-     */
-    public static function new(array $items): self
-    {
-        return new self($items);
-    }
-
-    /**
      * @return array<string, NewDocumentCollection<T>>
      */
     public function classify(string $field): array
@@ -100,6 +70,16 @@ readonly class NewDocumentCollection extends Document implements IteratorAggrega
     public function first()
     {
         return $this->items[0] ?? null;
+    }
+
+    /**
+     * @template X of Document
+     * @param DocumentCollection<X> $old
+     * @return NewDocumentCollection<X>
+     */
+    public static function fromOldDocumentCollection(DocumentCollection $old): self
+    {
+        return new self($old->list());
     }
 
     /**
@@ -149,6 +129,26 @@ readonly class NewDocumentCollection extends Document implements IteratorAggrega
         );
     }
 
+    /**
+     * @template X of Document
+     * @param NewDocumentCollection<X> $a
+     * @param NewDocumentCollection<X> $b
+     * @return NewDocumentCollection<X>
+     */
+    public static function merge(self $a, self $b): self
+    {
+        return new self([...$a->items, ...$b->items]);
+    }
+
+    /**
+     * @param T[] $items
+     * @return NewDocumentCollection<T>
+     */
+    public static function new(array $items): self
+    {
+        return new self($items);
+    }
+
     public function offsetExists(mixed $offset): bool
     {
         return isset($this->items[$offset]);
@@ -164,12 +164,12 @@ readonly class NewDocumentCollection extends Document implements IteratorAggrega
 
     public function offsetSet(mixed $offset, mixed $value): void
     {
-        throw new NektriaException('E_500', 'DocumentCollection is read-only');
+        throw new NektriaException('DocumentCollection is read-only');
     }
 
     public function offsetUnset(mixed $offset): void
     {
-        throw new NektriaException('E_500', 'DocumentCollection is read-only');
+        throw new NektriaException('DocumentCollection is read-only');
     }
 
     /**

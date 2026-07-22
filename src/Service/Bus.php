@@ -169,10 +169,10 @@ readonly class Bus extends AbstractService implements BusInterface
         } catch (HandlerFailedException $e) {
             $previous = $e->getPrevious();
             if ($previous !== null) {
-                throw NektriaException::new($previous);
+                throw NektriaException::extend($previous);
             }
 
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -240,7 +240,7 @@ readonly class Bus extends AbstractService implements BusInterface
 
             $this->securityService()->validateRole($instance->roles);
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 }

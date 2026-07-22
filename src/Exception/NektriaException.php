@@ -4,35 +4,70 @@ declare(strict_types=1);
 
 namespace Nektria\Exception;
 
+use RuntimeException;
+use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Throwable;
 
-class NektriaException extends NektriaRuntimeException
+class NektriaException extends RuntimeException
 {
-    public static function new(Throwable $e): self
+    public readonly bool $convertToAlert;
+
+    public readonly bool $convertToLog;
+
+    public readonly string $hash;
+
+    public readonly bool $retryWhenAsync;
+
+    /**
+     * @param array<string, mixed> $extras
+     * @param array{
+     *     convertToAlert?: bool,
+     *     convertToLog?: bool,
+     *     retryWhenAsync?: bool,
+     *     hash?: string,
+     * } $options
+     */
+    public function __construct(
+        string $message,
+        public readonly int $status = 500,
+        public readonly ?array $extras = null,
+        public readonly array $options = [],
+        ?Throwable $previous = null,
+    ) {
+        parent::__construct($message, $status, $previous);
+
+        $this->convertToAlert = $this->options['convertToAlert'] ?? true;
+        $this->convertToLog = $this->options['convertToLog'] ?? true;
+        $this->retryWhenAsync = $this->options['retryWhenAsync'] ?? true;
+
+        $this->hash = md5($this->options['hash'] ?? $message);
+    }
+
+    /** @noinspection SelfClassReferencingInspection */
+    public static function extend(Throwable $e): self
     {
+        while ($e instanceof HandlerFailedException) {
+            $tmp = $e->getPrevious();
+            if ($tmp === null) {
+                break;
+            }
+            $e = $tmp;
+        }
+
         if ($e instanceof self) {
             return $e;
         }
 
-        return new self('E_500', $e->getMessage(), $e);
+        return new self($e->getMessage(), extras: [], previous: $e);
     }
 
-    public static function parse(Throwable $e): Throwable
+    public static function extendAndThrow(Throwable $e): never
     {
-        if ($e instanceof self) {
-            return $e->realException();
-        }
-
-        return $e;
+        throw self::extend($e);
     }
 
     public function realException(): Throwable
     {
-        $current = $this;
-        while ($current instanceof self && $current->getPrevious() !== null) {
-            $current = $current->getPrevious();
-        }
-
-        return $current;
+        return $this->getPrevious() ?? $this;
     }
 }

@@ -32,7 +32,7 @@ class Process
         $process->run($callback);
 
         if (!$process->isSuccessful()) {
-            throw new NektriaException('E_500', $process->getErrorOutput());
+            throw new NektriaException($process->getErrorOutput());
         }
 
         return $process->getOutput();
@@ -80,7 +80,7 @@ class Process
         $process->run($callback);
 
         if (!$process->isSuccessful()) {
-            throw new NektriaException('E_500', $process->getErrorOutput());
+            throw new NektriaException($process->getErrorOutput());
         }
 
         return $process->getOutput();

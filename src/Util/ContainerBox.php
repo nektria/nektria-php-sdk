@@ -19,7 +19,7 @@ class ContainerBox
     public function get(string $class): object
     {
         if ($this->container === null) {
-            throw new NektriaException('E_500', 'Container not set.');
+            throw new NektriaException('Container not set.');
         }
 
         /** @var T $service */

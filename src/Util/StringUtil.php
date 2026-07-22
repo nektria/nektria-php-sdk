@@ -121,7 +121,7 @@ class StringUtil
                 random_int(0, 0xFFFF),
             );
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 }

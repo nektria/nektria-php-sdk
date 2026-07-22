@@ -232,11 +232,11 @@ abstract class WriteModel
                 } catch (Throwable) {
                     $this->resetManager();
 
-                    throw NektriaException::new($e);
+                    throw NektriaException::extend($e);
                 }
             }
 
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -244,14 +244,14 @@ abstract class WriteModel
     {
         $o1 = debug_backtrace()[1]['object'] ?? null;
         if ($o1 === null) {
-            throw new NektriaException('E_500', 'Unable to check the called.');
+            throw new NektriaException('Unable to check the called.');
         }
         $p1 = explode('\\', $o1::class);
         $resource1 = explode('WriteModel', end($p1))[0];
 
         $o2 = debug_backtrace()[3]['object'] ?? null;
         if ($o2 === null) {
-            throw new NektriaException('E_500', 'Unable to check the caller.');
+            throw new NektriaException('Unable to check the caller.');
         }
         $p2 = explode('\\', $o2::class);
         $resource2 = end($p2);
@@ -260,7 +260,7 @@ abstract class WriteModel
             return;
         }
 
-        throw new NektriaException('E_500', "You can only call save or delete from '{$resource1}Service.'");
+        throw new NektriaException("You can only call save or delete from '{$resource1}Service.'");
     }
 
     private function resetManager(): void

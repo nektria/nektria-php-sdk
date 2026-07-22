@@ -45,7 +45,7 @@ class LocalClock
         try {
             return new self(new DateTimeImmutable($dateTime));
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -58,7 +58,7 @@ class LocalClock
         try {
             return new self(new DateTimeImmutable($dateTime));
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -145,7 +145,7 @@ class LocalClock
 
             return $dateTime->format('Y-m-d');
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -161,7 +161,7 @@ class LocalClock
 
             return $dateTime->format('Y-m-d\TH:i:s');
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -268,7 +268,7 @@ class LocalClock
 
             return $dateTime->format('Y-m-d\TH:i:s.u');
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -337,7 +337,7 @@ class LocalClock
         try {
             return new self($this->dateTime->setTimezone(new DateTimeZone($timeZone)));
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -359,7 +359,7 @@ class LocalClock
         try {
             return self::fromPhpDateTime($this->dateTime->modify("{$days[$weekDay]} this week"));
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -418,7 +418,7 @@ class LocalClock
 
             return $dateTime->format('H:i');
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -449,7 +449,7 @@ class LocalClock
 
             return Clock::fromString((string) $self);
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 

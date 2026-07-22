@@ -17,7 +17,7 @@ readonly class FileReader
     ) {
         $resource = fopen($file, 'r+b');
         if ($resource === false) {
-            throw new NektriaException('E_500', 'Cannot open file');
+            throw new NektriaException('Cannot open file');
         }
 
         $this->resource = $resource;

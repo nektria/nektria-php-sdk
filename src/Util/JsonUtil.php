@@ -18,7 +18,7 @@ class JsonUtil
         try {
             return json_decode($data, true, 512, JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -29,7 +29,7 @@ class JsonUtil
         try {
             return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR | $prettyFlag);
         } catch (JsonException $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 

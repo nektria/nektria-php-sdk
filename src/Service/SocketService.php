@@ -36,7 +36,7 @@ readonly class SocketService extends AbstractService
                 'payload' => $data->data($tmpContext),
             ]), true));
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -60,7 +60,7 @@ readonly class SocketService extends AbstractService
                 'payload' => $data->data($tmpContext),
             ]), true));
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 }

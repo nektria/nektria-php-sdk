@@ -49,7 +49,6 @@ abstract class ReadModel
     protected function buildDocument(array $params): Document
     {
         throw new NektriaException(
-            'E_500',
             'source() should be implemented in the child class when using getResult(), ' .
             'getResults() or getPaginatedResult().',
         );
@@ -140,7 +139,7 @@ abstract class ReadModel
 
             return $results[array_key_first($results) ?? ''] ?? null;
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -173,7 +172,7 @@ abstract class ReadModel
 
             return $query->executeQuery()->fetchAllAssociative();
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -197,7 +196,6 @@ abstract class ReadModel
     protected function source(): string
     {
         throw new NektriaException(
-            'E_500',
             'source() should be implemented in the child class when using getResult(), ' .
             'getResults() or getPaginatedResult().',
         );

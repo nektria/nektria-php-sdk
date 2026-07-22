@@ -67,7 +67,7 @@ class SetupResourceConsole extends Console
 
             if (is_dir($fromPath)) {
                 if (!is_dir($toPath) && !mkdir($toPath)) {
-                    throw new NektriaException('E_500', "Directory '{$toPath}' was not created.");
+                    throw new NektriaException("Directory '{$toPath}' was not created.");
                 }
                 $this->copyDir($fromPath, $toPath);
             } else {
@@ -96,7 +96,7 @@ class SetupResourceConsole extends Console
         }
 
         if ($resource === '') {
-            throw new NektriaException('E_500', 'Resource name is required.');
+            throw new NektriaException('Resource name is required.');
         }
 
         return str_replace(

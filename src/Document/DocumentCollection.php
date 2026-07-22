@@ -31,26 +31,6 @@ readonly class DocumentCollection extends Document implements IteratorAggregate,
     }
 
     /**
-     * @template X of Document
-     * @param DocumentCollection<X> $a
-     * @param DocumentCollection<X> $b
-     * @return DocumentCollection<X>
-     */
-    public static function merge(self $a, self $b): self
-    {
-        return new self([...$a->items, ...$b->items]);
-    }
-
-    /**
-     * @param T[] $items
-     * @return DocumentCollection<T>
-     */
-    public static function new(array $items): self
-    {
-        return new self($items);
-    }
-
-    /**
      * @return array<string, DocumentCollection<T>>
      */
     public function classify(string $field): array
@@ -138,6 +118,26 @@ readonly class DocumentCollection extends Document implements IteratorAggregate,
         );
     }
 
+    /**
+     * @template X of Document
+     * @param DocumentCollection<X> $a
+     * @param DocumentCollection<X> $b
+     * @return DocumentCollection<X>
+     */
+    public static function merge(self $a, self $b): self
+    {
+        return new self([...$a->items, ...$b->items]);
+    }
+
+    /**
+     * @param T[] $items
+     * @return DocumentCollection<T>
+     */
+    public static function new(array $items): self
+    {
+        return new self($items);
+    }
+
     public function offsetExists(mixed $offset): bool
     {
         return isset($this->items[$offset]);
@@ -153,12 +153,12 @@ readonly class DocumentCollection extends Document implements IteratorAggregate,
 
     public function offsetSet(mixed $offset, mixed $value): void
     {
-        throw new NektriaException('E_500', 'DocumentCollection is read-only');
+        throw new NektriaException('DocumentCollection is read-only');
     }
 
     public function offsetUnset(mixed $offset): void
     {
-        throw new NektriaException('E_500', 'DocumentCollection is read-only');
+        throw new NektriaException('DocumentCollection is read-only');
     }
 
     /**

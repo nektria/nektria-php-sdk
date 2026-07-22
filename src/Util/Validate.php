@@ -208,7 +208,7 @@ class Validate
     public static function sameDay(Clock | LocalClock $start, Clock | LocalClock $end): void
     {
         if ($start::class !== $end::class) {
-            throw new NektriaException('E_409', 'start and end must be the same class');
+            throw new NektriaException('start and end must be the same class');
         }
 
         if ($start->dateString() !== $end->dateString()) {
@@ -226,7 +226,7 @@ class Validate
     public static function timeRange(Clock | LocalClock $start, Clock | LocalClock $end): void
     {
         if ($start::class !== $end::class) {
-            throw new NektriaException('E_409', 'start and end must be the same class');
+            throw new NektriaException('start and end must be the same class');
         }
 
         if ($start->isAfter($end)) {

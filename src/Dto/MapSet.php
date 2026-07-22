@@ -40,7 +40,7 @@ class MapSet
     {
         $value = $this->get($key);
         if ($value === null) {
-            throw new NektriaException('E_500', "Key '$key' not found in set");
+            throw new NektriaException("Key '$key' not found in set");
         }
 
         return $value;

@@ -119,7 +119,7 @@ readonly class BaseRequestClient extends AbstractService
 
             $end = (microtime(true) - $start) * 1000;
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
 
         if ($enableDebugFallback ?? str_starts_with($url, 'https')) {
@@ -185,7 +185,7 @@ readonly class BaseRequestClient extends AbstractService
             $fileHandler = fopen($filename, 'wb');
 
             if ($fileHandler === false) {
-                throw new NektriaException('E_500', "Cannot open file {$filename}.");
+                throw new NektriaException("Cannot open file {$filename}.");
             }
 
             foreach ($client->stream($response) as $chunk) {
@@ -358,7 +358,7 @@ readonly class BaseRequestClient extends AbstractService
     ): RequestResponse {
         $body = fopen($filename, 'rb');
         if ($body === false) {
-            throw new NektriaException('E_500', "Cannot open file {$filename}.");
+            throw new NektriaException("Cannot open file {$filename}.");
         }
 
         $contentType = mime_content_type($filename);
@@ -427,7 +427,7 @@ readonly class BaseRequestClient extends AbstractService
 
             (microtime(true) - $start) * 1000;
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
 
         if ($status >= 500) {
@@ -488,7 +488,7 @@ readonly class BaseRequestClient extends AbstractService
         foreach ($filenames as $key => $filename) {
             $resource = fopen($filename, 'rb');
             if ($resource === false) {
-                throw new NektriaException('E_500', "Cannot open file {$filename}.");
+                throw new NektriaException("Cannot open file {$filename}.");
             }
 
             $body[$key] = $resource;
@@ -553,7 +553,7 @@ readonly class BaseRequestClient extends AbstractService
                 $cookies,
             );
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
 
         if ($status >= 500) {
@@ -679,7 +679,7 @@ readonly class BaseRequestClient extends AbstractService
 
             $end = (microtime(true) - $start) * 1000;
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
 
         if ($enableDebugFallback ?? str_starts_with($url, 'https')) {

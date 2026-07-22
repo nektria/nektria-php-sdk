@@ -49,17 +49,17 @@ class SetupMessageConsole extends Console
     {
         $resource = (string) $this->input()->getOption('resource');
         if ($resource === '') {
-            throw new NektriaException('E_500', 'Resource name is required.');
+            throw new NektriaException('Resource name is required.');
         }
 
         $type = (string) $this->input()->getOption('type');
         if ($type === '') {
-            throw new NektriaException('E_500', 'Message type is required.');
+            throw new NektriaException('Message type is required.');
         }
 
         $message = (string) $this->input()->getOption('message');
         if ($message === '') {
-            throw new NektriaException('E_500', 'Message is required.');
+            throw new NektriaException('Message is required.');
         }
 
         if (!is_dir("./src/Message/{$resource}")) {
@@ -80,7 +80,7 @@ class SetupMessageConsole extends Console
             $fromPath = 'vendor/nektria/php-sdk/assets/message/Event';
             $fromPathHandler = 'vendor/nektria/php-sdk/assets/message/EventHandler';
         } else {
-            throw new NektriaException('E_500', 'Message type is invalid.');
+            throw new NektriaException('Message type is invalid.');
         }
 
         $this->copyDir($fromPath, "./src/Message/{$resource}");
@@ -111,7 +111,7 @@ class SetupMessageConsole extends Console
 
             if (is_dir($fromPath)) {
                 if (!is_dir($toPath) && !mkdir($toPath)) {
-                    throw new NektriaException('E_500', "Directory '{$toPath}' was not created.");
+                    throw new NektriaException("Directory '{$toPath}' was not created.");
                 }
                 $this->copyDir($fromPath, $toPath);
             } else {

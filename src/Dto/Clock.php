@@ -37,7 +37,7 @@ class Clock
         try {
             return (new self(new DateTimeImmutable($dateTime)))->setTimezone('UTC');
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -50,7 +50,7 @@ class Clock
         try {
             return new self(new DateTimeImmutable($dateTime));
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -101,7 +101,7 @@ class Clock
         try {
             return $this->microDateTimeString();
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -141,7 +141,7 @@ class Clock
 
             return $dateTime->format('Y-m-d');
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -155,7 +155,7 @@ class Clock
 
             return $dateTime->format('Y-m-d\TH:i:s');
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -252,7 +252,7 @@ class Clock
 
             return $dateTime->format(DateTimeImmutable::ATOM);
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -266,7 +266,7 @@ class Clock
 
             return $dateTime->format('Y-m-d\TH:i:s.u');
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -331,7 +331,7 @@ class Clock
         try {
             return new self($this->dateTime->setTimezone(new DateTimeZone($timeZone)));
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -390,7 +390,7 @@ class Clock
 
             return $dateTime->format('H:i');
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 
@@ -420,7 +420,7 @@ class Clock
 
             return LocalClock::fromString((string) $self);
         } catch (Throwable $e) {
-            throw NektriaException::new($e);
+            throw NektriaException::extend($e);
         }
     }
 

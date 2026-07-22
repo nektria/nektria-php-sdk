@@ -17,7 +17,7 @@ readonly class JpegImageManipulator implements ImageManipulator
         $image = imagecreatefromjpeg($this->filename);
         $data = getimagesize($this->filename);
         if ($data === false || $image === false) {
-            throw new NektriaException('E_409', 'Invalid Jpeg image.');
+            throw new NektriaException('Invalid Jpeg image.');
         }
 
         $with = $data[0];
@@ -30,7 +30,7 @@ readonly class JpegImageManipulator implements ImageManipulator
         $destImage = imagecreatetruecolor($newWidth, $newHeight);
 
         if ($destImage === false) {
-            throw new NektriaException('E_409', 'Could not create image.');
+            throw new NektriaException('Could not create image.');
         }
 
         imagecopyresampled($destImage, $image, 0, 0, 0, 0, $newWidth, $newHeight, $with, $height);

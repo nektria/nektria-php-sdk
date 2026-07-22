@@ -116,7 +116,7 @@ readonly class GoogleClient extends AbstractService
                 ],
             );
         } catch (RequestException $e) {
-            throw new NektriaException('E_500', $e->response()->json()['_response'] ?? $e->response()->body);
+            throw new NektriaException($e->response()->json()['_response'] ?? $e->response()->body);
         }
     }
 
@@ -136,7 +136,7 @@ readonly class GoogleClient extends AbstractService
                 ],
             );
         } catch (RequestException $e) {
-            throw new NektriaException('E_500', $e->response()->json()['_response']);
+            throw new NektriaException($e->response()->json()['_response']);
         }
     }
 
@@ -165,7 +165,7 @@ readonly class GoogleClient extends AbstractService
                 filename: $filename,
             );
         } catch (RequestException $e) {
-            throw new NektriaException('E_500', $e->response()->json()['_response']);
+            throw new NektriaException($e->response()->json()['_response']);
         }
     }
 
@@ -191,7 +191,7 @@ readonly class GoogleClient extends AbstractService
         } catch (RequestException $e) {
             $json = $e->response()->json();
 
-            throw new NektriaException('E_500', $json['_response'] ?? $json['error']['message']);
+            throw new NektriaException($json['_response'] ?? $json['error']['message']);
         }
     }
 
@@ -334,7 +334,7 @@ readonly class GoogleClient extends AbstractService
     protected function token(): string
     {
         if ($this->googleCredentialsFile === 'none') {
-            throw new NektriaException('E_500', 'Google is not configured.');
+            throw new NektriaException('Google is not configured.');
         }
 
         $p12 = JsonUtil::file($this->googleCredentialsFile);
@@ -368,12 +368,12 @@ readonly class GoogleClient extends AbstractService
                 sendBodyAsObject: true,
             );
         } catch (RequestException $e) {
-            throw new NektriaException('E_500', $e->response()->json()['error_description']);
+            throw new NektriaException($e->response()->json()['error_description']);
         }
 
         $json = $authData->json();
         if (($json['access_token'] ?? null) === null) {
-            throw new NektriaException('E_500', 'Google token not received');
+            throw new NektriaException('Google token not received');
         }
 
         $token = $json['access_token'];

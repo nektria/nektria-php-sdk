@@ -6,7 +6,7 @@ namespace Nektria\Service;
 
 use Nektria\Document\ThrowableDocument;
 use Nektria\Dto\LocalClock;
-use Nektria\Exception\NektriaRuntimeException;
+use Nektria\Exception\NektriaException;
 use Nektria\Infrastructure\SharedDiscordCache;
 use Nektria\Util\JsonUtil;
 use Throwable;
@@ -232,8 +232,8 @@ readonly class AlertService extends AbstractService
         }
 
         if (
-            ($document->throwable instanceof NektriaRuntimeException)
-            && $document->throwable->silent() && !$this->contextService()->debugMode()
+            ($document->throwable instanceof NektriaException)
+            && $document->throwable->convertToAlert && !$this->contextService()->debugMode()
         ) {
             return;
         }

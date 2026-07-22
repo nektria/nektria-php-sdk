@@ -58,7 +58,7 @@ class ValidateMessagesHandler extends Console
             if (is_file("{$folder}/{$file}")) {
                 $destFile = str_replace('.php', 'Handler.php', $file);
                 if (!file_exists("{$dest}/{$destFile}")) {
-                    throw new NektriaException('E_500', "Handler file for message {$folder}/{$file} is missing.");
+                    throw new NektriaException("Handler file for message {$folder}/{$file} is missing.");
                 }
             }
         }
@@ -97,7 +97,7 @@ class ValidateMessagesHandler extends Console
                 $destFile = str_replace('Handler.php', '.php', $file);
 
                 if (!file_exists("{$dest}/{$destFile}")) {
-                    throw new NektriaException('E_500', "Message file for handler {$folder}/{$file} is missing.");
+                    throw new NektriaException("Message file for handler {$folder}/{$file} is missing.");
                 }
             }
         }

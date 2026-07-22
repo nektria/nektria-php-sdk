@@ -18,6 +18,6 @@ readonly class ImageManipulatorManager extends AbstractService
             return new JpegImageManipulator($filename);
         }
 
-        throw new NektriaException('E_500', "There is no manipulator for '{$type}' images.");
+        throw new NektriaException("There is no manipulator for '{$type}' images.");
     }
 }
