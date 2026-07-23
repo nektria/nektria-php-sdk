@@ -415,16 +415,16 @@
     },
     {
       "name": "doctrine/doctrine-bundle",
-      "version": "3.3.0",
+      "version": "3.3.1",
       "source": {
         "type": "git",
         "url": "https://github.com/doctrine/DoctrineBundle.git",
-        "reference": "88ad38467d03e30b676069493fa96663ffa0a32b"
+        "reference": "9b231f957020de52d6ac94fd72f0cbe8cf1eaad5"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/88ad38467d03e30b676069493fa96663ffa0a32b",
-        "reference": "88ad38467d03e30b676069493fa96663ffa0a32b",
+        "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/9b231f957020de52d6ac94fd72f0cbe8cf1eaad5",
+        "reference": "9b231f957020de52d6ac94fd72f0cbe8cf1eaad5",
         "shasum": ""
       },
       "require": {
@@ -513,7 +513,7 @@
       ],
       "support": {
         "issues": "https://github.com/doctrine/DoctrineBundle/issues",
-        "source": "https://github.com/doctrine/DoctrineBundle/tree/3.3.0"
+        "source": "https://github.com/doctrine/DoctrineBundle/tree/3.3.1"
       },
       "funding": [
         {
@@ -529,7 +529,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-07-22T11:49:24+00:00"
+      "time": "2026-07-23T10:37:01+00:00"
     },
     {
       "name": "doctrine/doctrine-migrations-bundle",
@@ -8653,12 +8653,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/Roave/SecurityAdvisories.git",
-        "reference": "4991713e587e8b1f2fb7ce80475b4df68fe71be1"
+        "reference": "cfd18923fba8aa5324d151b69ea4196710f2932a"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/4991713e587e8b1f2fb7ce80475b4df68fe71be1",
-        "reference": "4991713e587e8b1f2fb7ce80475b4df68fe71be1",
+        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/cfd18923fba8aa5324d151b69ea4196710f2932a",
+        "reference": "cfd18923fba8aa5324d151b69ea4196710f2932a",
         "shasum": ""
       },
       "conflict": {
@@ -8855,7 +8855,7 @@
         "doctrine/mongodb-odm-bundle": "<3.0.1",
         "doctrine/orm": ">=1,<1.2.4|>=2,<2.4.8|>=2.5,<2.5.1|>=2.8.3,<2.8.4",
         "dolibarr/dolibarr": "<=23.0.2",
-        "dompdf/dompdf": "<2.0.4",
+        "dompdf/dompdf": "<3.1.6",
         "doublethreedigital/guest-entries": "<3.1.2",
         "dreamfactory/df-core": "<1.0.4",
         "drupal-pattern-lab/unified-twig-extensions": "<=0.1",
@@ -9304,7 +9304,7 @@
         "phpoffice/common": "<0.2.9",
         "phpoffice/math": "<=0.2",
         "phpoffice/phpexcel": "<=1.8.2",
-        "phpoffice/phpspreadsheet": "<=1.30.4|>=2,<=2.1.15|>=2.2,<=2.4.4|>=3,<=3.10.4|>=4,<=5.6",
+        "phpoffice/phpspreadsheet": "<=1.30.5|>=2,<=2.1.17|>=2.2,<=2.4.6|>=3,<=3.10.6|>=4,<=5.8",
         "phppgadmin/phppgadmin": "<=7.13",
         "phpseclib/phpseclib": "<=2.0.54|>=3,<=3.0.53",
         "phpservermon/phpservermon": "<3.6",
@@ -9766,7 +9766,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-07-21T19:20:48+00:00"
+      "time": "2026-07-23T15:56:28+00:00"
     },
     {
       "name": "sebastian/cli-parser",
