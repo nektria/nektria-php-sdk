@@ -10,7 +10,7 @@ use Throwable;
 
 class NektriaException extends RuntimeException
 {
-    public readonly bool $convertToAlert;
+    public bool $convertToAlert;
 
     public readonly bool $convertToLog;
 
@@ -41,6 +41,11 @@ class NektriaException extends RuntimeException
         $this->retryWhenAsync = $this->options['retryWhenAsync'] ?? true;
 
         $this->hash = md5($this->options['hash'] ?? $message);
+    }
+
+    public function notConvertToAlert(): void
+    {
+        $this->convertToAlert = false;
     }
 
     /** @noinspection SelfClassReferencingInspection */
