@@ -75,4 +75,9 @@ class NektriaException extends RuntimeException
     {
         return $this->getPrevious() ?? $this;
     }
+
+    public static function realThrowable(Throwable $throwable): Throwable
+    {
+        return self::extend($throwable)->realException();
+    }
 }
