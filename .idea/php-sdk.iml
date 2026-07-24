@@ -140,6 +140,10 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/ekino/phpstan-banned-code" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/file-filter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/git-state" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/beberlei/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofphp/proxy-manager-lts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laminas/laminas-code" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/swoole-bundle/swoole-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
