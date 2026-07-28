@@ -63,7 +63,7 @@ readonly class CommonController extends Controller
         }
 
         try {
-            $versionFile = JsonUtil::decode(FileUtil::read('/app/NK_VERSION'));
+            $versionFile = JsonUtil::decode(FileUtil::read('/workspace/NK_VERSION'));
         } catch (Throwable) {
             $versionFile = [
                 'builtAt' => Clock::now()->toLocal('Europe/Madrid')->dateTimeString(),

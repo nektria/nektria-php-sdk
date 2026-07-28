@@ -263,7 +263,7 @@ readonly class AlertService extends AbstractService
             "Trace: {$this->contextService()->traceId()}\n" .
             self::EMPTY_LINE;
 
-        $content = str_replace(['\/', '/app/'], ['/', ''], $content);
+        $content = str_replace(['\/', '/workspace/'], ['/', ''], $content);
         $content = html_entity_decode(preg_replace('/\\\u([\da-fA-F]{4})/', '&#x\1;', $content) ?? '');
 
         try {

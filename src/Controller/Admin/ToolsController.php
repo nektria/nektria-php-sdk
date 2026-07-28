@@ -83,7 +83,7 @@ readonly class ToolsController extends Controller
     #[Route('/crypt', method: 'GET')]
     public function readAllVariables(ContextService $contextService): Response
     {
-        $lines = explode("\n", FileUtil::read('/app/.env'));
+        $lines = explode("\n", FileUtil::read('/workspace/.env'));
         $envs = [];
 
         foreach ($lines as $line) {

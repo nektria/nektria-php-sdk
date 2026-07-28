@@ -95,7 +95,7 @@ readonly class ThrowableDocument extends Document
         return [
             'message' => $message,
             'type' => $exception::class,
-            'file' => str_replace('/app/', '', $exception->getFile()),
+            'file' => str_replace('/workspace/', '', $exception->getFile()),
             'line' => $exception->getLine(),
             'trace' => $this->trace($context),
         ];
@@ -117,22 +117,22 @@ readonly class ThrowableDocument extends Document
 
             if ($context?->isTest() === true) {
                 $finalTrace[] = [
-                    'file' => str_replace('/app/', '', $file),
+                    'file' => str_replace('/workspace/', '', $file),
                     'line' => $line,
                 ];
 
                 continue;
             }
-            if (str_starts_with($file, '/app/src')) {
+            if (str_starts_with($file, '/workspace/src')) {
                 $finalTrace[] = [
-                    'file' => str_replace('/app/', '', $file),
+                    'file' => str_replace('/workspace/', '', $file),
                     'line' => $line,
                 ];
             }
 
-            if (str_starts_with($file, '/app/vendor/nektria/php-sdk/src')) {
+            if (str_starts_with($file, '/workspace/vendor/nektria/php-sdk/src')) {
                 $finalTrace[] = [
-                    'file' => str_replace('/app/vendor/nektria/php-sdk/', '', $file),
+                    'file' => str_replace('/workspace/vendor/nektria/php-sdk/', '', $file),
                     'line' => $line,
                 ];
             }
@@ -174,7 +174,7 @@ readonly class ThrowableDocument extends Document
             || $context->isPlayEnvironment()
             || $context->traceId() === '00000000-0000-4000-8000-000000000000'
         ) {
-            $data['file'] = str_replace('/app/', '', $exception->getFile());
+            $data['file'] = str_replace('/workspace/', '', $exception->getFile());
             $data['line'] = $exception->getLine();
             $data['trace'] = $this->trace($context);
         }
