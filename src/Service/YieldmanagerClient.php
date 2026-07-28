@@ -319,6 +319,17 @@ readonly class YieldmanagerClient extends AbstractService
     }
 
     /**
+     * @return YMOrder[]
+     */
+    public function getLostOrders(): array
+    {
+        return $this->requestClient()->get(
+            "{$this->yieldmanagerHost}/api/admin/lost-orders",
+            headers: $this->getHeaders(),
+        )->json();
+    }
+
+    /**
      * @return YMOrder
      */
     public function getOrder(string $orderNumber): array
