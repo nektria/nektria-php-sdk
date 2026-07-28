@@ -87,7 +87,7 @@
     "post-update-cmd": [
       "@auto-scripts"
     ],
-    "qf": "docker exec -it nektria-php-sdk cp /app/phpstan.neon /scripts/phpstan.neon",
+    "qf": "docker exec -it nektria-php-sdk cp /workspace/phpstan.neon /scripts/phpstan.neon",
     "check": "docker exec -it nektria-php-sdk /scripts/tools/validate",
     "test": "docker exec -it nektria-php-sdk /scripts/tools/phpunit"
   }
