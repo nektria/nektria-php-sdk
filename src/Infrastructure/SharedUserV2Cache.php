@@ -54,7 +54,7 @@ class SharedUserV2Cache extends SharedRedisCache
                 tenantId: $tenant->id,
                 tenant: $tenant,
                 dniNie: $data['dniNie'],
-                aiThreadId: $data['aiThreadId'] ?? null,
+                aiThreadId: $data['aiThreadId'],
             );
 
             $this->save($key, $user);

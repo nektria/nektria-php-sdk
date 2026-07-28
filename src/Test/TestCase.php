@@ -227,7 +227,7 @@ class TestCase extends WebTestCase
                     }
 
                     $index = (string) $i;
-                    if (($iValue ?? null) === null) {
+                    if ($iValue === null) {
                         throw new ExpectationFailedException(
                             "Field '{$rootKey}[{$index}]' is missing.",
                         );
@@ -235,7 +235,7 @@ class TestCase extends WebTestCase
 
                     foreach ($target[$realKey][$i] as $j => $jValue) {
                         $jIndex = (string) $j;
-                        if (($jValue ?? null) === null) {
+                        if ($jValue === null) {
                             throw new ExpectationFailedException(
                                 "Field '{$rootKey}[{$index}][{$jIndex}]' is missing.",
                             );
@@ -283,7 +283,7 @@ class TestCase extends WebTestCase
 
                 foreach ($target[$realKey] as $i => $iValue) {
                     $index = (string) $i;
-                    if (($iValue ?? null) === null) {
+                    if ($iValue === null) {
                         throw new ExpectationFailedException(
                             "Field '{$rootKey}[{$index}]' is missing.",
                         );

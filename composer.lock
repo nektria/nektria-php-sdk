@@ -4677,16 +4677,16 @@
     },
     {
       "name": "symfony/polyfill-intl-grapheme",
-      "version": "v1.38.1",
+      "version": "v1.41.0",
       "source": {
         "type": "git",
         "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-        "reference": "e9247d281d694a5120554d9afaf54e070e88a603"
+        "reference": "bb899c1db0aa8127dc3afe8cda4a67eb24915f8d"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/e9247d281d694a5120554d9afaf54e070e88a603",
-        "reference": "e9247d281d694a5120554d9afaf54e070e88a603",
+        "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/bb899c1db0aa8127dc3afe8cda4a67eb24915f8d",
+        "reference": "bb899c1db0aa8127dc3afe8cda4a67eb24915f8d",
         "shasum": ""
       },
       "require": {
@@ -4735,7 +4735,7 @@
         "shim"
       ],
       "support": {
-        "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.38.1"
+        "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.41.0"
       },
       "funding": [
         {
@@ -4755,7 +4755,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-05-26T05:58:03+00:00"
+      "time": "2026-07-28T08:25:59+00:00"
     },
     {
       "name": "symfony/polyfill-intl-idn",
@@ -5096,16 +5096,16 @@
     },
     {
       "name": "symfony/polyfill-php85",
-      "version": "v1.38.1",
+      "version": "v1.41.0",
       "source": {
         "type": "git",
         "url": "https://github.com/symfony/polyfill-php85.git",
-        "reference": "ba2ba04f3352cfa2dcbbcb90aee13ed967f505b1"
+        "reference": "255fab485aaa1006ed411040c42aecd7b5302d7a"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/ba2ba04f3352cfa2dcbbcb90aee13ed967f505b1",
-        "reference": "ba2ba04f3352cfa2dcbbcb90aee13ed967f505b1",
+        "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/255fab485aaa1006ed411040c42aecd7b5302d7a",
+        "reference": "255fab485aaa1006ed411040c42aecd7b5302d7a",
         "shasum": ""
       },
       "require": {
@@ -5152,7 +5152,7 @@
         "shim"
       ],
       "support": {
-        "source": "https://github.com/symfony/polyfill-php85/tree/v1.38.1"
+        "source": "https://github.com/symfony/polyfill-php85/tree/v1.41.0"
       },
       "funding": [
         {
@@ -5172,7 +5172,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-05-26T02:25:22+00:00"
+      "time": "2026-07-01T12:47:55+00:00"
     },
     {
       "name": "symfony/process",
@@ -6937,12 +6937,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-        "reference": "c06de309dcd404eefc5de5e28cc11e5ae989edc2"
+        "reference": "2ab241b04a9655d8883b3f6d948898b3f26ebece"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/c06de309dcd404eefc5de5e28cc11e5ae989edc2",
-        "reference": "c06de309dcd404eefc5de5e28cc11e5ae989edc2",
+        "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/2ab241b04a9655d8883b3f6d948898b3f26ebece",
+        "reference": "2ab241b04a9655d8883b3f6d948898b3f26ebece",
         "shasum": ""
       },
       "require": {
@@ -7035,7 +7035,7 @@
           "type": "github"
         }
       ],
-      "time": "2026-07-24T13:54:55+00:00"
+      "time": "2026-07-27T17:20:16+00:00"
     },
     {
       "name": "myclabs/deep-copy",
@@ -7274,11 +7274,11 @@
     },
     {
       "name": "phpstan/phpstan",
-      "version": "2.2.5",
+      "version": "2.2.6",
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/phpstan/phpstan/zipball/909c1e5fef7989ac0d0c1c5c42e32a5c4f6198a0",
-        "reference": "909c1e5fef7989ac0d0c1c5c42e32a5c4f6198a0",
+        "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a6e9b5a9420f6109c091e87d82683bd1a80b87ed",
+        "reference": "a6e9b5a9420f6109c091e87d82683bd1a80b87ed",
         "shasum": ""
       },
       "require": {
@@ -7334,7 +7334,7 @@
           "type": "github"
         }
       ],
-      "time": "2026-07-05T06:31:06+00:00"
+      "time": "2026-07-26T21:22:49+00:00"
     },
     {
       "name": "phpstan/phpstan-doctrine",
@@ -8031,16 +8031,16 @@
     },
     {
       "name": "phpunit/phpunit",
-      "version": "13.2.4",
+      "version": "13.2.5",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/phpunit.git",
-        "reference": "8f5180f4627fc1978be2f61d8d9979dbe37e0c10"
+        "reference": "2beef9f448c9e04914a273c89ff6d039f8b97bc8"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8f5180f4627fc1978be2f61d8d9979dbe37e0c10",
-        "reference": "8f5180f4627fc1978be2f61d8d9979dbe37e0c10",
+        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2beef9f448c9e04914a273c89ff6d039f8b97bc8",
+        "reference": "2beef9f448c9e04914a273c89ff6d039f8b97bc8",
         "shasum": ""
       },
       "require": {
@@ -8063,7 +8063,7 @@
         "sebastian/comparator": "^8.3.0",
         "sebastian/diff": "^9.0",
         "sebastian/environment": "^9.3.2",
-        "sebastian/exporter": "^8.1.0",
+        "sebastian/exporter": "^8.1.1",
         "sebastian/file-filter": "^1.0",
         "sebastian/git-state": "^1.0",
         "sebastian/global-state": "^9.0.1",
@@ -8111,7 +8111,7 @@
       "support": {
         "issues": "https://github.com/sebastianbergmann/phpunit/issues",
         "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-        "source": "https://github.com/sebastianbergmann/phpunit/tree/13.2.4"
+        "source": "https://github.com/sebastianbergmann/phpunit/tree/13.2.5"
       },
       "funding": [
         {
@@ -8119,7 +8119,7 @@
           "type": "other"
         }
       ],
-      "time": "2026-07-08T08:36:51+00:00"
+      "time": "2026-07-25T06:59:14+00:00"
     },
     {
       "name": "react/cache",
@@ -8653,12 +8653,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/Roave/SecurityAdvisories.git",
-        "reference": "cfd18923fba8aa5324d151b69ea4196710f2932a"
+        "reference": "e7d396822cefa7207fd352f61f68660811e108a4"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/cfd18923fba8aa5324d151b69ea4196710f2932a",
-        "reference": "cfd18923fba8aa5324d151b69ea4196710f2932a",
+        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/e7d396822cefa7207fd352f61f68660811e108a4",
+        "reference": "e7d396822cefa7207fd352f61f68660811e108a4",
         "shasum": ""
       },
       "conflict": {
@@ -9288,7 +9288,7 @@
         "personnummer/personnummer": "<3.0.2",
         "ph7software/ph7builder": "<=17.9.1",
         "phanan/koel": "<=9.7",
-        "pheditor/pheditor": "<2.0.6",
+        "pheditor/pheditor": "<2.0.8",
         "phenx/php-svg-lib": "<0.5.2",
         "php-censor/php-censor": "<2.0.13|>=2.1,<2.1.5",
         "php-mod/curl": "<2.3.2",
@@ -9331,7 +9331,7 @@
         "pocketmine/pocketmine-mp": "<5.42.1",
         "pocketmine/raklib": ">=0.14,<0.14.6|>=0.15,<0.15.1",
         "pontedilana/php-weasyprint": "<=2.5.1",
-        "poweradmin/poweradmin": "<4.2.4|>=4.3,<4.3.3",
+        "poweradmin/poweradmin": "<4.2.5|>=4.3,<4.3.4",
         "pressbooks/pressbooks": "<5.18",
         "prestashop/autoupgrade": ">=4,<4.10.1",
         "prestashop/blockreassurance": "<=5.1.3",
@@ -9766,7 +9766,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-07-23T15:56:28+00:00"
+      "time": "2026-07-24T23:00:42+00:00"
     },
     {
       "name": "sebastian/cli-parser",

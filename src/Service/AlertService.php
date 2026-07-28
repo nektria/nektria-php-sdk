@@ -233,7 +233,8 @@ readonly class AlertService extends AbstractService
 
         if (
             ($document->throwable instanceof NektriaException)
-            && $document->throwable->convertToAlert && !$this->contextService()->debugMode()
+            && !$document->throwable->convertToAlert
+            && !$this->contextService()->debugMode()
         ) {
             return;
         }
