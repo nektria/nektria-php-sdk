@@ -167,6 +167,7 @@ readonly class ThrowableDocument extends Document
 
         $data = [
             'message' => $message,
+            'errorId' => $context?->traceId(),
         ];
 
         if (
