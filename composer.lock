@@ -6939,12 +6939,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-        "reference": "51229c454253d84420966043f41e4e50266e297e"
+        "reference": "1a74f1ca14ae965fa33c0d7aef2864907b60aee6"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/51229c454253d84420966043f41e4e50266e297e",
-        "reference": "51229c454253d84420966043f41e4e50266e297e",
+        "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/1a74f1ca14ae965fa33c0d7aef2864907b60aee6",
+        "reference": "1a74f1ca14ae965fa33c0d7aef2864907b60aee6",
         "shasum": ""
       },
       "require": {
@@ -6980,7 +6980,6 @@
         "infection/infection": "^0.32.7",
         "justinrainbow/json-schema": "^6.10.0",
         "keradus/cli-executor": "^2.3",
-        "mikey179/vfsstream": "^1.6.12",
         "php-coveralls/php-coveralls": "^2.9.1",
         "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.8",
         "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.8",
@@ -7037,7 +7036,7 @@
           "type": "github"
         }
       ],
-      "time": "2026-08-16T12:30:46+00:00"
+      "time": "2026-08-18T11:01:04+00:00"
     },
     {
       "name": "myclabs/deep-copy",
@@ -8655,12 +8654,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/Roave/SecurityAdvisories.git",
-        "reference": "52fa31ed9e3b6f830bec2e0443041750d2bd73e1"
+        "reference": "13a2a6821fab80b766323cf11ac90d4fbc1f4f9d"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/52fa31ed9e3b6f830bec2e0443041750d2bd73e1",
-        "reference": "52fa31ed9e3b6f830bec2e0443041750d2bd73e1",
+        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/13a2a6821fab80b766323cf11ac90d4fbc1f4f9d",
+        "reference": "13a2a6821fab80b766323cf11ac90d4fbc1f4f9d",
         "shasum": ""
       },
       "conflict": {
@@ -9130,7 +9129,7 @@
         "leantime/leantime": "<3.3",
         "lexik/jwt-authentication-bundle": "<2.10.7|>=2.11,<2.11.3",
         "libreform/libreform": ">=2,<=2.0.8",
-        "librenms/librenms": "<=26.4",
+        "librenms/librenms": "<26.5",
         "liftkit/database": "<2.13.2",
         "lightsaml/lightsaml": "<1.3.5",
         "limesurvey/limesurvey": "<=7.0.0.0-beta1",
@@ -9277,7 +9276,7 @@
         "pagekit/pagekit": "<=1.0.18",
         "paragonie/ecc": "<2.0.1",
         "paragonie/random_compat": "<2",
-        "paragonie/sodium_compat": "<1.24|>=2,<2.5",
+        "paragonie/sodium_compat": "<1.24.1|>=2,<2.5.1",
         "passbolt/passbolt_api": "<4.6.2",
         "paymenter/paymenter": "<=1.5.4",
         "paypal/adaptivepayments-sdk-php": "<=3.9.2",
@@ -9775,7 +9774,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-08-14T18:52:44+00:00"
+      "time": "2026-08-18T18:36:55+00:00"
     },
     {
       "name": "sebastian/cli-parser",

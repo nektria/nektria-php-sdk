@@ -6,8 +6,10 @@ namespace Nektria\Exception;
 
 class ResourceNotFoundException extends NektriaException
 {
-    public function __construct(string $resourceType, ?string $ref)
-    {
+    public function __construct(
+        public readonly string $resourceType,
+        public readonly ?string $ref,
+    ) {
         parent::__construct(
             message: $ref === null
                 ? "{$resourceType} not found."
