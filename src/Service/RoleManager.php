@@ -34,6 +34,8 @@ readonly class RoleManager extends AbstractService
 
     public const string ROLE_WAREHOUSE_SUPERVISOR = 'ROLE_WAREHOUSE_SUPERVISOR';
 
+    public const string ROLE_WAREHOUSE_SUPERVISOR_VIEWER = 'ROLE_WAREHOUSE_SUPERVISOR_VIEWER';
+
     private const array HIERARCHY = [
         self::ROLE_SYSTEM => [
             self::ROLE_ADMIN,
@@ -41,6 +43,7 @@ readonly class RoleManager extends AbstractService
             self::ROLE_API,
             self::ROLE_GRID_VIEWER,
             self::ROLE_WAREHOUSE_SUPERVISOR,
+            self::ROLE_WAREHOUSE_SUPERVISOR_VIEWER,
             self::ROLE_DRIVER,
             self::ROLE_TRAFFIC_CHIEF,
             self::ROLE_TRAFFIC_CHIEF_EXPRESS,
@@ -52,6 +55,7 @@ readonly class RoleManager extends AbstractService
             self::ROLE_USER,
             self::ROLE_GRID_VIEWER,
             self::ROLE_WAREHOUSE_SUPERVISOR,
+            self::ROLE_WAREHOUSE_SUPERVISOR_VIEWER,
             self::ROLE_DRIVER,
             self::ROLE_TRAFFIC_CHIEF,
             self::ROLE_TRAFFIC_CHIEF_EXPRESS,
@@ -71,6 +75,7 @@ readonly class RoleManager extends AbstractService
             self::ROLE_API,
             self::ROLE_GRID_VIEWER,
             self::ROLE_WAREHOUSE_SUPERVISOR,
+            self::ROLE_WAREHOUSE_SUPERVISOR_VIEWER,
             self::ROLE_DRIVER,
             self::ROLE_TRAFFIC_CHIEF,
             self::ROLE_TRAFFIC_CHIEF_EXPRESS,
@@ -80,12 +85,17 @@ readonly class RoleManager extends AbstractService
             self::ROLE_USER,
             self::ROLE_GRID_VIEWER,
             self::ROLE_WAREHOUSE_SUPERVISOR,
+            self::ROLE_WAREHOUSE_SUPERVISOR_VIEWER,
             self::ROLE_DRIVER,
             self::ROLE_TRAFFIC_CHIEF,
             self::ROLE_TRAFFIC_CHIEF_EXPRESS,
             self::ROLE_MARKETING,
         ],
-        self::ROLE_WAREHOUSE_SUPERVISOR => [self::ROLE_GRID_VIEWER],
+        self::ROLE_WAREHOUSE_SUPERVISOR => [
+            self::ROLE_WAREHOUSE_SUPERVISOR_VIEWER,
+            self::ROLE_GRID_VIEWER
+        ],
+        self::ROLE_WAREHOUSE_SUPERVISOR_VIEWER => [],
         self::ROLE_MARKETING => [],
     ];
 
