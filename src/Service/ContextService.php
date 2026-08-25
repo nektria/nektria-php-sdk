@@ -47,6 +47,8 @@ class ContextService
 
     private string $traceId;
 
+    public private(set) string $apiVersion = '-';
+
     public function __construct(
         private readonly SharedVariableCache $sharedVariableCache,
         private readonly string $env,
@@ -64,6 +66,14 @@ class ContextService
         self::$dummyCS->setContext(self::INTERNAL);
 
         return self::$dummyCS;
+    }
+
+    /**
+     * @param 'v1'|'v2'|'bo'|'admin'|'private'|'console'|'queue' $apiVersion
+     */
+    public function setApiVersion(string $apiVersion): void
+    {
+        $this->apiVersion = $apiVersion;
     }
 
     public function addExtra(string $key, ?string $value): void
@@ -201,21 +211,6 @@ class ContextService
                 $this->sharedVariableCache->saveKey($key, $ttl);
             } else {
                 $this->sharedVariableCache->deleteKey($key);
-            }
-        }
-    }
-
-    /**
-     * @param string[] $projects
-     */
-    public function setDelaysRabbit(bool $enable, array $projects, int $ttl): void
-    {
-        foreach ($projects as $project) {
-            $key = "delay_rabbit_85b20ef3_{$project}";
-            if ($enable) {
-                $this->sharedVariableCache->deleteKey($key);
-            } else {
-                $this->sharedVariableCache->saveKey($key, $ttl);
             }
         }
     }

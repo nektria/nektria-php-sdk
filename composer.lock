@@ -7742,23 +7742,23 @@
     },
     {
       "name": "phpunit/php-file-iterator",
-      "version": "7.0.1",
+      "version": "7.0.2",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-        "reference": "3ccaa29123548190af12fee7af078dcd7f3ddfab"
+        "reference": "9bb4e6c58b62c1e043be995c66abec7c97307aae"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/3ccaa29123548190af12fee7af078dcd7f3ddfab",
-        "reference": "3ccaa29123548190af12fee7af078dcd7f3ddfab",
+        "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/9bb4e6c58b62c1e043be995c66abec7c97307aae",
+        "reference": "9bb4e6c58b62c1e043be995c66abec7c97307aae",
         "shasum": ""
       },
       "require": {
         "php": ">=8.4"
       },
       "require-dev": {
-        "phpunit/phpunit": "^13.3.0"
+        "phpunit/phpunit": "^13.3.1"
       },
       "type": "library",
       "extra": {
@@ -7791,7 +7791,7 @@
       "support": {
         "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues",
         "security": "https://github.com/sebastianbergmann/php-file-iterator/security/policy",
-        "source": "https://github.com/sebastianbergmann/php-file-iterator/tree/7.0.1"
+        "source": "https://github.com/sebastianbergmann/php-file-iterator/tree/7.0.2"
       },
       "funding": [
         {
@@ -7811,7 +7811,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-08-10T06:43:12+00:00"
+      "time": "2026-08-25T14:47:43+00:00"
     },
     {
       "name": "phpunit/php-invoker",
@@ -8657,12 +8657,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/Roave/SecurityAdvisories.git",
-        "reference": "184210cfefe1023c2e4f7d41b5b7d77030cd88f7"
+        "reference": "449e878a868d1ba9d256feff1419c03d5cc46d21"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/184210cfefe1023c2e4f7d41b5b7d77030cd88f7",
-        "reference": "184210cfefe1023c2e4f7d41b5b7d77030cd88f7",
+        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/449e878a868d1ba9d256feff1419c03d5cc46d21",
+        "reference": "449e878a868d1ba9d256feff1419c03d5cc46d21",
         "shasum": ""
       },
       "conflict": {
@@ -9197,7 +9197,7 @@
         "microsoft/microsoft-graph": ">=1.16,<1.109.1|>=2,<2.0.1",
         "microsoft/microsoft-graph-beta": "<2.0.1",
         "microsoft/microsoft-graph-core": "<2.0.2",
-        "microweber/microweber": "<2.0.20",
+        "microweber/microweber": "<=2.0.20",
         "mikehaertl/php-shellcommand": "<1.6.1",
         "mineadmin/mineadmin": "<3.2.0.0-alpha2",
         "miniorange/miniorange-saml": "<1.4.3",
@@ -9317,7 +9317,7 @@
         "phpmailer/phpmailer": "<6.5",
         "phpmussel/phpmussel": ">=1,<1.6",
         "phpmyadmin/phpmyadmin": "<5.2.2",
-        "phpmyfaq/phpmyfaq": "<4.1.4",
+        "phpmyfaq/phpmyfaq": "<=4.1.4",
         "phpoffice/common": "<0.2.9",
         "phpoffice/math": "<=0.2",
         "phpoffice/phpexcel": "<=1.8.2",
@@ -9787,7 +9787,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-08-25T09:34:25+00:00"
+      "time": "2026-08-25T18:38:15+00:00"
     },
     {
       "name": "sebastian/cli-parser",
@@ -10022,24 +10022,24 @@
     },
     {
       "name": "sebastian/diff",
-      "version": "9.0.0",
+      "version": "9.0.1",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/diff.git",
-        "reference": "a3fb6a298a265ff487a91bbea46e03cd01dbb226"
+        "reference": "a2df6626c1baf31d5a88674882a3072f151b5a26"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/a3fb6a298a265ff487a91bbea46e03cd01dbb226",
-        "reference": "a3fb6a298a265ff487a91bbea46e03cd01dbb226",
+        "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/a2df6626c1baf31d5a88674882a3072f151b5a26",
+        "reference": "a2df6626c1baf31d5a88674882a3072f151b5a26",
         "shasum": ""
       },
       "require": {
         "php": ">=8.4"
       },
       "require-dev": {
-        "phpunit/phpunit": "^13.2",
-        "symfony/process": "^7.4.13"
+        "phpunit/phpunit": "^13.3.1",
+        "symfony/process": "^7.4.17"
       },
       "type": "library",
       "extra": {
@@ -10077,7 +10077,7 @@
       "support": {
         "issues": "https://github.com/sebastianbergmann/diff/issues",
         "security": "https://github.com/sebastianbergmann/diff/security/policy",
-        "source": "https://github.com/sebastianbergmann/diff/tree/9.0.0"
+        "source": "https://github.com/sebastianbergmann/diff/tree/9.0.1"
       },
       "funding": [
         {
@@ -10097,7 +10097,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-06-05T03:04:51+00:00"
+      "time": "2026-08-25T15:38:55+00:00"
     },
     {
       "name": "sebastian/environment",

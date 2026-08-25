@@ -297,6 +297,7 @@ abstract class MessageListener implements EventSubscriberInterface
         $this->processRegistry->getMetadata()->updateField('context', 'messenger');
         $this->processRegistry->getMetadata()->updateField('path', $this->normalizeClass($message::class));
         $this->processRegistry->getMetadata()->updateField('queue', $exchangeName);
+        $this->contextService->setApiVersion('queue');
 
         try {
             /** @var ContextStamp|null $contextStamp */

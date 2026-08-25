@@ -154,6 +154,19 @@ abstract class BaseRequestListener implements EventSubscriberInterface
         if ($tracer !== null) {
             $this->contextService()->setTraceId($tracer);
         }
+
+        $path = $event->getRequest()->getBasePath();
+        if (str_starts_with($path, '/api/bo')) {
+            $this->contextService()->setApiVersion('bo');
+        } elseif (str_starts_with($path, '/api/v1')) {
+            $this->contextService()->setApiVersion('v1');
+        } elseif (str_starts_with($path, '/api/v2')) {
+            $this->contextService()->setApiVersion('v2');
+        } elseif (str_starts_with($path, '/api/admin')) {
+            $this->contextService()->setApiVersion('admin');
+        } elseif (str_starts_with($path, '/api/private')) {
+            $this->contextService()->setApiVersion('private');
+        }
     }
 
     public function onKernelResponse(ResponseEvent $event): void
