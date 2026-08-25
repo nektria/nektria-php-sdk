@@ -13,10 +13,11 @@ use function array_slice;
  *     payload: mixed[],
  *     message: string,
  *     project: string,
- *     tenantId: string | null,
  *     tenant: string | null,
- *     authId: string | null,
+ *     tenantName: string | null,
+ *     auth: string | null,
  *     labels: string[] | null,
+ *     apiVersion: string,
  * }
  *
  * @extends SharedRedisCache<CachedLog[]>
