@@ -27,7 +27,7 @@ readonly class WarehouseSharedInfo extends Document
         parent::__construct();
     }
 
-    protected function toArray(?ContextService $context): array
+    protected function transformToArray(?ContextService $context): array
     {
         return [
             'address' => $this->address->data(null),

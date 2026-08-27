@@ -38,7 +38,7 @@ readonly class User extends Document
         $this->socketInfo->appendSockets($token, $allowedTopics);
     }
 
-    protected function toArray(?ContextService $context): array
+    protected function transformToArray(?ContextService $context): array
     {
         if ($context?->isPublic() === true) {
             return [
@@ -60,7 +60,7 @@ readonly class User extends Document
                 'language' => 'en',
                 'role' => $this->role,
                 'socketsToken' => $this->socketInfo->socketsToken(),
-                'tenant' => $this->tenant->toArray($context),
+                'tenant' => $this->tenant->transformToArray($context),
                 'warehouses' => $this->warehouses,
             ];
         }
@@ -76,7 +76,7 @@ readonly class User extends Document
             'name' => $this->name,
             'role' => $this->role,
             'socketsToken' => $this->socketInfo->socketsToken(),
-            'tenant' => $this->tenant->toArray($context),
+            'tenant' => $this->tenant->transformToArray($context),
             'warehouses' => $this->warehouses,
         ];
     }

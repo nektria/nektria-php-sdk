@@ -13,7 +13,7 @@ readonly class ArrayDocument extends Document
         parent::__construct();
     }
 
-    protected function toArray(?ContextService $context): array
+    protected function transformToArray(?ContextService $context): array
     {
         return $this->data;
     }

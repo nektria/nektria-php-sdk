@@ -23,9 +23,9 @@ readonly class PaginatedDocumentCollection extends Document
         parent::__construct();
     }
 
-    protected function toArray(?ContextService $context): array
+    protected function transformToArray(?ContextService $context): array
     {
-        $data = $this->items->toArray($context);
+        $data = $this->items->transformToArray($context);
         $data['info'] = [
             'page' => $this->page,
             'pageSize' => $this->pageSize,

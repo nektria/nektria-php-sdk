@@ -60,7 +60,7 @@ readonly class Metadata extends Document
         return new static($data);
     }
 
-    protected function toArray(?ContextService $context): array
+    protected function transformToArray(?ContextService $context): array
     {
         return $this->data;
     }

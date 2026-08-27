@@ -38,7 +38,7 @@ readonly abstract class Document
     {
         // @phpstan-ignore-next-line
         if (!isset($this->cache)) {
-            return $this->toArray($context);
+            return $this->transformToArray($context);
         }
 
         $ctx = $context?->context() ?? 'null';
@@ -47,7 +47,7 @@ readonly abstract class Document
             return $this->cache->get($ctx);
         }
 
-        $data = $this->toArray($context);
+        $data = $this->transformToArray($context);
         $this->cache->set($ctx, $data);
 
         return $data;
@@ -56,5 +56,5 @@ readonly abstract class Document
     /**
      * @return mixed[]
      */
-    abstract protected function toArray(?ContextService $context): array;
+    abstract protected function transformToArray(?ContextService $context): array;
 }

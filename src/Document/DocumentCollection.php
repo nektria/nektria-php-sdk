@@ -180,12 +180,12 @@ readonly class DocumentCollection extends Document implements IteratorAggregate,
     /**
      * @return mixed[]
      */
-    protected function toArray(?ContextService $context): array
+    protected function transformToArray(?ContextService $context): array
     {
         $list = [];
 
         foreach ($this as $item) {
-            $list[] = $item->toArray($context);
+            $list[] = $item->transformToArray($context);
         }
 
         return $list;

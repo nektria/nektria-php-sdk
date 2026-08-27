@@ -21,14 +21,14 @@ readonly class Tenant extends Document
         parent::__construct();
     }
 
-    protected function toArray(?ContextService $context): array
+    protected function transformToArray(?ContextService $context): array
     {
         if ($context?->context() === ContextService::ADMIN) {
             return [
                 'aiAssistantId' => $this->aiAssistantId,
                 'id' => $this->id,
                 'name' => $this->name,
-                'metadata' => $this->metadata->toArray($context),
+                'metadata' => $this->metadata->transformToArray($context),
                 'timezone' => $this->timezone,
                 'alias' => $this->alias,
                 'countryCode' => $this->countryCode,
@@ -47,7 +47,7 @@ readonly class Tenant extends Document
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'metadata' => $this->metadata->toArray($context),
+            'metadata' => $this->metadata->transformToArray($context),
             'timezone' => $this->timezone,
             'alias' => $this->alias,
             'countryCode' => $this->countryCode,

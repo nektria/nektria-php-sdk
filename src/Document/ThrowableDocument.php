@@ -141,7 +141,7 @@ readonly class ThrowableDocument extends Document
         return $finalTrace;
     }
 
-    protected function toArray(?ContextService $context): array
+    protected function transformToArray(?ContextService $context): array
     {
         $exception = $this->throwable;
         if ($exception instanceof NektriaException) {

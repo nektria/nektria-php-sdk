@@ -533,16 +533,16 @@
     },
     {
       "name": "doctrine/doctrine-migrations-bundle",
-      "version": "4.0.0",
+      "version": "4.0.1",
       "source": {
         "type": "git",
         "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-        "reference": "20505da78735744fb4a42a3bb9a416b345ad6f7c"
+        "reference": "43e9212c7441178e3748580e53f88c08f4e70e5f"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/20505da78735744fb4a42a3bb9a416b345ad6f7c",
-        "reference": "20505da78735744fb4a42a3bb9a416b345ad6f7c",
+        "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/43e9212c7441178e3748580e53f88c08f4e70e5f",
+        "reference": "43e9212c7441178e3748580e53f88c08f4e70e5f",
         "shasum": ""
       },
       "require": {
@@ -605,7 +605,7 @@
       ],
       "support": {
         "issues": "https://github.com/doctrine/DoctrineMigrationsBundle/issues",
-        "source": "https://github.com/doctrine/DoctrineMigrationsBundle/tree/4.0.0"
+        "source": "https://github.com/doctrine/DoctrineMigrationsBundle/tree/4.0.1"
       },
       "funding": [
         {
@@ -621,7 +621,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2025-12-05T08:14:38+00:00"
+      "time": "2026-08-26T05:54:54+00:00"
     },
     {
       "name": "doctrine/event-manager",
@@ -6942,12 +6942,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-        "reference": "a196b1b44acf113b77649c121987a75174ce5e78"
+        "reference": "20b85783f708373f60d8d72709aafda35d60a73b"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/a196b1b44acf113b77649c121987a75174ce5e78",
-        "reference": "a196b1b44acf113b77649c121987a75174ce5e78",
+        "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/20b85783f708373f60d8d72709aafda35d60a73b",
+        "reference": "20b85783f708373f60d8d72709aafda35d60a73b",
         "shasum": ""
       },
       "require": {
@@ -7039,7 +7039,7 @@
           "type": "github"
         }
       ],
-      "time": "2026-08-24T10:38:03+00:00"
+      "time": "2026-08-27T11:01:39+00:00"
     },
     {
       "name": "myclabs/deep-copy",
@@ -8035,16 +8035,16 @@
     },
     {
       "name": "phpunit/phpunit",
-      "version": "13.3.1",
+      "version": "13.3.2",
       "source": {
         "type": "git",
         "url": "https://github.com/sebastianbergmann/phpunit.git",
-        "reference": "fc024931d6ad047404e9d86536735923fe63a06b"
+        "reference": "22104a5ceb8d642e6b30ab00211d53d88e2db368"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fc024931d6ad047404e9d86536735923fe63a06b",
-        "reference": "fc024931d6ad047404e9d86536735923fe63a06b",
+        "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/22104a5ceb8d642e6b30ab00211d53d88e2db368",
+        "reference": "22104a5ceb8d642e6b30ab00211d53d88e2db368",
         "shasum": ""
       },
       "require": {
@@ -8058,8 +8058,8 @@
         "phar-io/manifest": "^2.0.4",
         "phar-io/version": "^3.2.1",
         "php": ">=8.4.1",
-        "phpunit/php-code-coverage": "^14.3",
-        "phpunit/php-file-iterator": "^7.0.1",
+        "phpunit/php-code-coverage": "^14.3.1",
+        "phpunit/php-file-iterator": "^7.0.2",
         "phpunit/php-invoker": "^7.0.0",
         "phpunit/php-text-template": "^6.0.0",
         "phpunit/php-timer": "^9.0.0",
@@ -8115,7 +8115,7 @@
       "support": {
         "issues": "https://github.com/sebastianbergmann/phpunit/issues",
         "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-        "source": "https://github.com/sebastianbergmann/phpunit/tree/13.3.1"
+        "source": "https://github.com/sebastianbergmann/phpunit/tree/13.3.2"
       },
       "funding": [
         {
@@ -8123,7 +8123,7 @@
           "type": "other"
         }
       ],
-      "time": "2026-08-13T13:14:23+00:00"
+      "time": "2026-08-27T08:40:49+00:00"
     },
     {
       "name": "react/cache",
@@ -8657,12 +8657,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/Roave/SecurityAdvisories.git",
-        "reference": "449e878a868d1ba9d256feff1419c03d5cc46d21"
+        "reference": "d7dcb4d45ec2a3ee1a5b24a0b071868c280807e1"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/449e878a868d1ba9d256feff1419c03d5cc46d21",
-        "reference": "449e878a868d1ba9d256feff1419c03d5cc46d21",
+        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/d7dcb4d45ec2a3ee1a5b24a0b071868c280807e1",
+        "reference": "d7dcb4d45ec2a3ee1a5b24a0b071868c280807e1",
         "shasum": ""
       },
       "conflict": {
@@ -8770,6 +8770,7 @@
         "cakephp/authentication": "<2.11.1|>=3,<3.3.6|>=4,<4.1.1",
         "cakephp/cakephp": "<4.5.11|>=4.6,<4.6.4|>=5,<5.1.7|>=5.2,<5.2.13|>=5.3,<5.3.6",
         "cakephp/database": ">=4.2,<4.2.12|>=4.3,<4.3.11|>=4.4,<4.4.10",
+        "cakephp/debug_kit": "<4.10.3|>=5,<5.2.4",
         "cardgate/magento2": "<2.0.33",
         "cardgate/woocommerce": "<=3.1.15",
         "cart2quote/module-quotation": ">=4.1.6,<4.4.6|>=5,<5.4.4",
@@ -9096,7 +9097,7 @@
         "jweiland/clubdirectory": "<8.1.3",
         "jweiland/events2": "<10.2.12",
         "jweiland/kk-downloader": "<1.2.2",
-        "jweiland/pforum": "<6.2.4",
+        "jweiland/pforum": "<4.0.4|>=5,<5.0.1|>=6,<6.2.4",
         "jweiland/telephonedirectory": "<6.2",
         "jweiland/yellowpages2": "<8.1.2",
         "kantorge/yaffa": "<=2",
@@ -9787,7 +9788,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-08-25T18:38:15+00:00"
+      "time": "2026-08-26T16:17:54+00:00"
     },
     {
       "name": "sebastian/cli-parser",

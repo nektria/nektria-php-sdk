@@ -45,7 +45,7 @@ readonly class FileDocument extends Document
         $this->mime = $mime;
     }
 
-    protected function toArray(?ContextService $context): array
+    protected function transformToArray(?ContextService $context): array
     {
         return [
             'path' => $this->file,

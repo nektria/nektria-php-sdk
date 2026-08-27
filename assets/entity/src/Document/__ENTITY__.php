@@ -16,7 +16,7 @@ readonly class __ENTITY__ extends Document
         public Clock $updatedAt,
     ) {}
 
-    protected function toArray(?ContextService $context): array
+    protected function transformToArray(?ContextService $context): array
     {
         return [
             'id' => $this->id,
