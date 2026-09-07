@@ -67,7 +67,7 @@ readonly class MetricsClient extends AbstractService
     }
 
     /**
-     * @return AreaScore[]
+     * @return array{list: AreaScore[]}
      */
     public function getAreaScores(?LocalClock $date = null): array
     {
