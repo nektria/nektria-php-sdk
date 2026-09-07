@@ -10,6 +10,11 @@ use Nektria\Exception\RequestException;
 use Nektria\Infrastructure\SharedUserV2Cache;
 
 /**
+ * @phpstan-type AreaScore array{
+ *      area: string,
+ *      score: int
+ * }
+ *
  * @phpstan-type MetricsDeliveryInfo array{
  *      orderNumber: string,
  *      at: Clock
@@ -59,6 +64,18 @@ readonly class MetricsClient extends AbstractService
             ],
             headers: $this->getHeaders(),
         );
+    }
+
+    /**
+     * @return AreaScore[]
+     */
+    public function getAreaScores(?LocalClock $date = null): array
+    {
+        return $this->requestClient()->get(
+            "{$this->metricsHost}/api/admin/areas/worst-areas",
+            data: $date === null ? [] : ['date' => $date->dateString()],
+            headers: $this->getHeaders(),
+        )->json();
     }
 
     /**
