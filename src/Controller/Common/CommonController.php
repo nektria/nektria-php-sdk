@@ -67,13 +67,13 @@ readonly class CommonController extends Controller
         } catch (Throwable) {
             $versionFile = [
                 'builtAt' => Clock::now()->toLocal('Europe/Madrid')->dateTimeString(),
-                'env' => $contextService->env(),
                 'hash' => '',
-                'project' => $contextService->project(),
                 'type' => 'Development',
                 'version' => '',
             ];
         }
+        $versionFile['env'] ??= $contextService->env();
+        $versionFile['project'] ??= $contextService->project();
         $versionFile['migration'] = $migrationVersion;
 
         return $this->documentResponse(new ArrayDocument($versionFile));
