@@ -294,24 +294,10 @@ readonly class YieldmanagerClient extends AbstractService
     }
 
     /**
-     * @return YMExpressOrder[]
-     */
-    public function getExpressOrdersFromWarehouseAndDate(string $warehouseId, LocalClock $date): array
-    {
-        return $this->requestClient()->get(
-            "{$this->yieldmanagerHost}/api/admin/warehouses/{$warehouseId}/express-orders",
-            data: [
-                'date' => $date->dateString(),
-            ],
-            headers: $this->getHeaders(),
-        )->json();
-    }
-
-    /**
      * @param string[]|null $tags
      * @return YMShift
      */
-    public function getExptectedShift(
+    public function getExpectedShift(
         ?Address $address = null,
         ?string $area = null,
         ?string $shopperCode = null,
@@ -335,6 +321,20 @@ readonly class YieldmanagerClient extends AbstractService
                     ? ['startTime' => $startTime->dateTimeString(), 'endTime' => $endTime->dateTimeString()]
                     : null,
                 'weight' => $weight,
+            ],
+            headers: $this->getHeaders(),
+        )->json();
+    }
+
+    /**
+     * @return YMExpressOrder[]
+     */
+    public function getExpressOrdersFromWarehouseAndDate(string $warehouseId, LocalClock $date): array
+    {
+        return $this->requestClient()->get(
+            "{$this->yieldmanagerHost}/api/admin/warehouses/{$warehouseId}/express-orders",
+            data: [
+                'date' => $date->dateString(),
             ],
             headers: $this->getHeaders(),
         )->json();
