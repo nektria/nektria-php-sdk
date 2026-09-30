@@ -308,6 +308,39 @@ readonly class YieldmanagerClient extends AbstractService
     }
 
     /**
+     * @param string[]|null $tags
+     * @return YMShift
+     */
+    public function getExptectedShift(
+        ?Address $address = null,
+        ?string $area = null,
+        ?string $shopperCode = null,
+        ?int $weight = null,
+        ?int $productLines = null,
+        ?LocalClock $startTime = null,
+        ?LocalClock $endTime = null,
+        ?bool $returnal = null,
+        ?array $tags = null,
+    ): array {
+        return $this->requestClient()->post(
+            "{$this->yieldmanagerHost}/api/admin/expected-shift",
+            data: [
+                'address' => $address?->data(null),
+                'area' => $area,
+                'productLines' => $productLines,
+                'returnal' => $returnal,
+                'shopperCode' => $shopperCode,
+                'tags' => $tags,
+                'timeRange' => $startTime !== null && $endTime !== null
+                    ? ['startTime' => $startTime->dateTimeString(), 'endTime' => $endTime->dateTimeString()]
+                    : null,
+                'weight' => $weight,
+            ],
+            headers: $this->getHeaders(),
+        )->json();
+    }
+
+    /**
      * @return YMOrder
      */
     public function getLastOrder(): array
@@ -619,7 +652,6 @@ readonly class YieldmanagerClient extends AbstractService
         ?LocalClock $startTime = null,
         ?LocalClock $endTime = null,
         ?bool $returnal = null,
-        ?bool $createdByTenant = false,
         ?array $tags = null,
     ): void {
         $this->requestClient()->put(
@@ -628,10 +660,10 @@ readonly class YieldmanagerClient extends AbstractService
                 'address' => $address?->data(null),
                 'shiftId' => $shiftId,
                 'area' => $area,
-                'createdByTenant' => $createdByTenant,
                 'productLines' => $productLines,
                 'returnal' => $returnal,
                 'shopperCode' => $shopperCode,
+                'tags' => $tags,
                 'timeRange' => $startTime !== null && $endTime !== null
                     ? ['startTime' => $startTime->dateTimeString(), 'endTime' => $endTime->dateTimeString()]
                     : null,
