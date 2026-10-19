@@ -42,7 +42,6 @@ class HealthService
                 $this->checkCompass(),
                 $this->checkDatabase(),
                 $this->checkMetrics(),
-                $this->checkRabbit(),
                 $this->checkRedis(),
                 $this->checkRouteManager(),
                 $this->checkYieldManager(),
@@ -51,7 +50,6 @@ class HealthService
         } else {
             $data = array_merge(
                 $this->checkDatabase(),
-                $this->checkRabbit(),
                 $this->checkRedis(),
                 $this->extraChecks(),
             );
@@ -156,31 +154,6 @@ class HealthService
             /** @var MetricsClient $srvc */
             $srvc = $this->container->get(MetricsClient::class);
             $srvc->ping();
-
-            return [$key => true];
-        } catch (Throwable $e) {
-            $this->addError($key, $e->getMessage());
-
-            return [$key => false];
-        }
-    }
-
-    /**
-     * @return array<string, bool>
-     */
-    private function checkRabbit(): array
-    {
-        $key = 'rabbit';
-        if (!$this->container->hasParameter('rabbitDsn')) {
-            return [];
-        }
-
-        /** @var string $rabbitDsn */
-        $rabbitDsn = $this->container->getParameter('rabbitDsn');
-        $host = str_replace(['amqp', '5672'], ['http', '15672'], $rabbitDsn);
-
-        try {
-            $this->requestClient->get("{$host}/api/queues")->json();
 
             return [$key => true];
         } catch (Throwable $e) {
