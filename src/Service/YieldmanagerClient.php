@@ -656,6 +656,8 @@ readonly class YieldmanagerClient extends AbstractService
         ?int $warehouseDelayTime = null,
         ?int $transportDelayTime = null,
         ?int $firstSlotDelayTime = null,
+        ?int $windowsOpened = null,
+        ?int $daysOpened = null,
     ): void {
         $this->requestClient()->put(
             "{$this->yieldmanagerHost}/api/admin/orders/{$orderNumber}",
@@ -674,6 +676,8 @@ readonly class YieldmanagerClient extends AbstractService
                 'warehouseDelayTime' => $warehouseDelayTime,
                 'transportDelayTime' => $transportDelayTime,
                 'firstSlotDelayTime' => $firstSlotDelayTime,
+                'windowsOpened' => $windowsOpened,
+                'daysOpened' => $daysOpened,
             ],
             headers: $this->getHeaders(),
         );
