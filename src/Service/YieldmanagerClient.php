@@ -653,6 +653,9 @@ readonly class YieldmanagerClient extends AbstractService
         ?LocalClock $endTime = null,
         ?bool $returnal = null,
         ?array $tags = null,
+        ?int $warehouseDelayTime = null,
+        ?int $transportDelayTime = null,
+        ?int $firstSlotDelayTime = null,
     ): void {
         $this->requestClient()->put(
             "{$this->yieldmanagerHost}/api/admin/orders/{$orderNumber}",
@@ -668,6 +671,9 @@ readonly class YieldmanagerClient extends AbstractService
                     ? ['startTime' => $startTime->dateTimeString(), 'endTime' => $endTime->dateTimeString()]
                     : null,
                 'weight' => $weight,
+                'warehouseDelayTime' => $warehouseDelayTime,
+                'transportDelayTime' => $transportDelayTime,
+                'firstSlotDelayTime' => $firstSlotDelayTime,
             ],
             headers: $this->getHeaders(),
         );
