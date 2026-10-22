@@ -21,7 +21,7 @@ readonly class ProcessRegistry extends AbstractService
 
     public function addValue(string $key, string | int | float | bool | null $value): void
     {
-        $this->metadata->updateField($key, $value ?? 'undefined');
+        $this->metadata->updateField($key, (string) ($value ?? 'undefined'));
     }
 
     public function clear(): void

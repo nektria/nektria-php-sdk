@@ -19,6 +19,8 @@ use Throwable;
 
 use function count;
 
+use const PHP_VERSION;
+
 readonly class CommonController extends Controller
 {
     #[Route('/healthz', method: 'GET')]
@@ -75,6 +77,10 @@ readonly class CommonController extends Controller
         $versionFile['env'] ??= $contextService->env();
         $versionFile['project'] ??= $contextService->project();
         $versionFile['migration'] = $migrationVersion;
+
+        if ($this->requestData->hasField('php')) {
+            $versionFile['migration'] = PHP_VERSION;
+        }
 
         return $this->documentResponse(new ArrayDocument($versionFile));
     }

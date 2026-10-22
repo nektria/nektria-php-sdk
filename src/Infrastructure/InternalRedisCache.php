@@ -155,7 +155,7 @@ abstract class InternalRedisCache extends RedisCache
         $ttl = max(1, $ttl);
 
         try {
-            $this->init()->set("{$this->fqn}:{$key}", serialize($item), $ttl);
+            $this->init()->set("{$this->fqn}:{$key}", serialize($item), ['ex' => $ttl]);
 
             $lastError = $this->init()->getLastError();
             if ($lastError !== null) {
