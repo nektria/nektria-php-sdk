@@ -79,7 +79,7 @@ readonly class CommonController extends Controller
         $versionFile['migration'] = $migrationVersion;
 
         if ($this->requestData->hasField('php')) {
-            $versionFile['migration'] = PHP_VERSION;
+            $versionFile['php'] = PHP_VERSION;
         }
 
         return $this->documentResponse(new ArrayDocument($versionFile));
