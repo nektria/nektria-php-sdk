@@ -9,6 +9,8 @@ use Nektria\Dto\Clock;
 use Nektria\Util\Annotation\IgnoreProperty;
 use Nektria\Util\StringUtil;
 
+#[ORM\MappedSuperclass]
+#[ORM\ChangeTrackingPolicy('DEFERRED_EXPLICIT')]
 abstract class Entity implements EntityInterface
 {
     #[IgnoreProperty]
