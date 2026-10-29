@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nektria\Console;
 
+use Nektria\Dto\Clock;
 use Nektria\Service\HealthService;
 use Nektria\Util\JsonUtil;
 use RuntimeException;
@@ -20,6 +21,10 @@ class HealthConsole extends Console
 
     protected function play(): void
     {
+        if (Clock::now()->dateString() !== 'a') {
+            return;
+        }
+
         $data = $this->healthService->check();
         ksort($data['results']);
 
