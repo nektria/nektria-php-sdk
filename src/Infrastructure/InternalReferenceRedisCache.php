@@ -303,6 +303,8 @@ abstract class InternalReferenceRedisCache extends RedisCache
             $this->removeItem($key);
         }
 
+        $ttl = max(1, $ttl);
+
         try {
             $item = implode(',', $items);
             $this->init()->set("{$this->fqn}:{$key}", $item, ['ex' => $ttl]);
@@ -315,6 +317,8 @@ abstract class InternalReferenceRedisCache extends RedisCache
         if ($ttl instanceof Clock) {
             $ttl = $ttl->diff(Clock::now());
         }
+
+        $ttl = max(1, $ttl);
 
         try {
             $this->init()->set("{$this->fqn}:{$key}", $item, ['ex' => $ttl]);

@@ -79,6 +79,8 @@ abstract class SharedRedisCache extends RedisCache
             $ttl = $ttl->diff(Clock::now());
         }
 
+        $ttl = max(1, $ttl);
+
         try {
             $this->init()->set("{$this->fqn}:{$key}", serialize($item), ['ex' => $ttl]);
         } catch (Throwable) {
