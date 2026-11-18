@@ -21,6 +21,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
+use function array_slice;
+
 readonly class ThrowableDocument extends Document
 {
     public bool $silent;
@@ -138,7 +140,7 @@ readonly class ThrowableDocument extends Document
             }
         }
 
-        return $finalTrace;
+        return array_slice($finalTrace, 0, 10);
     }
 
     protected function transformToArray(?ContextService $context): array
