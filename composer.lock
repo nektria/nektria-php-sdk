@@ -8892,12 +8892,12 @@
       "source": {
         "type": "git",
         "url": "https://github.com/Roave/SecurityAdvisories.git",
-        "reference": "9f18043008504f654d3723c95346357a3af11deb"
+        "reference": "9ca11cd1098a5cf36dd8be9de62d5c57d571a582"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/9f18043008504f654d3723c95346357a3af11deb",
-        "reference": "9f18043008504f654d3723c95346357a3af11deb",
+        "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/9ca11cd1098a5cf36dd8be9de62d5c57d571a582",
+        "reference": "9ca11cd1098a5cf36dd8be9de62d5c57d571a582",
         "shasum": ""
       },
       "conflict": {
@@ -8925,7 +8925,7 @@
         "algolia/algoliasearch-magento-2": "<=3.16.1|>=3.17.0.0-beta1,<=3.17.1",
         "almirhodzic/nova-toggle-5": "<1.3",
         "alt-design/alt-redirect": "<1.6.4",
-        "altcha-org/altcha": "<1.3.1",
+        "altcha-org/altcha": "<1.3.1|>=2,<2.0.3",
         "alterphp/easyadmin-extension-bundle": ">=1.2,<1.2.11|>=1.3,<1.3.1",
         "amazing/media2click": ">=1,<1.3.3",
         "ameos/ameos_filemanager": "<3.1.3",
@@ -10065,7 +10065,7 @@
           "type": "tidelift"
         }
       ],
-      "time": "2026-11-18T16:12:42+00:00"
+      "time": "2026-11-18T23:16:43+00:00"
     },
     {
       "name": "sebastian/cli-parser",
