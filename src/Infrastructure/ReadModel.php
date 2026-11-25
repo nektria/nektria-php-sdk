@@ -32,9 +32,16 @@ abstract class ReadModel
         $this->manager = $manager;
     }
 
-    public static function setDefaultPageSize(int $pageSize): void
+    /**
+     * @param mixed[] $params
+     * @return T
+     */
+    public function buildDocument(array $params): Document
     {
-        self::$defaultPageSize = $pageSize;
+        throw new NektriaException(
+            'source() should be implemented in the child class when using getResult(), ' .
+            'getResults() or getPaginatedResult().',
+        );
     }
 
     public function manager(): EntityManagerInterface
@@ -42,16 +49,9 @@ abstract class ReadModel
         return $this->manager;
     }
 
-    /**
-     * @param mixed[] $params
-     * @return T
-     */
-    protected function buildDocument(array $params): Document
+    public static function setDefaultPageSize(int $pageSize): void
     {
-        throw new NektriaException(
-            'source() should be implemented in the child class when using getResult(), ' .
-            'getResults() or getPaginatedResult().',
-        );
+        self::$defaultPageSize = $pageSize;
     }
 
     /**
