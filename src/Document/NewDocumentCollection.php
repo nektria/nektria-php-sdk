@@ -50,6 +50,25 @@ readonly class NewDocumentCollection extends Document implements IteratorAggrega
         return $ret;
     }
 
+    /**
+     * @return array<string, NewDocumentCollection<T>>
+     */
+    public function classifyCb(callable $callback): array
+    {
+        $tmp = ArrayUtil::classify(
+            $this->items,
+            $callback,
+        );
+
+        $ret = [];
+
+        foreach ($tmp as $key => $value) {
+            $ret[$key] = new self($value);
+        }
+
+        return $ret;
+    }
+
     public function count(): int
     {
         return count($this->items);
