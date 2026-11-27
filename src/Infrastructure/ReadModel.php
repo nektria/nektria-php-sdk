@@ -9,6 +9,7 @@ use Nektria\Document\Document;
 use Nektria\Document\DocumentCollection;
 use Nektria\Document\NewDocumentCollection;
 use Nektria\Document\PaginatedDocumentCollection;
+use Nektria\Dto\Pagination;
 use Nektria\Exception\NektriaException;
 use Nektria\Util\StringUtil;
 use Throwable;
@@ -65,7 +66,11 @@ abstract class ReadModel
         array $orderBy = [],
         ?int $limit = null,
     ): DocumentCollection {
-        $sql = $this->buildSQL($sql, $params, $orderBy, null, $limit, false);
+        $pagination = null;
+        if ($limit !== null) {
+            $pagination = new Pagination(page: 1, maxResults: $limit);
+        }
+        $sql = $this->buildSQL($sql, $params, $orderBy, $pagination, false);
         $results = $this->getRawResults($sql, $params);
         $parsed = [];
 
@@ -87,7 +92,12 @@ abstract class ReadModel
         array $orderBy = [],
         ?int $limit = null,
     ): NewDocumentCollection {
-        $sql = $this->buildSQL($sql, $params, $orderBy, null, $limit, false);
+        $pagination = null;
+        if ($limit !== null) {
+            $pagination = new Pagination(page: 1, maxResults: $limit);
+        }
+
+        $sql = $this->buildSQL($sql, $params, $orderBy, $pagination, false);
         $results = $this->getRawResults($sql, $params);
         $parsed = [];
 
@@ -106,13 +116,12 @@ abstract class ReadModel
     protected function getPaginatedResults(
         string $sql,
         array $orderBy,
-        ?int $page = null,
-        ?int $limit = null,
+        Pagination $pagination,
         array $params = [],
     ): PaginatedDocumentCollection {
-        $page ??= 1;
-        $limit ??= self::$defaultPageSize;
-        $sql = $this->buildSQL($sql, $params, $orderBy, $page, $limit, true);
+        $page = $pagination->page;
+        $limit = $pagination->maxResults;
+        $sql = $this->buildSQL($sql, $params, $orderBy, $pagination, true);
         $results = $this->getRawResults($sql, $params);
         $parsed = [];
 
@@ -183,7 +192,7 @@ abstract class ReadModel
      */
     protected function getResult(string $sql, array $params = [], array $orderBy = []): ?Document
     {
-        $sql = $this->buildSQL($sql, $params, $orderBy, null, 1, false);
+        $sql = $this->buildSQL($sql, $params, $orderBy, new Pagination(1, 1), false);
         $result = $this->getRawResult($sql, $params);
 
         if ($result === null) {
@@ -209,9 +218,8 @@ abstract class ReadModel
         string $where,
         array &$params,
         array $orderBy,
-        ?int $page,
-        ?int $limit,
-        bool $pagination,
+        ?Pagination $pagination,
+        bool $applyPagination,
     ): string {
         $source = $this->source();
 
@@ -232,19 +240,19 @@ abstract class ReadModel
 
         $l = '';
         $o = '';
-        if ($limit !== null) {
+        if ($pagination !== null) {
+            $limit = $pagination->maxResults;
+            $page = $pagination->page;
             $l = 'LIMIT :__limit__';
             $params['__limit__'] = $limit === 9999 ? 9999 : max(1, min(self::MAX_RESULTS, $limit));
-            if ($pagination) {
+            if ($applyPagination) {
                 $sources = explode('FROM', $source);
                 $source = "{$sources[0]}, COUNT(*) OVER() AS __total__ FROM {$sources[1]}";
             }
 
-            if ($page !== null) {
-                $offset = max(0, ($page - 1) * $limit);
-                $o = 'OFFSET :__offset__';
-                $params['__offset__'] = $offset;
-            }
+            $offset = max(0, ($page - 1) * $limit);
+            $o = 'OFFSET :__offset__';
+            $params['__offset__'] = $offset;
         } elseif (!str_contains($source, 'LIMIT')) {
             $l = 'LIMIT :__limit__';
             $params['__limit__'] = max(1, min(self::MAX_RESULTS, self::$defaultPageSize));

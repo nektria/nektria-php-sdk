@@ -8,6 +8,7 @@ use Nektria\Dto\Address;
 use Nektria\Dto\Clock;
 use Nektria\Dto\LocalClock;
 use Nektria\Dto\Metadata;
+use Nektria\Dto\Pagination;
 use Nektria\Exception\InvalidRequestParamException;
 use Nektria\Exception\MissingRequestParamException;
 use Throwable;
@@ -561,6 +562,14 @@ readonly class ArrayDataFetcher
         }
 
         return $value;
+    }
+
+    public function retrievePagination(): Pagination
+    {
+        return new Pagination(
+            page: $this->getInt('page') ?? 1,
+            maxResults: $this->getInt('maxResults') ?? 100,
+        );
     }
 
     public function retrieveString(string $field): string
