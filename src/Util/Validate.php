@@ -175,7 +175,7 @@ class Validate
 
     public static function pagination(int $page, int $maxResults): void
     {
-        if ($maxResults < 1 || $maxResults >= 1000) {
+        if (($maxResults < 1 || $maxResults >= 1000) && $maxResults !== 9999) {
             throw new InvalidArgumentException("The field 'maxResults' must be greater than 0 and less than 1000.");
         }
 
